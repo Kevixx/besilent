@@ -10,13 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+// Define the policy (Great job including both URLs here!)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularDev",
-        policy => policy.WithOrigins("http://localhost:4200")
+        policy => policy.WithOrigins(
+                        "https://pl-and-partners.vercel.app",
+                        "http://localhost:4200")
                         .AllowAnyHeader()
                         .AllowAnyMethod());
 });
@@ -30,7 +32,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
-// Enable the policy (must be placed before app.MapControllers!)
+// Enable the policy right away
 app.UseCors("AllowAngularDev");
 
 // Configure the HTTP request pipeline.
@@ -41,10 +43,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// app.UseCors("AllowVercel"); <-- REMOVED THIS LINE
+
 app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapGet("/", () => "API is live and running!");
 app.Run();
-
-

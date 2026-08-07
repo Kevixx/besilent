@@ -1,14 +1,14 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root' // Singleton injection
+  providedIn: 'root', // Singleton injection
 })
 export class AuthService {
   private http = inject(HttpClient);
 
-  // Default .NET local HTTP port
-  private apiUrl = 'http://localhost:5030/api/auth'; 
+  private apiUrl = `${environment.apiUrl}/auth`;
 
   login(credentials: any) {
     console.log('Attempting to log in with credentials:', credentials);

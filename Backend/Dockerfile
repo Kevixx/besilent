@@ -9,7 +9,7 @@ RUN dotnet restore
 
 # Copy the rest of the C# code and publish the release
 COPY . .
-RUN dotnet publish -c Release -o /app/publish --no-restore
+RUN dotnet publish -c Release -o /app/publish
 
 # Stage 2: Create a lightweight runtime image for Railway
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime

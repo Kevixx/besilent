@@ -1,3 +1,10 @@
 Architecture.png
 logo.png
 logo.svg
+
+# Backend build folders
+Backend/bin/
+Backend/obj/
+
+# Local IDE settings
+.vscode/
