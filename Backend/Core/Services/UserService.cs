@@ -44,16 +44,15 @@ public class UserService(IUserRepository userRepository) : IUserService
         return user;
     }
 
-    // --- Private Helper Methods for Business Rules ---
     private string HashPassword(string rawPassword)
     {
-        // TODO: Implement BCrypt or ASP.NET Core's IPasswordHasher here
-        return $"hashed_{rawPassword}";
+        // BCrypt automatically generates a unique salt and applies it to the hash
+        return BCrypt.Net.BCrypt.HashPassword(rawPassword);
     }
 
     private bool VerifyPassword(string rawPassword, string hashedPassword)
     {
-        // TODO: Implement real verification here
-        return hashedPassword == $"hashed_{rawPassword}";
+        // BCrypt extracts the salt from the stored hash and securely compares them
+        return BCrypt.Net.BCrypt.Verify(rawPassword, hashedPassword);
     }
 }
