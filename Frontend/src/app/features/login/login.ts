@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/auth/auth';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
   imports: [FormsModule],
@@ -12,11 +13,11 @@ import { AuthService } from '../../core/auth/auth';
 export class LoginComponent {
   isLoginMode = true;
 
-  // Form fields
   email = '';
   password = '';
-  role = 1; // Default to 1 (Consultant) for new registrations
-  message = '';
+  role = 1;
+
+  message = signal('');
 
   constructor(
     private authService: AuthService,
@@ -25,48 +26,35 @@ export class LoginComponent {
 
   toggleMode() {
     this.isLoginMode = !this.isLoginMode;
+    this.message.set('');
   }
 
   onSubmit() {
+    this.message.set('');
+
     if (this.isLoginMode) {
-      // Execute Login
       this.authService.login({ email: this.email, password: this.password }).subscribe({
         next: (res) => {
-          console.log('Login successful!', res);
-
-          this.message = 'Login successful!';
+          // The HTML will now update instantly without a second click!
+          this.message.set('Login successful!');
           this.router.navigate(['/directory']);
         },
         error: (err) => {
-          console.error('Login failed', err);
-          this.message = 'Login failed. Please check your credentials.';
+          this.message.set('Login failed. Please check your credentials.');
         },
       });
     } else {
-      // Execute Register
       this.authService
         .register({ email: this.email, password: this.password, role: this.role })
         .subscribe({
           next: (res) => {
-            console.log('Registration successful!', res);
-
-            // Automatically flip back to login mode so they can sign in
             this.isLoginMode = true;
-            this.message = 'Registration successful! You can now log in.';
+            this.message.set('Registration successful! You can now log in.');
           },
           error: (err) => {
-            console.error('Registration failed', err);
-            this.message = 'Registration failed. Please try again.';
+            this.message.set('Registration failed. Please try again.');
           },
         });
-    }
-  }
-
-  resetMessage() {
-    if (this.message) {
-      setTimeout(() => {
-        this.message = '';
-      }, 5000);
     }
   }
 }

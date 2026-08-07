@@ -3,16 +3,17 @@
     <h2>{{ isLoginMode ? 'Sign In' : 'Create Account' }}</h2>
     <p>Internal Workspace</p>
 
-    <form (ngSubmit)="onSubmit()" (click)="resetMessage()">
+    <form (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label>Email</label>
+        <!-- 3. Use message.set('') to instantly clear errors while typing -->
         <input 
           type="email" 
-          [value]="email" 
+          [(ngModel)]="email" 
           name="email" 
           required 
           placeholder="consultant@pl-partners.dk"
-          (input)="email = $any($event.target).value" 
+          (ngModelChange)="message.set('')" 
         />
       </div>
 
@@ -20,32 +21,29 @@
         <label>Password</label>
         <input 
           type="password" 
-          [value]="password" 
+          [(ngModel)]="password" 
           name="password" 
           required 
-          (input)="password = $any($event.target).value" 
+          (ngModelChange)="message.set('')" 
         />
       </div>
 
-      <!-- Only show the role selector if we are in Register Mode -->
       @if (!isLoginMode) {
         <div class="form-group">
           <label>Account Type</label>
-          <select [value]="role" name="role" (change)="role = +$any($event.target).value">
-            <option value="0">Admin</option>
-            <option value="1">Consultant</option>
-            <option value="2">Client</option>
+          <select [(ngModel)]="role" name="role">
+            <option [value]="0">Admin</option>
+            <option [value]="1">Consultant</option>
+            <option [value]="2">Client</option>
           </select>
         </div>
       }
 
-      <!-- Simple validation check to disable button if fields are empty -->
       <button type="submit" [disabled]="!email || !password">
         {{ isLoginMode ? 'Log In' : 'Register' }}
       </button>
     </form>
 
-    <!-- The Toggle Link -->
     <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
       <p>
         {{ isLoginMode ? "Don't have an account?" : "Already have an account?" }}
@@ -58,10 +56,10 @@
       </p>
     </div>
 
-    <!-- Display message if available -->
-    @if (message) {
-      <p style="text-align: center; margin-top: 1rem;">
-        {{ message }}
+    <!-- 4. Execute the signal with parentheses () to read its current value -->
+    @if (message()) {
+      <p style="text-align: center; margin-top: 1rem; color: #d9534f; font-weight: 500;">
+        {{ message() }}
       </p>
     }
   </div>
