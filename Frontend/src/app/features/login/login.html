@@ -1,0 +1,68 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>{{ isLoginMode ? 'Sign In' : 'Create Account' }}</h2>
+    <p>Internal Workspace</p>
+
+    <form (ngSubmit)="onSubmit()" (click)="resetMessage()">
+      <div class="form-group">
+        <label>Email</label>
+        <input 
+          type="email" 
+          [value]="email" 
+          name="email" 
+          required 
+          placeholder="consultant@pl-partners.dk"
+          (input)="email = $any($event.target).value" 
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input 
+          type="password" 
+          [value]="password" 
+          name="password" 
+          required 
+          (input)="password = $any($event.target).value" 
+        />
+      </div>
+
+      <!-- Only show the role selector if we are in Register Mode -->
+      @if (!isLoginMode) {
+        <div class="form-group">
+          <label>Account Type</label>
+          <select [value]="role" name="role" (change)="role = +$any($event.target).value">
+            <option value="0">Admin</option>
+            <option value="1">Consultant</option>
+            <option value="2">Client</option>
+          </select>
+        </div>
+      }
+
+      <!-- Simple validation check to disable button if fields are empty -->
+      <button type="submit" [disabled]="!email || !password">
+        {{ isLoginMode ? 'Log In' : 'Register' }}
+      </button>
+    </form>
+
+    <!-- The Toggle Link -->
+    <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
+      <p>
+        {{ isLoginMode ? "Don't have an account?" : "Already have an account?" }}
+        <a 
+          href="javascript:void(0)" 
+          (click)="toggleMode()" 
+          style="color: #000; text-decoration: underline; font-weight: bold; cursor: pointer;">
+          {{ isLoginMode ? 'Sign Up' : 'Log In' }}
+        </a>
+      </p>
+    </div>
+
+    <!-- Display message if available -->
+    @if (message) {
+      <p style="text-align: center; margin-top: 1rem;">
+        {{ message }}
+      </p>
+    }
+  </div>
+</div>
