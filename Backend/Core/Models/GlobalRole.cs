@@ -1,5 +1,6 @@
 public enum GlobalRole
 {
-    Admin,
-    Consultant
+    Admin = 0,
+    Consultant = 1,
+    Client = 2
 }

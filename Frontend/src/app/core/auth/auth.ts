@@ -16,6 +16,7 @@ export class AuthService {
   }
 
   register(userData: any) {
+    console.log('Attempting to register with user data:', userData);
     return this.http.post(`${this.apiUrl}/register`, userData);
   }
 }

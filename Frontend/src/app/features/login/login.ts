@@ -47,7 +47,7 @@ export class LoginComponent {
       });
     } else {
       this.authService
-        .register({ email: this.email, password: this.password, role: this.role })
+        .register({ email: this.email, password: this.password, role: Number(this.role) })
         .subscribe({
           next: (res) => {
             this.isLoginMode = true;

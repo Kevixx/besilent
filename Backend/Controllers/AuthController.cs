@@ -7,7 +7,7 @@ namespace Backend.Controllers;
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
-private readonly IUserService _userService;
+    private readonly IUserService _userService;
 
     // Inject the Service, NOT the Database
     public AuthController(IUserService userService)
@@ -24,13 +24,13 @@ private readonly IUserService _userService;
         {
             return Unauthorized(new { Message = "Invalid credentials" });
         }
-        
-        return Ok(new 
-        { 
+
+        return Ok(new
+        {
             Message = "Login successful",
             UserId = user.Id,
             Role = user.GlobalRole.ToString(),
-            Token = "mock-jwt-token-until-we-build-real-auth" 
+            Token = "mock-jwt-token-until-we-build-real-auth"
         });
     }
 

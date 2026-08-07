@@ -11,14 +11,14 @@ public class UserService(IUserRepository userRepository) : IUserService
     {
         // 1. Data Retrieval
         var user = await _userRepository.GetUserByEmailAsync(email);
-        
+
         if (user == null) return null;
 
         // 2. Business Logic: Verify Password (Placeholder for real hashing)
         var isPasswordValid = VerifyPassword(password, user.PasswordHash);
-        
+
         if (!isPasswordValid) return null;
-        Console.WriteLine($"User {email} authenticated successfully.");
+
         return user;
     }
 
@@ -26,10 +26,10 @@ public class UserService(IUserRepository userRepository) : IUserService
     {
         // 1. Business Logic: Validation
         var existingUser = await _userRepository.GetUserByEmailAsync(email);
-        if (existingUser != null) return null; 
+        if (existingUser != null) return null;
 
         // 2. Business Logic: Hashing
-        var hashedPassword = HashPassword(password); 
+        var hashedPassword = HashPassword(password);
 
         var user = new User
         {
@@ -48,7 +48,7 @@ public class UserService(IUserRepository userRepository) : IUserService
     private string HashPassword(string rawPassword)
     {
         // TODO: Implement BCrypt or ASP.NET Core's IPasswordHasher here
-        return $"hashed_{rawPassword}"; 
+        return $"hashed_{rawPassword}";
     }
 
     private bool VerifyPassword(string rawPassword, string hashedPassword)
