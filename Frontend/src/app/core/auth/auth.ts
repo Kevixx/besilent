@@ -1,22 +1,60 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { from, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root', // Singleton injection
+  providedIn: 'root',
 })
 export class AuthService {
-  private http = inject(HttpClient);
+  private supabase: SupabaseClient;
 
-  private apiUrl = `${environment.apiUrl}/auth`;
+  private supabaseUrl = environment.supabaseUrl;
+  private supabaseKey = environment.supabaseKey;
 
-  login(credentials: any) {
-    console.log('Attempting to log in with credentials:', credentials);
-    return this.http.post(`${this.apiUrl}/login`, credentials);
+  constructor() {
+    this.supabase = createClient(this.supabaseUrl, this.supabaseKey);
   }
 
-  register(userData: any) {
-    console.log('Attempting to register with user data:', userData);
-    return this.http.post(`${this.apiUrl}/register`, userData);
+  // Register a new user directly with Supabase
+  register(credentials: { email: string; password: string; role?: number }): Observable<any> {
+    return from(
+      this.supabase.auth.signUp({
+        email: credentials.email,
+        password: credentials.password,
+        options: {
+          data: {
+            global_role: credentials.role, // Save the role into Supabase's custom user metadata
+          },
+        },
+      }),
+    ).pipe(
+      map((response) => {
+        if (response.error) throw response.error;
+        return response.data;
+      }),
+    );
+  }
+
+  // Log in directly with Supabase
+  login(credentials: { email: string; password: string }): Observable<any> {
+    return from(
+      this.supabase.auth.signInWithPassword({
+        email: credentials.email,
+        password: credentials.password,
+      }),
+    ).pipe(
+      map((response) => {
+        if (response.error) throw response.error;
+        return response.data;
+      }),
+    );
+  }
+
+  // Helper to get the current session token (to send to your C# API later)
+  async getToken(): Promise<string | null> {
+    const { data } = await this.supabase.auth.getSession();
+    return data.session?.access_token || null;
   }
 }
