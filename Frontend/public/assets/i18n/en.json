@@ -1,0 +1,63 @@
+{
+  "ACCESS": {
+    "LOGIN": {
+      "TITLE_SIGN_IN": "Sign In",
+      "TITLE_CREATE_ACCOUNT": "Create Account",
+      "SUBTITLE": "Internal Workspace",
+      "EMAIL_LABEL": "Email",
+      "EMAIL_PLACEHOLDER": "your.email@example.com",
+      "PASSWORD_LABEL": "Password",
+      "FORGOT_PASSWORD": "Forgot password?",
+      "ACCOUNT_TYPE_LABEL": "Account Type",
+      "ACCOUNT_TYPE_ADMIN": "Admin",
+      "ACCOUNT_TYPE_CONSULTANT": "Consultant",
+      "ACCOUNT_TYPE_CLIENT": "Client",
+      "BUTTON_LOGIN": "Log In",
+      "BUTTON_REGISTER": "Register",
+      "TOGGLE_SIGN_UP": "Sign Up",
+      "TOGGLE_LOG_IN": "Log In",
+      "TOGGLE_NO_ACCOUNT": "Don't have an account?",
+      "TOGGLE_HAVE_ACCOUNT": "Already have an account?",
+      "MESSAGES": {
+        "EMAIL_VERIFICATION": "Success! Please check your email inbox to verify your account before logging in.",
+        "VERIFY_EMAIL": "You need to verify your email address. Please check your inbox for the activation link.",
+        "INVALID_CREDENTIALS": "Incorrect email or password. Please try again.",
+        "ACCOUNT_EXISTS": "An account with this email address already exists.",
+        "RATE_LIMIT": "Too many attempts. Please wait a moment and try again.",
+        "UNEXPECTED_ERROR": "An unexpected error occurred. Please try again."
+      }
+    },
+    "FORGOT_PASSWORD": {
+      "BACK_TO_LOGIN": "Back to login",
+      "TITLE": "Reset Password",
+      "SUBTITLE": "Enter your email and we'll send you a secure reset link.",
+      "EMAIL_LABEL": "Email",
+      "EMAIL_PLACEHOLDER": "your.email@example.com",
+      "BUTTON": "Send Reset Link",
+      "MESSAGES": {
+        "SUCCESS": "Check your email for the password reset link!",
+        "GENERIC_ERROR": "Unable to send the password reset email."
+      }
+    },
+    "UPDATE_PASSWORD": {
+      "TITLE": "Set New Password",
+      "SUBTITLE": "Enter your new secure password below.",
+      "PASSWORD_LABEL": "Password",
+      "PASSWORD_PLACEHOLDER": "New password (min 6 characters)",
+      "BUTTON": "Save Password",
+      "LINK_EXPIRED": "Link Expired",
+      "REQUEST_NEW_LINK": "Request New Link",
+      "MESSAGES": {
+        "SUCCESS": "Password updated successfully! Redirecting...",
+        "GENERIC_ERROR": "Failed to update password.",
+        "INVALID_LINK": "The password reset link is invalid or has expired."
+      }
+    }
+  },
+  "DIRECTORY": {
+    "TITLE": "Workspace Directory",
+    "DESCRIPTION": "Authentication Successful! You are securely logged in.",
+    "BUTTON_DASHBOARD": "Dashboard",
+    "BUTTON_LOGOUT": "Logout"
+  }
+}

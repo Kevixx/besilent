@@ -1,6 +1,6 @@
-<div style="padding: 2rem; text-align: center; font-family: sans-serif;">
-  <h1>Workspace Directory</h1>
-  <p>Authentication Successful! You are securely logged in.</p>
-  <button style="margin: 1rem; padding: 0.5rem 1rem; font-size: 1rem;" (click)="dashboard()">Dashboard</button>
-  <button style="margin: 1rem; padding: 0.5rem 1rem; font-size: 1rem;" (click)="logout()">Logout</button>
+<div class="directory-container">
+  <h1>{{ 'DIRECTORY.TITLE' | translate }}</h1>
+  <p>{{ 'DIRECTORY.DESCRIPTION' | translate }}</p>
+  <button class="directory-button" (click)="dashboard()">{{ 'DIRECTORY.BUTTON_DASHBOARD' | translate }}</button>
+  <button class="directory-button" (click)="logout()">{{ 'DIRECTORY.BUTTON_LOGOUT' | translate }}</button>
 </div>

@@ -14,8 +14,15 @@
   width: 100%;
   max-width: 400px;
 
-  h2 { margin-top: 0; }
-  
+  h2 {
+    margin-top: 0;
+  }
+
+  .login-subtitle {
+    margin: 0 0 1.5rem;
+    color: #666;
+  }
+
   .form-group {
     display: flex;
     flex-direction: column;
@@ -25,12 +32,24 @@
       font-weight: 500;
       margin-bottom: 0.3rem;
     }
+  }
 
-    input {
-      padding: 0.6rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+  .field-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.25rem;
+
+    label {
+      margin: 0;
     }
+  }
+
+  .forgot-password-link {
+    font-size: 0.85rem;
+    color: #666;
+    text-decoration: none;
+    cursor: pointer;
   }
 
   button {
@@ -49,17 +68,46 @@
     }
   }
 
+  .auth-toggle {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .auth-toggle-link {
+    color: #000;
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .message {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 500;
+    min-height: 1.5rem;
+  }
+
+  .message-success {
+    color: var(--success-color);
+  }
+
+  .message-error {
+    color: var(--error-color);
+  }
+
   .error {
     color: red;
     font-size: 0.8rem;
     margin-top: 0.3rem;
   }
 
-  input, select {
+  input,
+  select {
     padding: 0.6rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 100%; // ensures it spans the full container
+    width: 100%;
     box-sizing: border-box;
   }
 }

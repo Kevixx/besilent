@@ -54,7 +54,6 @@ export class AuthService {
   // Sends the reset email
   async resetPassword(email: string) {
     const redirectUrl = `${this.frontendUrl}/update-password`;
-    console.log('Redirect URL for password reset:', redirectUrl);
 
     const { data, error } = await this.supabase.auth.resetPasswordForEmail(email, {
       redirectTo: redirectUrl,

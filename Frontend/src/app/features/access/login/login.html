@@ -1,75 +1,68 @@
 <div class="login-container">
   <div class="login-card">
-    <h2>{{ isLoginMode ? 'Sign In' : 'Create Account' }}</h2>
-    <p>Internal Workspace</p>
+    <h2>{{ isLoginMode ? ('ACCESS.LOGIN.TITLE_SIGN_IN' | translate) : ('ACCESS.LOGIN.TITLE_CREATE_ACCOUNT' | translate) }}</h2>
+    <p class="login-subtitle">{{ 'ACCESS.LOGIN.SUBTITLE' | translate }}</p>
 
     <form (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label>Email</label>
+        <label>{{ 'ACCESS.LOGIN.EMAIL_LABEL' | translate }}</label>
 
-        <input 
-          type="email" 
-          [(ngModel)]="email" 
-          name="email" 
-          required 
-          placeholder="name@pl-partners.dk"
-          (ngModelChange)="message.set('')" 
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          required
+          [placeholder]="'ACCESS.LOGIN.EMAIL_PLACEHOLDER' | translate"
+          (ngModelChange)="message.set('')"
         />
       </div>
 
       <div class="form-group">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
-          <label style="margin: 0;">Password</label>
+        <div class="field-label-row">
+          <label>{{ 'ACCESS.LOGIN.PASSWORD_LABEL' | translate }}</label>
 
           @if (isLoginMode) {
-            <a 
-              routerLink="/forgot-password" 
-              style="font-size: 0.85rem; color: #666; text-decoration: none; cursor: pointer;">
-              Forgot password?
+            <a routerLink="/forgot-password" class="forgot-password-link">
+              {{ 'ACCESS.LOGIN.FORGOT_PASSWORD' | translate }}
             </a>
-            }
+          }
         </div>
 
-        <input 
-          type="password" 
-          [(ngModel)]="password" 
-          name="password" 
-          required 
-          (ngModelChange)="message.set('')" 
+        <input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          required
+          (ngModelChange)="message.set('')"
         />
       </div>
 
       @if (!isLoginMode) {
         <div class="form-group">
-          <label>Account Type</label>
+          <label>{{ 'ACCESS.LOGIN.ACCOUNT_TYPE_LABEL' | translate }}</label>
           <select [(ngModel)]="role" name="role">
-            <option [value]=0>Admin</option>
-            <option [value]=1>Consultant</option>
-            <option [value]=2>Client</option>
+            <option [value]=0>{{ 'ACCESS.LOGIN.ACCOUNT_TYPE_ADMIN' | translate }}</option>
+            <option [value]=1>{{ 'ACCESS.LOGIN.ACCOUNT_TYPE_CONSULTANT' | translate }}</option>
+            <option [value]=2>{{ 'ACCESS.LOGIN.ACCOUNT_TYPE_CLIENT' | translate }}</option>
           </select>
         </div>
       }
 
       <button type="submit" [disabled]="!email || !password">
-        {{ isLoginMode ? 'Log In' : 'Register' }}
+        {{ isLoginMode ? ('ACCESS.LOGIN.BUTTON_LOGIN' | translate) : ('ACCESS.LOGIN.BUTTON_REGISTER' | translate) }}
       </button>
     </form>
 
-    <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
+    <div class="auth-toggle">
       <p>
-        {{ isLoginMode ? "Don't have an account?" : "Already have an account?" }}
-        <a 
-          href="javascript:void(0)" 
-          (click)="toggleMode()" 
-          style="color: #000; text-decoration: underline; font-weight: bold; cursor: pointer;">
-          {{ isLoginMode ? 'Sign Up' : 'Log In' }}
+        {{ isLoginMode ? ('ACCESS.LOGIN.TOGGLE_NO_ACCOUNT' | translate) : ('ACCESS.LOGIN.TOGGLE_HAVE_ACCOUNT' | translate) }}
+        <a href="javascript:void(0)" (click)="toggleMode()" class="auth-toggle-link">
+          {{ isLoginMode ? ('ACCESS.LOGIN.TOGGLE_SIGN_UP' | translate) : ('ACCESS.LOGIN.TOGGLE_LOG_IN' | translate) }}
         </a>
       </p>
     </div>
 
-    <p 
-      style="text-align: center; margin-top: 1rem; font-weight: 500; min-height: 1.5rem;"
-      [style.color]="messageColor">
+    <p class="message" [class.message-success]="messageColor === green" [class.message-error]="messageColor === red">
       {{ message() }}
     </p>
   </div>
