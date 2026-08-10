@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "pl-and-partners-frontend": {
+    "besilent-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -65,10 +65,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "pl-and-partners-frontend:build:production"
+              "buildTarget": "besilent-frontend:build:production"
             },
             "development": {
-              "buildTarget": "pl-and-partners-frontend:build:development"
+              "buildTarget": "besilent-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
