@@ -10,13 +10,12 @@ builder.Services.AddControllers();
 
 builder.Services.AddOpenApi();
 
-// Define the policy (Great job including both URLs here!)
+var frontendUrl = builder.Configuration["Urls:FrontendUrl"];
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularDev",
-        policy => policy.WithOrigins(
-                        "https://pl-and-partners.vercel.app",
-                        "http://localhost:4200")
+        policy => policy.WithOrigins(frontendUrl)
                         .AllowAnyHeader()
                         .AllowAnyMethod());
 });
@@ -53,15 +52,19 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-// Enable the policy right away
-app.UseCors("AllowAngularDev");
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+}
+else
+{
+    // Force HTTPS in production
     app.UseHttpsRedirection();
 }
+
+// Enable the policy right away
+app.UseCors("AllowAngularDev");
 
 app.UseAuthentication();
 app.UseAuthorization();

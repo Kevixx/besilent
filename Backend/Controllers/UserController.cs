@@ -6,23 +6,27 @@ namespace Backend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize] // Reject anyone without a valid Supabase JWT token
+[Authorize] // Reject anyone without a valid JWT token
 public class UserController : ControllerBase
 {
     [HttpGet("me")]
     public IActionResult GetCurrentProfile()
     {
-        // When a valid token is provided, ASP.NET Core automatically decrypts it.
-        // You can extract the Supabase User ID (UUID) from the token's "sub" or NameIdentifier claim.
-        var supabaseUserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
-                          ?? User.FindFirstValue("sub");
+        // Extract the Auth Provider UUID from the token
+        // In .NET, the JWT "sub" claim maps to ClaimTypes.NameIdentifier
+        var supabaseUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        // Extract the user's email directly from the token's claims
-        var email = User.FindFirstValue(ClaimTypes.Email);
+        if (string.IsNullOrEmpty(supabaseUserId))
+        {
+            return Unauthorized("User ID not found in token.");
+        }
+
+        // Extract the user's email directly from the token's claims or from the "email" claim if available
+        var email = User.FindFirstValue(ClaimTypes.Email) ?? User.FindFirstValue("email");
 
         return Ok(new
         {
-            Message = "Supabase token successfully validated by C#!",
+            Message = "Token successfully validated by C#!",
             UserId = supabaseUserId,
             Email = email
         });
