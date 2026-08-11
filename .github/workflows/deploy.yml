@@ -21,6 +21,7 @@ jobs:
         run: |
           npm ci
           npm run build
+          npm run test -- --watch=false --browsers=ChromeHeadless --no-progress --code-coverage
 
   # 2. BUILD BACKEND (Safety Check)
   build-backend:
@@ -38,7 +39,7 @@ jobs:
         run: |
           dotnet restore
           dotnet build --no-restore --configuration Release
-          # If you run C# unit tests, put the command here!
+          dotnet test --no-build --configuration Release --logger "console;verbosity=detailed"
 
   # 3. THE TRAFFIC COP (Deploy Phase)
   deploy-everything:

@@ -17,13 +17,14 @@ export class AuthService {
   }
 
   // Register a new user directly with Supabase
-  async register(credentials: { email: string; password: string; role?: number }) {
+  async register(credentials: { email: string; password: string; name: string; phone?: string }) {
     const { data, error } = await this.supabase.auth.signUp({
       email: credentials.email,
       password: credentials.password,
+      phone: credentials.phone,
       options: {
         data: {
-          global_role: credentials.role, // Save the role into Supabase's custom user metadata
+          name: credentials.name,
         },
       },
     });

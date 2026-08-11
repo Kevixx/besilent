@@ -8,6 +8,7 @@
       "EMAIL_PLACEHOLDER": "your.email@example.com",
       "PASSWORD_LABEL": "Password",
       "PASSWORD_PLACEHOLDER": "Password (min 6 characters)",
+      "PASSWORD_INSERT_PLACEHOLDER": "Enter your password",
       "REPEAT_PASSWORD_LABEL": "Repeat Password",
       "REPEAT_PASSWORD_PLACEHOLDER": "Repeat your password",
       "FORGOT_PASSWORD": "Forgot password?",
@@ -21,6 +22,10 @@
       "TOGGLE_LOG_IN": "Log In",
       "TOGGLE_NO_ACCOUNT": "Don't have an account?",
       "TOGGLE_HAVE_ACCOUNT": "Already have an account?",
+      "NAME_LABEL": "Full Name",
+      "PHONE_LABEL": "Phone Number",
+      "NAME_PLACEHOLDER": "Your full name",
+      "PHONE_PLACEHOLDER": "e.g. +1 555 123 4567",
       "FOOTER_TEXT": "It's time for action. Join us and make a difference.",
       "MESSAGES": {
         "EMAIL_VERIFICATION": "Success! Please check your email inbox to verify your account before logging in.",

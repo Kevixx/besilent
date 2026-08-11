@@ -24,7 +24,7 @@ export class LoginComponent implements AfterViewInit {
   email = '';
   password = '';
   repeatPassword = '';
-  role = 1;
+  name = '';
 
   message = signal('');
   error = signal('');
@@ -55,9 +55,18 @@ export class LoginComponent implements AfterViewInit {
           return;
         }
 
-        await this.authService.register({ email: this.email, password: this.password });
+        await this.authService.register({
+          email: this.email,
+          password: this.password,
+          name: this.name,
+        });
 
         this.message.set(this.translate.instant('ACCESS.LOGIN.MESSAGES.EMAIL_VERIFICATION'));
+
+        this.password = '';
+        this.repeatPassword = '';
+        this.name = '';
+
         this.isLoginMode = true;
       }
     } catch (err: any) {
