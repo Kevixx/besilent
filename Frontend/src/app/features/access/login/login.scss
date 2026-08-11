@@ -1,36 +1,7 @@
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.login-card {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-
+.card {
+  
   h2 {
     margin-top: 0;
-  }
-
-  .login-subtitle {
-    margin: 0 0 1.5rem;
-    color: #666;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.2rem;
-
-    label {
-      font-weight: 500;
-      margin-bottom: 0.3rem;
-    }
   }
 
   .field-label-row {
@@ -46,67 +17,23 @@
 
   .forgot-password-link {
     font-size: 0.85rem;
-    color: #666;
-    text-decoration: none;
     cursor: pointer;
   }
 
   button {
-    width: 100%;
-    padding: 0.8rem;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-
-    &:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
+    margin-top: 0.5rem;
   }
 
-  .auth-toggle {
+  .toggle {
     text-align: center;
     margin-top: 1.5rem;
     font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
   }
 
-  .auth-toggle-link {
-    color: #000;
-    text-decoration: underline;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  .message {
-    text-align: center;
-    margin-top: 1rem;
+  .toggle-link {
     font-weight: 500;
-    min-height: 1.5rem;
-  }
-
-  .message-success {
-    color: var(--success-color);
-  }
-
-  .message-error {
-    color: var(--error-color);
-  }
-
-  .error {
-    color: red;
-    font-size: 0.8rem;
-    margin-top: 0.3rem;
-  }
-
-  input,
-  select {
-    padding: 0.6rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box;
+    cursor: pointer;
+    margin-left: 0.3rem;
   }
 }

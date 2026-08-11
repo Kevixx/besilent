@@ -15,10 +15,9 @@ import { AuthService } from '../../../core/auth/auth';
 export class UpdatePasswordComponent implements OnInit {
   newPassword = '';
   message = '';
-  submitError = '';
+  error = '';
 
   hasError = false;
-  errorMessage = '';
 
   private authService = inject(AuthService);
   private router = inject(Router);
@@ -34,11 +33,9 @@ export class UpdatePasswordComponent implements OnInit {
         const errorDescription = params.get('error_description');
 
         if (errorDescription) {
-          this.errorMessage = errorDescription.replace(/\+/g, ' ');
+          this.error = errorDescription.replace(/\+/g, ' ');
         } else {
-          this.errorMessage = this.translate.instant(
-            'ACCESS.UPDATE_PASSWORD.MESSAGES.INVALID_LINK',
-          );
+          this.error = this.translate.instant('ACCESS.UPDATE_PASSWORD.MESSAGES.INVALID_LINK');
         }
       }
     });
@@ -46,14 +43,15 @@ export class UpdatePasswordComponent implements OnInit {
 
   async onSubmit() {
     this.message = '';
-    this.submitError = '';
+    this.error = '';
+
     try {
       await this.authService.updatePassword(this.newPassword);
       this.message = this.translate.instant('ACCESS.UPDATE_PASSWORD.MESSAGES.SUCCESS');
 
       setTimeout(() => this.router.navigate(['/login']), 2000);
     } catch (err: any) {
-      this.submitError =
+      this.error =
         err.message || this.translate.instant('ACCESS.UPDATE_PASSWORD.MESSAGES.GENERIC_ERROR');
     }
   }

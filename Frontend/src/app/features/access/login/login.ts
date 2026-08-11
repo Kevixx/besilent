@@ -18,10 +18,10 @@ export class LoginComponent {
   password = '';
   role = 1;
 
-  red = 'var(--error-color)';
-  green = 'var(--success-color)';
-  messageColor = '';
   message = signal('');
+  error = signal('');
+
+  isLoading = false;
 
   private authService = inject(AuthService);
   private router = inject(Router);
@@ -30,12 +30,15 @@ export class LoginComponent {
   toggleMode() {
     this.isLoginMode = !this.isLoginMode;
     this.message.set('');
+    this.error.set('');
   }
 
   async onSubmit() {
     this.message.set('');
+    this.error.set('');
 
     try {
+      this.isLoading = true;
       if (this.isLoginMode) {
         await this.authService.login({ email: this.email, password: this.password });
 
@@ -43,26 +46,29 @@ export class LoginComponent {
       } else {
         await this.authService.register({ email: this.email, password: this.password });
 
-        this.messageColor = this.green;
         this.message.set(this.translate.instant('ACCESS.LOGIN.MESSAGES.EMAIL_VERIFICATION'));
-
         this.isLoginMode = true;
       }
     } catch (err: any) {
-      this.messageColor = this.red;
-      const errorString = err.message || '';
+      this.message.set('');
+      this.error.set(err.message || '');
+      const errorString = this.error();
 
       if (errorString.includes('Email not confirmed')) {
-        this.message.set(this.translate.instant('ACCESS.LOGIN.MESSAGES.VERIFY_EMAIL'));
+        this.error.set(this.translate.instant('ACCESS.LOGIN.MESSAGES.VERIFY_EMAIL'));
       } else if (errorString.includes('Invalid login credentials')) {
-        this.message.set(this.translate.instant('ACCESS.LOGIN.MESSAGES.INVALID_CREDENTIALS'));
+        this.error.set(this.translate.instant('ACCESS.LOGIN.MESSAGES.INVALID_CREDENTIALS'));
       } else if (errorString.includes('already registered')) {
-        this.message.set(this.translate.instant('ACCESS.LOGIN.MESSAGES.ACCOUNT_EXISTS'));
+        this.error.set(this.translate.instant('ACCESS.LOGIN.MESSAGES.ACCOUNT_EXISTS'));
       } else if (errorString.includes('rate limit') || errorString.includes('Too Many Requests')) {
-        this.message.set(this.translate.instant('ACCESS.LOGIN.MESSAGES.RATE_LIMIT'));
+        this.error.set(this.translate.instant('ACCESS.LOGIN.MESSAGES.RATE_LIMIT'));
       } else {
-        this.message.set(errorString || this.translate.instant('ACCESS.LOGIN.MESSAGES.UNEXPECTED_ERROR'));
+        this.message.set(
+          errorString || this.translate.instant('ACCESS.LOGIN.MESSAGES.UNEXPECTED_ERROR'),
+        );
       }
+    } finally {
+      this.isLoading = false;
     }
   }
 }

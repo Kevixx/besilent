@@ -1,20 +1,15 @@
-<div class="login-container">
-  <div class="login-card">
-    <h2>{{ isLoginMode ? ('ACCESS.LOGIN.TITLE_SIGN_IN' | translate) : ('ACCESS.LOGIN.TITLE_CREATE_ACCOUNT' | translate) }}</h2>
-    <p class="login-subtitle">{{ 'ACCESS.LOGIN.SUBTITLE' | translate }}</p>
+<div class="container">
+  <div class="card">
+    <h2>{{ isLoginMode ? ('ACCESS.LOGIN.TITLE_SIGN_IN' | translate) : ('ACCESS.LOGIN.TITLE_CREATE_ACCOUNT' | translate)
+      }}</h2>
+    <p class="subtitle">{{ 'ACCESS.LOGIN.SUBTITLE' | translate }}</p>
 
     <form (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label>{{ 'ACCESS.LOGIN.EMAIL_LABEL' | translate }}</label>
 
-        <input
-          type="email"
-          [(ngModel)]="email"
-          name="email"
-          required
-          [placeholder]="'ACCESS.LOGIN.EMAIL_PLACEHOLDER' | translate"
-          (ngModelChange)="message.set('')"
-        />
+        <input type="email" [(ngModel)]="email" name="email" required
+          [placeholder]="'ACCESS.LOGIN.EMAIL_PLACEHOLDER' | translate" (ngModelChange)="message.set('')" />
       </div>
 
       <div class="form-group">
@@ -22,48 +17,50 @@
           <label>{{ 'ACCESS.LOGIN.PASSWORD_LABEL' | translate }}</label>
 
           @if (isLoginMode) {
-            <a routerLink="/forgot-password" class="forgot-password-link">
-              {{ 'ACCESS.LOGIN.FORGOT_PASSWORD' | translate }}
-            </a>
+          <a routerLink="/forgot-password" class="forgot-password-link">
+            {{ 'ACCESS.LOGIN.FORGOT_PASSWORD' | translate }}
+          </a>
           }
         </div>
 
-        <input
-          type="password"
-          [(ngModel)]="password"
-          name="password"
-          required
-          (ngModelChange)="message.set('')"
-        />
+        <input type="password" [(ngModel)]="password" name="password" required (ngModelChange)="message.set('')" />
       </div>
 
       @if (!isLoginMode) {
-        <div class="form-group">
-          <label>{{ 'ACCESS.LOGIN.ACCOUNT_TYPE_LABEL' | translate }}</label>
-          <select [(ngModel)]="role" name="role">
-            <option [value]=0>{{ 'ACCESS.LOGIN.ACCOUNT_TYPE_ADMIN' | translate }}</option>
-            <option [value]=1>{{ 'ACCESS.LOGIN.ACCOUNT_TYPE_CONSULTANT' | translate }}</option>
-            <option [value]=2>{{ 'ACCESS.LOGIN.ACCOUNT_TYPE_CLIENT' | translate }}</option>
-          </select>
-        </div>
+      <div class="form-group">
+        <label>{{ 'ACCESS.LOGIN.ACCOUNT_TYPE_LABEL' | translate }}</label>
+        <select [(ngModel)]="role" name="role">
+          <option [value]=0>{{ 'ACCESS.LOGIN.ACCOUNT_TYPE_ADMIN' | translate }}</option>
+          <option [value]=1>{{ 'ACCESS.LOGIN.ACCOUNT_TYPE_CONSULTANT' | translate }}</option>
+          <option [value]=2>{{ 'ACCESS.LOGIN.ACCOUNT_TYPE_CLIENT' | translate }}</option>
+        </select>
+      </div>
       }
 
-      <button type="submit" [disabled]="!email || !password">
+      <button type="submit" [disabled]="!email || !password" [class.loading]="isLoading">
         {{ isLoginMode ? ('ACCESS.LOGIN.BUTTON_LOGIN' | translate) : ('ACCESS.LOGIN.BUTTON_REGISTER' | translate) }}
       </button>
     </form>
 
-    <div class="auth-toggle">
+    <div class="toggle">
       <p>
-        {{ isLoginMode ? ('ACCESS.LOGIN.TOGGLE_NO_ACCOUNT' | translate) : ('ACCESS.LOGIN.TOGGLE_HAVE_ACCOUNT' | translate) }}
-        <a href="javascript:void(0)" (click)="toggleMode()" class="auth-toggle-link">
+        {{ isLoginMode ? ('ACCESS.LOGIN.TOGGLE_NO_ACCOUNT' | translate) : ('ACCESS.LOGIN.TOGGLE_HAVE_ACCOUNT' |
+        translate) }}
+
+        <a href="javascript:void(0)" (click)="toggleMode()" class="toggle-link">
           {{ isLoginMode ? ('ACCESS.LOGIN.TOGGLE_SIGN_UP' | translate) : ('ACCESS.LOGIN.TOGGLE_LOG_IN' | translate) }}
         </a>
       </p>
     </div>
 
-    <p class="message" [class.message-success]="messageColor === green" [class.message-error]="messageColor === red">
-      {{ message() }}
-    </p>
+    @if (message() && !error()) {
+    <p class="message success">{{ message() }}</p>
+    }
+    @else if (error()) {
+    <p class="message error">{{ error() }}</p>
+    }
+    @else if (!error() && !message()) {
+    <p class="message"> </p>
+    }
   </div>
 </div>
