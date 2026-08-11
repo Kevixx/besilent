@@ -10,6 +10,7 @@ describe('UpdatePasswordComponent', () => {
   let fixture: ComponentFixture<UpdatePasswordComponent>;
   let authService: {
     updatePassword: ReturnType<typeof vi.fn>;
+    logout: ReturnType<typeof vi.fn>; // <-- Add this line
   };
   let router: {
     navigate: ReturnType<typeof vi.fn>;
@@ -21,6 +22,7 @@ describe('UpdatePasswordComponent', () => {
   beforeEach(async () => {
     authService = {
       updatePassword: vi.fn(),
+      logout: vi.fn().mockResolvedValue(undefined),
     };
     router = {
       navigate: vi.fn(),

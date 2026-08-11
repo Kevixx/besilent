@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
+import { AuthService } from '../../core/auth/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-directory',
@@ -9,11 +11,21 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [TranslatePipe],
 })
 export class DirectoryComponent {
-  logout() {
-    window.location.href = '/login';
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
+
+  async onLogout() {
+    try {
+      await this.authService.logout();
+      this.router.navigate(['/login']);
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   }
 
   dashboard() {
-    window.location.href = '/dashboard';
+    this.router.navigate(['/dashboard']);
   }
 }

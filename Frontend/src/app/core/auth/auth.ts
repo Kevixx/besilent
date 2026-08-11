@@ -73,4 +73,10 @@ export class AuthService {
     if (error) throw error;
     return data;
   }
+
+  // Destroy the session and clear the token
+  async logout() {
+    const { error } = await this.supabase.auth.signOut();
+    if (error) throw error;
+  }
 }

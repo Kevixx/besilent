@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
+import { AuthService } from '../../../core/auth/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +13,8 @@ import { environment } from '../../../../environments/environment';
 })
 export class DashboardComponent {
   private http = inject(HttpClient);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   testSecureEndpoint() {
     const backendUrl = environment.apiUrl;
@@ -25,11 +29,16 @@ export class DashboardComponent {
     });
   }
 
-  logout() {
-    window.location.href = '/login';
+  async onLogout() {
+    try {
+      await this.authService.logout();
+      this.router.navigate(['/login']);
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   }
 
   directory() {
-    window.location.href = '/directory';
+    this.router.navigate(['/directory']);
   }
 }

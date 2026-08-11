@@ -63,7 +63,10 @@ export class UpdatePasswordComponent implements OnInit, AfterViewInit {
       await this.authService.updatePassword(this.newPassword);
       this.message.set(this.translate.instant('ACCESS.UPDATE_PASSWORD.MESSAGES.SUCCESS'));
 
-      setTimeout(() => this.router.navigate(['/login']), 2000);
+      setTimeout(async () => {
+        await this.authService.logout();
+        this.router.navigate(['/login']);
+      }, 2000);
     } catch (err: any) {
       this.error.set(
         err.message || this.translate.instant('ACCESS.UPDATE_PASSWORD.MESSAGES.GENERIC_ERROR'),
