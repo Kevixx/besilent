@@ -21,7 +21,7 @@ jobs:
         run: |
           npm ci
           npm run build
-          npm run test -- --watch=false --browsers=ChromeHeadless --no-progress --code-coverage
+          npm run test -- --watch=false --browsers=ChromeHeadless --no-progress --coverage
 
   # 2. BUILD BACKEND (Safety Check)
   build-backend:
