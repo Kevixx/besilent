@@ -1,14 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 import { createClient } from '@supabase/supabase-js';
+import { vi } from 'vitest';
 
 import { AuthService } from './auth';
 import { environment } from '../../../environments/environment';
 
-vi.mock('@supabase/supabase-js', () => ({
-  createClient: vi.fn(),
-}));
+vi.mock('@supabase/supabase-js', () => {
+  return {
+    createClient: vi.fn(),
+  };
+});
 
 describe('AuthService', () => {
+  // Define the structure once at the top
   const mockSupabase = {
     auth: {
       signUp: vi.fn(),
@@ -23,7 +27,9 @@ describe('AuthService', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (createClient as unknown as ReturnType<typeof vi.fn>).mockReturnValue(mockSupabase);
+
+    // Use the single mockSupabase object you defined above
+    vi.mocked(createClient).mockReturnValue(mockSupabase as any);
 
     TestBed.configureTestingModule({});
     service = TestBed.inject(AuthService);
@@ -40,11 +46,13 @@ describe('AuthService', () => {
       email: 'person@example.com',
       password: 'secret123',
       name: 'John Smith',
+      phone: '1234567890',
     });
 
     expect(mockSupabase.auth.signUp).toHaveBeenCalledWith({
       email: 'person@example.com',
       password: 'secret123',
+      phone: '1234567890',
       options: {
         data: {
           name: 'John Smith',
