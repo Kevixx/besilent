@@ -63,7 +63,6 @@ jobs:
 
       # 3c. Deploy to Vercel using the official CLI
       - name: Deploy Angular to Vercel
-        working-directory: ./Frontend
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
