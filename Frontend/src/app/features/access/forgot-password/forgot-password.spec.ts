@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { RouterTestingModule } from '@angular/router/testing';
 
 import { AuthService } from '../../../core/auth/auth';
 import { ForgotPasswordComponent } from './forgot-password';
@@ -24,8 +24,9 @@ describe('ForgotPasswordComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [ForgotPasswordComponent, RouterTestingModule],
+      imports: [ForgotPasswordComponent],
       providers: [
+        provideRouter([]),
         { provide: AuthService, useValue: authService },
         { provide: TranslateService, useValue: translateService },
       ],
@@ -50,8 +51,8 @@ describe('ForgotPasswordComponent', () => {
     expect(translateService.instant).toHaveBeenCalledWith(
       'ACCESS.FORGOT_PASSWORD.MESSAGES.SUCCESS',
     );
-    expect(component.message).toBe('ACCESS.FORGOT_PASSWORD.MESSAGES.SUCCESS');
-    expect(component.error).toBe('');
+    expect(component.message()).toBe('ACCESS.FORGOT_PASSWORD.MESSAGES.SUCCESS');
+    expect(component.error()).toBe('');
   });
 
   it('surfaces reset errors from the auth service', async () => {
@@ -61,7 +62,7 @@ describe('ForgotPasswordComponent', () => {
 
     await component.onSubmit();
 
-    expect(component.error).toBe('reset failed');
-    expect(component.message).toBe('');
+    expect(component.error()).toBe('reset failed');
+    expect(component.message()).toBe('');
   });
 });

@@ -2,13 +2,13 @@ import { AfterViewInit, Component, inject, OnInit, signal } from '@angular/core'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../../core/auth/auth';
 
 @Component({
   selector: 'app-update-password',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, TranslatePipe],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './update-password.html',
   styleUrls: ['./update-password.scss'],
 })
@@ -30,7 +30,7 @@ export class UpdatePasswordComponent implements OnInit, AfterViewInit {
   private authService = inject(AuthService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
-  private translate = inject(TranslateService);
+  public translate = inject(TranslateService);
 
   ngOnInit() {
     this.route.fragment.subscribe((fragment) => {

@@ -1,16 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, provideRouter, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-
 import { AuthService } from '../../../core/auth/auth';
 import { UpdatePasswordComponent } from './update-password';
 
 describe('UpdatePasswordComponent', () => {
   let component: UpdatePasswordComponent;
   let fixture: ComponentFixture<UpdatePasswordComponent>;
-  let routeFragment$ = of('');
   let authService: {
     updatePassword: ReturnType<typeof vi.fn>;
   };
@@ -33,8 +30,9 @@ describe('UpdatePasswordComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [UpdatePasswordComponent, RouterTestingModule],
+      imports: [UpdatePasswordComponent],
       providers: [
+        provideRouter([]),
         { provide: AuthService, useValue: authService },
         { provide: Router, useValue: router },
         { provide: TranslateService, useValue: translateService },
@@ -51,12 +49,11 @@ describe('UpdatePasswordComponent', () => {
   });
 
   it('shows an error message when the password reset fragment contains an error', async () => {
-    routeFragment$ = of('error=access_denied&error_description=Link+expired');
-
     await TestBed.resetTestingModule();
     await TestBed.configureTestingModule({
-      imports: [UpdatePasswordComponent, RouterTestingModule],
+      imports: [UpdatePasswordComponent],
       providers: [
+        provideRouter([]),
         { provide: AuthService, useValue: authService },
         { provide: Router, useValue: router },
         { provide: TranslateService, useValue: translateService },
@@ -72,7 +69,7 @@ describe('UpdatePasswordComponent', () => {
     component.ngOnInit();
 
     expect(component.hasError).toBe(true);
-    expect(component.errorMessage).toBe('Link expired');
+    expect(component.error()).toBe('Link expired');
   });
 
   it('updates the password and redirects back to login', async () => {
@@ -89,6 +86,7 @@ describe('UpdatePasswordComponent', () => {
     }) as typeof setTimeout);
 
     component.newPassword = 'new-password';
+    component.repeatPassword = 'new-password';
 
     await component.onSubmit();
 
@@ -96,7 +94,7 @@ describe('UpdatePasswordComponent', () => {
     expect(translateService.instant).toHaveBeenCalledWith(
       'ACCESS.UPDATE_PASSWORD.MESSAGES.SUCCESS',
     );
-    expect(component.message).toBe('ACCESS.UPDATE_PASSWORD.MESSAGES.SUCCESS');
+    expect(component.message()).toBe('ACCESS.UPDATE_PASSWORD.MESSAGES.SUCCESS');
     expect(router.navigate).toHaveBeenCalledWith(['/login']);
 
     setTimeoutSpy.mockRestore();
@@ -106,10 +104,11 @@ describe('UpdatePasswordComponent', () => {
     authService.updatePassword.mockRejectedValue(new Error('update failed'));
 
     component.newPassword = 'new-password';
+    component.repeatPassword = 'new-password';
 
     await component.onSubmit();
 
-    expect(component.submitError).toBe('update failed');
-    expect(component.message).toBe('');
+    expect(component.error()).toBe('update failed');
+    expect(component.message()).toBe('');
   });
 });

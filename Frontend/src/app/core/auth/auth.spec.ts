@@ -39,7 +39,7 @@ describe('AuthService', () => {
     const result = await service.register({
       email: 'person@example.com',
       password: 'secret123',
-      role: 2,
+      name: 'John Smith',
     });
 
     expect(mockSupabase.auth.signUp).toHaveBeenCalledWith({
@@ -47,7 +47,7 @@ describe('AuthService', () => {
       password: 'secret123',
       options: {
         data: {
-          global_role: 2,
+          name: 'John Smith',
         },
       },
     });
