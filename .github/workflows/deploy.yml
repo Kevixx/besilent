@@ -17,6 +17,8 @@ jobs:
         with:
           node-version: '20'
       - name: Install & Build
+        # Tell GitHub to run these commands inside the Frontend folder
+        working-directory: ./Frontend
         run: |
           npm ci
           npm run build --configuration production
@@ -32,6 +34,8 @@ jobs:
         with:
           dotnet-version: '8.0.x'
       - name: Build & Test
+        # Tell GitHub to run these commands inside the Backend folder
+        working-directory: ./Backend
         run: |
           dotnet restore
           dotnet build --no-restore --configuration Release
