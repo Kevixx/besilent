@@ -1,7 +1,12 @@
 .card {
-  
   h2 {
     margin-top: 0;
+  }
+
+  .subtitle {
+    margin: 0 0 1.5rem;
+    font-size: 0.95rem;
+    text-align: center;
   }
 
   .field-label-row {
@@ -28,7 +33,6 @@
     text-align: center;
     margin-top: 1.5rem;
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
   }
 
   .toggle-link {
@@ -36,4 +40,10 @@
     cursor: pointer;
     margin-left: 0.3rem;
   }
+}
+
+#footer {
+  position: absolute;
+  bottom: 1rem;
+  z-index: 1;
 }

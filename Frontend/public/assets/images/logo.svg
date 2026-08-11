@@ -4,6 +4,6 @@
   <text x="0" y="62" font-family="system-ui, -apple-system, sans-serif" font-weight="1000" font-size="64"
     letter-spacing="-0.04em" font-style="italic">
     <!-- Solid, loud prefix -->
-    <tspan fill="#ffffff">besilent.</tspan>
+    <tspan fill="rgba(255, 255, 255, 0.7)">Besilent</tspan>
   </text>
 </svg>

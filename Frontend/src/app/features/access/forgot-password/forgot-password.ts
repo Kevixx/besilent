@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -12,22 +12,39 @@ import { RouterLink } from '@angular/router';
   templateUrl: './forgot-password.html',
   styleUrls: ['./forgot-password.scss'],
 })
-export class ForgotPasswordComponent {
+export class ForgotPasswordComponent implements AfterViewInit {
+  ngAfterViewInit(): void {
+    this.pageReady.set(true);
+  }
+
   email = '';
-  message = '';
-  error = '';
+  message = signal('');
+  error = signal('');
+  isLoading = false;
+  pageReady = signal(false);
+
   private authService = inject(AuthService);
   private translate = inject(TranslateService);
 
   async onSubmit() {
-    this.message = '';
-    this.error = '';
+    this.resetMessages();
+    this.isLoading = true;
+
     try {
       await this.authService.resetPassword(this.email);
-      this.message = this.translate.instant('ACCESS.FORGOT_PASSWORD.MESSAGES.SUCCESS');
+      this.message.set(this.translate.instant('ACCESS.FORGOT_PASSWORD.MESSAGES.SUCCESS'));
     } catch (err: any) {
-      this.error =
-        err.message || this.translate.instant('ACCESS.FORGOT_PASSWORD.MESSAGES.GENERIC_ERROR');
+      const extracted = err?.message || err?.error?.message || err?.statusText || '';
+      this.error.set(
+        extracted || this.translate.instant('ACCESS.FORGOT_PASSWORD.MESSAGES.GENERIC_ERROR'),
+      );
+    } finally {
+      this.isLoading = false;
     }
+  }
+
+  resetMessages() {
+    this.message.set('');
+    this.error.set('');
   }
 }

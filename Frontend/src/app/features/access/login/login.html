@@ -1,3 +1,4 @@
+@if(pageReady()) {
 <div class="container">
   <div class="card">
     <h2>{{ isLoginMode ? ('ACCESS.LOGIN.TITLE_SIGN_IN' | translate) : ('ACCESS.LOGIN.TITLE_CREATE_ACCOUNT' | translate)
@@ -9,7 +10,7 @@
         <label>{{ 'ACCESS.LOGIN.EMAIL_LABEL' | translate }}</label>
 
         <input type="email" [(ngModel)]="email" name="email" required
-          [placeholder]="'ACCESS.LOGIN.EMAIL_PLACEHOLDER' | translate" (ngModelChange)="message.set('')" />
+          [placeholder]="'ACCESS.LOGIN.EMAIL_PLACEHOLDER' | translate" (ngModelChange)="resetMessages()" />
       </div>
 
       <div class="form-group">
@@ -23,10 +24,18 @@
           }
         </div>
 
-        <input type="password" [(ngModel)]="password" name="password" required (ngModelChange)="message.set('')" />
+        <input type="password" [(ngModel)]="password" name="password"
+          [placeholder]="!isLoginMode ? ('ACCESS.LOGIN.PASSWORD_PLACEHOLDER' | translate) : ''" required
+          (ngModelChange)="resetMessages()" />
       </div>
 
       @if (!isLoginMode) {
+      <div class="form-group">
+        <label>{{ 'ACCESS.LOGIN.REPEAT_PASSWORD_LABEL' | translate }}</label>
+        <input type="password" [placeholder]="'ACCESS.LOGIN.REPEAT_PASSWORD_PLACEHOLDER' | translate"
+          [(ngModel)]="repeatPassword" name="repeatPassword" required (ngModelChange)="resetMessages()" />
+      </div>
+
       <div class="form-group">
         <label>{{ 'ACCESS.LOGIN.ACCOUNT_TYPE_LABEL' | translate }}</label>
         <select [(ngModel)]="role" name="role">
@@ -37,7 +46,7 @@
       </div>
       }
 
-      <button type="submit" [disabled]="!email || !password" [class.loading]="isLoading">
+      <button type="submit" [disabled]="!email || !password || isLoading" [class.loading]="isLoading">
         {{ isLoginMode ? ('ACCESS.LOGIN.BUTTON_LOGIN' | translate) : ('ACCESS.LOGIN.BUTTON_REGISTER' | translate) }}
       </button>
     </form>
@@ -53,7 +62,7 @@
       </p>
     </div>
 
-    @if (message() && !error()) {
+    @if (message()) {
     <p class="message success">{{ message() }}</p>
     }
     @else if (error()) {
@@ -63,4 +72,20 @@
     <p class="message"> </p>
     }
   </div>
+
+  <div id="footer">
+    <h4>
+      {{ 'ACCESS.LOGIN.FOOTER_TEXT' | translate }}
+    </h4>
+  </div>
 </div>
+}
+@else{
+<div class="container">
+  <div class="card">
+    <div class="global-loader-overlay">
+      <div class="global-spinner" aria-hidden="true"></div>
+    </div>
+  </div>
+</div>
+}

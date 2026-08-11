@@ -3,10 +3,13 @@
     "LOGIN": {
       "TITLE_SIGN_IN": "Sign In",
       "TITLE_CREATE_ACCOUNT": "Create Account",
-      "SUBTITLE": "Internal Workspace",
+      "SUBTITLE": "Political Platform",
       "EMAIL_LABEL": "Email",
       "EMAIL_PLACEHOLDER": "your.email@example.com",
       "PASSWORD_LABEL": "Password",
+      "PASSWORD_PLACEHOLDER": "Password (min 6 characters)",
+      "REPEAT_PASSWORD_LABEL": "Repeat Password",
+      "REPEAT_PASSWORD_PLACEHOLDER": "Repeat your password",
       "FORGOT_PASSWORD": "Forgot password?",
       "ACCOUNT_TYPE_LABEL": "Account Type",
       "ACCOUNT_TYPE_ADMIN": "Admin",
@@ -18,6 +21,7 @@
       "TOGGLE_LOG_IN": "Log In",
       "TOGGLE_NO_ACCOUNT": "Don't have an account?",
       "TOGGLE_HAVE_ACCOUNT": "Already have an account?",
+      "FOOTER_TEXT": "It's time for action. Join us and make a difference.",
       "MESSAGES": {
         "EMAIL_VERIFICATION": "Success! Please check your email inbox to verify your account before logging in.",
         "VERIFY_EMAIL": "You need to verify your email address. Please check your inbox for the activation link.",
@@ -43,14 +47,18 @@
       "TITLE": "Set New Password",
       "SUBTITLE": "Enter your new secure password below.",
       "PASSWORD_LABEL": "Password",
+      "REPEAT_PASSWORD_LABEL": "Repeat Password",
       "PASSWORD_PLACEHOLDER": "New password (min 6 characters)",
+      "PASSWORD_MISMATCH": "Passwords do not match.",
+      "REPEAT_PASSWORD_PLACEHOLDER": "Repeat new password",
       "BUTTON": "Save Password",
       "LINK_EXPIRED": "Link Expired",
       "REQUEST_NEW_LINK": "Request New Link",
       "MESSAGES": {
         "SUCCESS": "Password updated successfully! Redirecting...",
         "GENERIC_ERROR": "Failed to update password.",
-        "INVALID_LINK": "The password reset link is invalid or has expired."
+        "INVALID_LINK": "The password reset link is invalid or has expired.",
+        "PASSWORD_MISMATCH": "Passwords do not match. Please ensure both fields are identical."
       }
     }
   },

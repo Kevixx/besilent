@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -12,11 +12,19 @@ import { AuthService } from '../../../core/auth/auth';
   templateUrl: './update-password.html',
   styleUrls: ['./update-password.scss'],
 })
-export class UpdatePasswordComponent implements OnInit {
-  newPassword = '';
-  message = '';
-  error = '';
+export class UpdatePasswordComponent implements OnInit, AfterViewInit {
+  ngAfterViewInit(): void {
+    this.pageReady.set(true);
+  }
 
+  pageReady = signal(true);
+  newPassword = '';
+  repeatPassword = '';
+  message = signal('');
+  error = signal('');
+
+  isLoading = false;
+  passwordChanged = false;
   hasError = false;
 
   private authService = inject(AuthService);
@@ -33,26 +41,40 @@ export class UpdatePasswordComponent implements OnInit {
         const errorDescription = params.get('error_description');
 
         if (errorDescription) {
-          this.error = errorDescription.replace(/\+/g, ' ');
+          this.error.set(errorDescription.replace(/\+/g, ' '));
         } else {
-          this.error = this.translate.instant('ACCESS.UPDATE_PASSWORD.MESSAGES.INVALID_LINK');
+          this.error.set(this.translate.instant('ACCESS.UPDATE_PASSWORD.MESSAGES.INVALID_LINK'));
         }
       }
     });
   }
 
   async onSubmit() {
-    this.message = '';
-    this.error = '';
+    this.isLoading = true;
+    this.resetMessages();
 
     try {
+      if (this.newPassword !== this.repeatPassword) {
+        this.error.set(this.translate.instant('ACCESS.UPDATE_PASSWORD.MESSAGES.PASSWORD_MISMATCH'));
+        return;
+      }
+
+      this.passwordChanged = true;
       await this.authService.updatePassword(this.newPassword);
-      this.message = this.translate.instant('ACCESS.UPDATE_PASSWORD.MESSAGES.SUCCESS');
+      this.message.set(this.translate.instant('ACCESS.UPDATE_PASSWORD.MESSAGES.SUCCESS'));
 
       setTimeout(() => this.router.navigate(['/login']), 2000);
     } catch (err: any) {
-      this.error =
-        err.message || this.translate.instant('ACCESS.UPDATE_PASSWORD.MESSAGES.GENERIC_ERROR');
+      this.error.set(
+        err.message || this.translate.instant('ACCESS.UPDATE_PASSWORD.MESSAGES.GENERIC_ERROR'),
+      );
+    } finally {
+      this.isLoading = false;
     }
+  }
+
+  resetMessages() {
+    this.message.set('');
+    this.error.set('');
   }
 }

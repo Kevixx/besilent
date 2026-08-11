@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -11,11 +11,19 @@ import { AuthService } from '../../../core/auth/auth';
   styleUrls: ['./login.scss'],
   imports: [FormsModule, RouterLink, TranslatePipe],
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit {
+  ngAfterViewInit(): void {
+    // mark component as ready after view init so the UI doesn't briefly flash
+    // when switching windows or during initial render
+    this.pageReady.set(true);
+  }
+
+  pageReady = signal(false);
   isLoginMode = true;
 
   email = '';
   password = '';
+  repeatPassword = '';
   role = 1;
 
   message = signal('');
@@ -29,13 +37,11 @@ export class LoginComponent {
 
   toggleMode() {
     this.isLoginMode = !this.isLoginMode;
-    this.message.set('');
-    this.error.set('');
+    this.resetMessages();
   }
 
   async onSubmit() {
-    this.message.set('');
-    this.error.set('');
+    this.resetMessages();
 
     try {
       this.isLoading = true;
@@ -44,6 +50,11 @@ export class LoginComponent {
 
         this.router.navigate(['/dashboard']);
       } else {
+        if (this.password !== this.repeatPassword) {
+          this.error.set(this.translate.instant('ACCESS.LOGIN.MESSAGES.PASSWORD_MISMATCH'));
+          return;
+        }
+
         await this.authService.register({ email: this.email, password: this.password });
 
         this.message.set(this.translate.instant('ACCESS.LOGIN.MESSAGES.EMAIL_VERIFICATION'));
@@ -63,12 +74,17 @@ export class LoginComponent {
       } else if (errorString.includes('rate limit') || errorString.includes('Too Many Requests')) {
         this.error.set(this.translate.instant('ACCESS.LOGIN.MESSAGES.RATE_LIMIT'));
       } else {
-        this.message.set(
+        this.error.set(
           errorString || this.translate.instant('ACCESS.LOGIN.MESSAGES.UNEXPECTED_ERROR'),
         );
       }
     } finally {
       this.isLoading = false;
     }
+  }
+
+  resetMessages() {
+    this.message.set('');
+    this.error.set('');
   }
 }

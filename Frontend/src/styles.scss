@@ -2,6 +2,35 @@
 :root {
   --error-color: #d9534f;
   --success-color: #5cb85c;
+
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --box-shadow-color: rgba(0, 0, 0, 0.3);
+
+  --primary-color: #ff4500;
+  --primary-hover: #e63900;
+
+  --text-primary: rgba(255, 255, 255, 0.6);
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-tertiary: rgba(255, 255, 255, 0.3);
+
+  --icon-primary: var(--text-primary);
+  --icon-hover: var(--primary-color);
+  --icon-active: var(--primary-color);
+  --icon-disabled: rgba(255, 255, 255, 0.3);
+
+  --card-bg: rgba(15, 15, 20, 0.5);
+  --border-color: rgba(255, 255, 255, 0.08);
+
+  --input-bg: rgba(0, 0, 0, 0.25);
+  --input-border: rgba(255, 255, 255, 0.15);
+
+  --focus-color: #00e5ff;
+  --button-disabled-color: rgba(255, 255, 255, 0.3);
+  --disabled-bg: rgba(255, 255, 255, 0.1);
+  --overlay-bg: rgba(6, 6, 8, 0.6);
+  --border-light: rgba(255, 255, 255, 0.3);
+  --spinner-color: rgba(0, 229, 255, 0.15);
 }
 
 html,
@@ -23,21 +52,28 @@ body {
 }
 
 .card {
-  background: rgba(15, 15, 20, 0.5);
+  background: var(--card-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #eaeaea;
+  border: 1px solid var(--border-color);
   padding: 2.5rem;
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px var(--box-shadow-color);
   width: 100%;
   max-width: 400px;
   box-sizing: border-box;
 }
 
 h2 {
-  margin-top: 0;
+  margin: 0;
+}
+
+p,
+h2,
+h3,
+h4 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
 }
 
 .header {
@@ -47,13 +83,28 @@ h2 {
   margin-bottom: 1rem;
 }
 
+.message {
+  margin-top: 1rem;
+  font-weight: 500;
+  text-align: center;
+  min-height: 1.5rem;
+}
+
+.message.success {
+  color: var(--success-color);
+}
+
+.message.error {
+  color: var(--error-color);
+}
+
 .back-icon,
 .back-link,
 .forgot-password-link,
 .toggle-link {
   font-size: 1.5rem;
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-primary);
   transition: color 0.2s;
 }
 
@@ -61,21 +112,13 @@ h2 {
 .back-link:hover,
 .forgot-password-link:hover,
 .toggle-link:hover {
-  color: #00e5ff;
+  color: var(--focus-color);
 }
 
 .back-link,
 .forgot-password-link,
 .toggle-link {
   font-size: inherit;
-}
-
-.subtitle,
-.login-subtitle {
-  margin: 0 0 1.5rem;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.95rem;
-  text-align: center;
 }
 
 .form-group {
@@ -88,14 +131,14 @@ h2 {
     font-weight: 500;
     margin-bottom: 0.3rem;
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--text-secondary);
   }
 
   input,
   select {
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #fff;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--white-color);
     padding: 0.7rem;
     border-radius: 6px;
     width: 100%;
@@ -104,7 +147,7 @@ h2 {
 
     &:focus {
       outline: none;
-      border-color: #ff4500;
+      border-color: var(--primary-color);
     }
   }
 }
@@ -113,8 +156,8 @@ button,
 .link-button {
   width: 100%;
   padding: 0.8rem 1rem;
-  background-color: #ff4500;
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--white-color);
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -124,10 +167,12 @@ button,
   text-decoration: none;
   display: block;
   box-sizing: border-box;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
 
   &:hover:not(:disabled) {
-    background-color: #e63900;
+    background-color: var(--primary-hover);
   }
 
   &:active:not(:disabled) {
@@ -135,25 +180,59 @@ button,
   }
 
   &:disabled {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.3);
+    background-color: var(--disabled-bg);
+    color: var(--button-disabled-color);
     cursor: not-allowed;
   }
 }
 
-.message {
-  margin-top: 1rem;
-  font-weight: 500;
-  text-align: center;
-  min-height: 1.5rem;
-}
+.icon-button {
+  /* Support both inline masked buttons and inline images (kept for compatibility) */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-primary);
 
-.message.success {
-  color: var(--success-color, #5cb85c);
-}
+  /* Default mask-based icon appearance when --icon-url is provided */
+  width: 1.75rem;
+  height: 1.75rem;
+  background-color: var(--icon-primary);
+  -webkit-mask: var(--icon-url) no-repeat center/1rem 1rem;
+  mask: var(--icon-url) no-repeat center/1rem 1rem;
+  mask-size: 1rem 1rem;
+  -webkit-mask-size: 1rem 1rem;
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease,
+    opacity 0.15s ease;
 
-.message.error {
-  color: var(--error-color, #d9534f);
+  &:hover:not(:disabled) {
+    background-color: var(--icon-hover);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--icon-disabled);
+    opacity: 0.8;
+  }
+
+  /* If an <img> is used inside, ensure it scales and inherits color via filter fallback */
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    /* Make monochrome images appear white-ish by forcing them to black then tinting via filter if needed */
+    filter: brightness(0) invert(1);
+  }
 }
 
 /* =========================================
@@ -161,8 +240,12 @@ button,
    ========================================= */
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Button Spinner */
@@ -176,7 +259,7 @@ button.loading {
   opacity: 0.85;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 50%;
     top: 50%;
@@ -184,8 +267,8 @@ button.loading {
     height: 1.2rem;
     margin-left: -0.6rem;
     margin-top: -0.6rem;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top-color: #ffffff;
+    border: 2px solid var(--border-light);
+    border-top-color: var(--white-color);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
@@ -194,11 +277,12 @@ button.loading {
 /* Full-Screen Global Spinner */
 .global-loader-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   width: 100vw;
   height: 100vh;
-  background: rgba(6, 6, 8, 0.6); /* Dark tint */
+  transform: translate(-50%, -50%);
+  background: var(--overlay-bg); /* Dark tint */
   backdrop-filter: blur(8px); /* Frosted glass effect */
   -webkit-backdrop-filter: blur(8px);
   z-index: 9999; /* Forces it above everything else */
@@ -212,8 +296,8 @@ button.loading {
   height: 3.5rem;
 
   /* Uses your brand cyan for high-tech contrast */
-  border: 3px solid rgba(0, 229, 255, 0.15); 
-  border-top-color: #00e5ff; 
+  border: 3px solid var(--spinner-color);
+  border-top-color: var(--focus-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
