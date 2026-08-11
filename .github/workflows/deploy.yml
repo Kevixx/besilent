@@ -17,11 +17,10 @@ jobs:
         with:
           node-version: '22'
       - name: Install & Build
-        # Tell GitHub to run these commands inside the Frontend folder
         working-directory: ./Frontend
         run: |
           npm ci
-          npm run build --configuration production
+          npm run build
 
   # 2. BUILD BACKEND (Safety Check)
   build-backend:
