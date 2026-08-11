@@ -5,31 +5,30 @@ import { vi } from 'vitest';
 import { AuthService } from './auth';
 import { environment } from '../../../environments/environment';
 
-vi.mock('@supabase/supabase-js', () => {
-  return {
-    createClient: vi.fn(),
-  };
-});
+// Use vi.hoisted to create the mock object BEFORE imports are evaluated
+const mockSupabase = vi.hoisted(() => ({
+  auth: {
+    signUp: vi.fn(),
+    signInWithPassword: vi.fn(),
+    getSession: vi.fn(),
+    resetPasswordForEmail: vi.fn(),
+    updateUser: vi.fn(),
+  },
+}));
+
+// Return the hoisted object directly from the mock factory
+vi.mock('@supabase/supabase-js', () => ({
+  createClient: vi.fn(() => mockSupabase),
+}));
 
 describe('AuthService', () => {
-  // Define the structure once at the top
-  const mockSupabase = {
-    auth: {
-      signUp: vi.fn(),
-      signInWithPassword: vi.fn(),
-      getSession: vi.fn(),
-      resetPasswordForEmail: vi.fn(),
-      updateUser: vi.fn(),
-    },
-  };
-
   let service: AuthService;
 
   beforeEach(() => {
     vi.clearAllMocks();
 
-    // Use the single mockSupabase object you defined above
-    vi.mocked(createClient).mockReturnValue(mockSupabase as any);
+    // We no longer need to call vi.mocked(...).mockReturnValue(...) here!
+    // The createClient mock is already hardcoded to return mockSupabase.
 
     TestBed.configureTestingModule({});
     service = TestBed.inject(AuthService);
@@ -46,13 +45,13 @@ describe('AuthService', () => {
       email: 'person@example.com',
       password: 'secret123',
       name: 'John Smith',
-      phone: '1234567890',
+      phone: '+1234567890',
     });
 
     expect(mockSupabase.auth.signUp).toHaveBeenCalledWith({
       email: 'person@example.com',
       password: 'secret123',
-      phone: '1234567890',
+      phone: '+1234567890',
       options: {
         data: {
           name: 'John Smith',
