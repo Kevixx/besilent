@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddOpenApi();
 
-var frontendUrl = builder.Configuration["Urls:FrontendUrl"];
+var frontendUrl = builder.Configuration["Urls:FrontendUrl"] ?? throw new InvalidOperationException("Frontend URL is not configured in appsettings.json");
 
 builder.Services.AddCors(options =>
 {
