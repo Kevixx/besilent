@@ -32,22 +32,30 @@
   }
 }
 
-#footer {
+#footer-wrapper {
   position: absolute;
   bottom: 0;
-  z-index: -1;
-  opacity: 0;
+  width: 100%;
+  overflow: hidden; /* Traps the animation so no scrollbar triggers */
 
-  animation: fadeIn 1.5s ease-out forwards;
+  #footer {
+    width: 100%;
+    z-index: -1;
+    opacity: 0;
+    overflow-y: hidden;
+    text-align: center;
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+    animation: fadeIn 1.5s ease-out forwards;
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   }
 }

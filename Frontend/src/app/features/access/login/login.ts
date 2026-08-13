@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, inject, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  inject,
+  signal,
+  ViewChild,
+  ElementRef,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -35,9 +43,48 @@ export class LoginComponent implements AfterViewInit {
   private router = inject(Router);
   private translate = inject(TranslateService);
 
+  @ViewChild('cardRef') cardRef!: ElementRef<HTMLDivElement>;
+
+  //Inject the tool needed to measure and update DOM state
+  private cdr = inject(ChangeDetectorRef);
+
   toggleMode() {
+    // Measure the current height of the card (e.g., Login height)
+    const startHeight = this.cardRef.nativeElement.clientHeight;
+
+    // Change the state
     this.isLoginMode = !this.isLoginMode;
     this.resetMessages();
+
+    // Force Angular to instantly add/remove the @if elements in the DOM
+    this.cdr.detectChanges();
+
+    // Measure the new target height (e.g., Register height)
+    const targetHeight = this.cardRef.nativeElement.clientHeight;
+
+    // Animate from exact Start Pixel to exact Target Pixel using Web Animations API
+    const element = this.cardRef.nativeElement;
+    element.style.overflow = 'hidden';
+    element.style.height = `${startHeight}px`;
+
+    const player = element.animate(
+      [{ height: `${startHeight}px` }, { height: `${targetHeight}px` }],
+      {
+        duration: 250,
+      },
+    );
+
+    for (const child of this.cardRef.nativeElement.children) {
+      child.animate([{ opacity: 0 }, { opacity: 1 }], {
+        duration: 500,
+      });
+    }
+
+    // Cleanup once finished so card can resize naturally
+    player.onfinish = () => {
+      element.style.height = 'auto';
+      element.style.overflow = '';
+    };
   }
 
   async onSubmit() {

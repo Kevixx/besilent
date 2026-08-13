@@ -1,7 +1,8 @@
 @if(pageReady()) {
 <div class="container">
-  <div class="card">
-    <h2>{{ isLoginMode ? ('ACCESS.LOGIN.TITLE_SIGN_IN' | translate) : ('ACCESS.LOGIN.TITLE_CREATE_ACCOUNT' | translate)
+  <div class="card" #cardRef>
+    <h2>{{ isLoginMode ? ('ACCESS.LOGIN.TITLE_SIGN_IN' | translate) : ('ACCESS.LOGIN.TITLE_CREATE_ACCOUNT' |
+      translate)
       }}</h2>
     <p class="subtitle">{{ 'ACCESS.LOGIN.SUBTITLE' | translate }}</p>
 
@@ -72,10 +73,12 @@
     }
   </div>
 
-  <div id="footer">
-    <h5>
-      {{ 'ACCESS.LOGIN.FOOTER_TEXT' | translate }}
-    </h5>
+  <div id="footer-wrapper">
+    <div id="footer">
+      <h5>
+        {{ 'ACCESS.LOGIN.FOOTER_TEXT' | translate }}
+      </h5>
+    </div>
   </div>
 </div>
 }
