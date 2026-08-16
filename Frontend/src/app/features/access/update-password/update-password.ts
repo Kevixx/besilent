@@ -24,7 +24,6 @@ export class UpdatePasswordComponent implements OnInit, AfterViewInit {
   error = signal('');
 
   isLoading = false;
-  passwordChanged = false;
   hasError = false;
 
   private authService = inject(AuthService);
@@ -59,7 +58,6 @@ export class UpdatePasswordComponent implements OnInit, AfterViewInit {
         return;
       }
 
-      this.passwordChanged = true;
       await this.authService.updatePassword(this.newPassword);
       this.message.set(this.translate.instant('ACCESS.UPDATE_PASSWORD.MESSAGES.SUCCESS'));
 

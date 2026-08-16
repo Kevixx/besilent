@@ -1,0 +1,174 @@
+/* --- Map Navbar Variables to Global Variables --- */
+:host {
+  --nav-height: 70px;
+
+  /* Use your global card background and text colors */
+  --bg-color: var(--card-bg);
+  --text-color: var(--text-primary);
+  --brand-color: var(--white-color);
+  --accent-color: var(--primary-color);
+
+  --transition-speed: 0.3s;
+}
+
+/* --- Layout & Glassmorphism --- */
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background: var(--bg-color);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  /* Use your global border color */
+  border-bottom: 1px solid var(--border-color);
+
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- Branding --- */
+.logo {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brand-color);
+  letter-spacing: -0.5px;
+}
+
+/* --- Desktop Navigation --- */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color var(--transition-speed) ease;
+    position: relative;
+
+    &:hover {
+      color: var(--accent-color);
+    }
+
+    /* Active indicator line */
+    &.active-link {
+      color: var(--accent-color);
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--accent-color);
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
+/* --- Mobile Toggle (Hidden on Desktop) --- */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+
+  .hamburger {
+    width: 24px;
+    height: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: var(--text-color);
+      border-radius: 2px;
+      transition: all var(--transition-speed) ease-in-out;
+      transform-origin: left center;
+    }
+
+    /* Hamburger to X Animation */
+    &.is-active span:nth-child(1) {
+      transform: rotate(45deg) translate(0, -2px);
+    }
+    &.is-active span:nth-child(2) {
+      opacity: 0;
+    }
+    &.is-active span:nth-child(3) {
+      transform: rotate(-45deg) translate(0, 2px);
+    }
+  }
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    width: 100%;
+    background: var(--bg-color);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 2rem 0;
+    gap: 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+    /* Sliding dropdown animation */
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &.is-open {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .nav-actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}

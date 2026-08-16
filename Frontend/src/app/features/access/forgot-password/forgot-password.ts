@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../../core/auth/auth';
 import { RouterLink } from '@angular/router';
+import { IconComponent } from '../../../shared/components/icon/icon';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, TranslatePipe],
+  imports: [CommonModule, FormsModule, RouterLink, TranslatePipe, IconComponent],
   templateUrl: './forgot-password.html',
   styleUrls: ['./forgot-password.scss'],
 })

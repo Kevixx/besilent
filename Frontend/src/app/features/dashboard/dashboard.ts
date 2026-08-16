@@ -1,15 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
-import { AuthService } from '../../../core/auth/auth';
+import { environment } from '../../../environments/environment';
+import { AuthService } from '../../core/auth/auth';
 import { Router } from '@angular/router';
+import { NavbarComponent } from '../../shared/components/navbar/navbar';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.scss'],
-  imports: [],
+  imports: [NavbarComponent],
 })
 export class DashboardComponent {
   private http = inject(HttpClient);

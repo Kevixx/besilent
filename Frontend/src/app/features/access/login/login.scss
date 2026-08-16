@@ -1,34 +1,24 @@
+#logo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-right: 1rem;
+  max-height: 6rem;
+  max-width: 15rem;
+  pointer-events: none;
+  z-index: -1;
+}
+
 .card {
   .field-label-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.25rem;
-
-    label {
-      margin: 0;
-    }
-  }
-
-  .forgot-password-link {
-    font-size: 0.85rem;
-    cursor: pointer;
-  }
-
-  button {
-    margin-top: 0.5rem;
   }
 
   .toggle {
     text-align: center;
-    margin-top: 1.5rem;
-    font-size: 0.9rem;
-  }
-
-  .toggle-link {
-    font-weight: 500;
-    cursor: pointer;
-    margin-left: 0.3rem;
   }
 }
 

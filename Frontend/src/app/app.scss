@@ -4,8 +4,8 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1; 
-  pointer-events: none; 
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* --- SVG BREATHING ANIMATIONS --- */
@@ -38,32 +38,45 @@
 }
 
 @keyframes pulse-core {
-  0% { transform: rotate(-22deg) scale(0.88) translate(-15px, -10px); opacity: 0.65; }
-  100% { transform: rotate(-22deg) scale(1.15) translate(20px, 15px); opacity: 1; }
+  0% {
+    transform: rotate(-22deg) scale(0.88) translate(-15px, -10px);
+    opacity: 0.65;
+  }
+  100% {
+    transform: rotate(-22deg) scale(1.15) translate(20px, 15px);
+    opacity: 1;
+  }
 }
 
 @keyframes pulse-cyan {
-  0% { transform: scale(0.9) translate(-25px, 15px); opacity: 0.5; }
-  100% { transform: scale(1.2) translate(25px, -20px); opacity: 0.95; }
+  0% {
+    transform: scale(0.9) translate(-25px, 15px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.2) translate(25px, -20px);
+    opacity: 0.95;
+  }
 }
 
 @keyframes pulse-beam {
-  0% { transform: scaleX(0.92) scaleY(0.88) rotate(-1deg); opacity: 0.55; }
-  100% { transform: scaleX(1.08) scaleY(1.12) rotate(2deg); opacity: 0.95; }
+  0% {
+    transform: scaleX(0.92) scaleY(0.88) rotate(-1deg);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scaleX(1.08) scaleY(1.12) rotate(2deg);
+    opacity: 0.95;
+  }
 }
 
 @keyframes pulse-ambient {
-  0% { transform: scale(0.85) translate(-10px, -10px); opacity: 0.3; }
-  100% { transform: scale(1.25) translate(15px, 15px); opacity: 0.7; }
-}
-
-#logo {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 1rem;
-  max-height: 6rem;
-  max-width: 15rem;
-  pointer-events: none;
-  z-index: -1;
+  0% {
+    transform: scale(0.85) translate(-10px, -10px);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.25) translate(15px, 15px);
+    opacity: 0.7;
+  }
 }

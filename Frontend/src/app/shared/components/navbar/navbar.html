@@ -1,0 +1,44 @@
+<header class="navbar">
+    <div class="nav-container">
+
+        <!-- Logo -->
+        <a routerLink="/dashboard" class="logo" (click)="closeMenu()">
+            <!-- Brand names usually aren't translated, but you can add a pipe here if needed -->
+            <span class="brand-text">{{ 'NAVBAR.BRAND' | translate }}</span>
+        </a>
+
+        <!-- Mobile Hamburger Button -->
+        <button class="mobile-toggle" [attr.aria-expanded]="isMenuOpen()"
+            [attr.aria-label]="'NAVBAR.TOGGLE_NAV' | translate" (click)="toggleMenu()">
+            <div class="hamburger" [class.is-active]="isMenuOpen()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+
+        <!-- Main Navigation & Actions -->
+        <nav class="nav-menu" [class.is-open]="isMenuOpen()">
+            <ul class="nav-links">
+                <li>
+                    <a routerLink="/dashboard" routerLinkActive="active-link" (click)="closeMenu()">
+                        {{ 'NAVBAR.DASHBOARD' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/directory" routerLinkActive="active-link" (click)="closeMenu()">
+                        {{ 'NAVBAR.DIRECTORY' | translate }}
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="btn-primary" (click)="logout()" title="{{ 'COMMON.LOGOUT' | translate }}">
+                    <app-icon src="assets/icons/logout.svg"></app-icon>
+                    {{ 'COMMON.LOGOUT' | translate}}
+                </button>
+            </div>
+        </nav>
+
+    </div>
+</header>

@@ -1,3 +1,4 @@
+<img src="assets/images/logo.svg" alt="besilent logo" id="logo" />
 @if(pageReady()) {
 <div class="container">
   <div class="card" #cardRef>
@@ -27,7 +28,7 @@
           <label>{{ 'ACCESS.LOGIN.PASSWORD_LABEL' | translate }}</label>
 
           @if (isLoginMode) {
-          <a routerLink="/forgot-password" class="forgot-password-link">
+          <a routerLink="/forgot-password" class="link">
             {{ 'ACCESS.LOGIN.FORGOT_PASSWORD' | translate }}
           </a>
           }
@@ -46,7 +47,8 @@
       </div>
       }
 
-      <button type="submit" [disabled]="!email || !password || isLoading" [class.loading]="isLoading">
+      <button type="submit" [disabled]="!email || !password || isLoading" [class.loading]="isLoading"
+        class="btn-primary btn-wide">
         {{ isLoginMode ? ('ACCESS.LOGIN.BUTTON_LOGIN' | translate) : ('ACCESS.LOGIN.BUTTON_REGISTER' | translate) }}
       </button>
     </form>
@@ -56,7 +58,7 @@
         {{ isLoginMode ? ('ACCESS.LOGIN.TOGGLE_NO_ACCOUNT' | translate) : ('ACCESS.LOGIN.TOGGLE_HAVE_ACCOUNT' |
         translate) }}
 
-        <a href="javascript:void(0)" (click)="toggleMode()" class="toggle-link">
+        <a routerLink="" (click)="toggleMode()" class="link">
           {{ isLoginMode ? ('ACCESS.LOGIN.TOGGLE_SIGN_UP' | translate) : ('ACCESS.LOGIN.TOGGLE_LOG_IN' | translate) }}
         </a>
       </p>

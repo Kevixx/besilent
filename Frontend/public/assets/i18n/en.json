@@ -70,7 +70,22 @@
   "DIRECTORY": {
     "TITLE": "Workspace Directory",
     "DESCRIPTION": "Authentication Successful! You are securely logged in.",
-    "BUTTON_DASHBOARD": "Dashboard",
-    "BUTTON_LOGOUT": "Logout"
+    "BUTTON_DASHBOARD": "Dashboard"
+  },
+  "NAVBAR": {
+    "DASHBOARD": "Dashboard",
+    "DIRECTORY": "Directory",
+    "TOGGLE_NAV": "Toggle navigation",
+    "BRAND": "Besilent"
+  },
+  "COMMON": {
+    "LOGOUT": "Logout",
+    "LOADING": "Loading...",
+    "ERROR": "An error occurred. Please try again.",
+    "SUCCESS": "Operation completed successfully.",
+    "CANCEL": "Cancel",
+    "CONFIRM": "Confirm",
+    "YES": "Yes",
+    "NO": "No"
   }
 }

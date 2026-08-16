@@ -49,42 +49,8 @@ export class LoginComponent implements AfterViewInit {
   private cdr = inject(ChangeDetectorRef);
 
   toggleMode() {
-    // Measure the current height of the card (e.g., Login height)
-    const startHeight = this.cardRef.nativeElement.clientHeight;
-
-    // Change the state
     this.isLoginMode = !this.isLoginMode;
     this.resetMessages();
-
-    // Force Angular to instantly add/remove the @if elements in the DOM
-    this.cdr.detectChanges();
-
-    // Measure the new target height (e.g., Register height)
-    const targetHeight = this.cardRef.nativeElement.clientHeight;
-
-    // Animate from exact Start Pixel to exact Target Pixel using Web Animations API
-    const element = this.cardRef.nativeElement;
-    element.style.overflow = 'hidden';
-    element.style.height = `${startHeight}px`;
-
-    const player = element.animate(
-      [{ height: `${startHeight}px` }, { height: `${targetHeight}px` }],
-      {
-        duration: 250,
-      },
-    );
-
-    for (const child of this.cardRef.nativeElement.children) {
-      child.animate([{ opacity: 0 }, { opacity: 1 }], {
-        duration: 500,
-      });
-    }
-
-    // Cleanup once finished so card can resize naturally
-    player.onfinish = () => {
-      element.style.height = 'auto';
-      element.style.overflow = '';
-    };
   }
 
   async onSubmit() {

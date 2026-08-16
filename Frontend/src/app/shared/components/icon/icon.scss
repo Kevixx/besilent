@@ -1,0 +1,17 @@
+:host {
+  /* Aligns the icon perfectly with text */
+  display: inline-block;
+  vertical-align: middle;
+
+  /* MAGIC TRICK: Uses the text color of whatever parent element it is inside! */
+  background-color: currentColor;
+
+  /* Applies the dynamic SVG URL from our TypeScript */
+  -webkit-mask: var(--icon-url) no-repeat center / contain;
+  mask: var(--icon-url) no-repeat center / contain;
+
+  /* Smooth color changes when hovering the parent button */
+  transition:
+    background-color 0.2s ease-in-out,
+    transform 0.2s ease;
+}
