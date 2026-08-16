@@ -75,10 +75,10 @@
   "NAVBAR": {
     "DASHBOARD": "Dashboard",
     "DIRECTORY": "Directory",
-    "TOGGLE_NAV": "Toggle navigation",
-    "BRAND": "Besilent"
+    "TOGGLE_NAV": "Toggle navigation"
   },
   "COMMON": {
+    "BRAND": "Besilent",
     "LOGOUT": "Logout",
     "LOADING": "Loading...",
     "ERROR": "An error occurred. Please try again.",

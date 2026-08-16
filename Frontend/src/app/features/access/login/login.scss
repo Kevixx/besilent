@@ -15,10 +15,42 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.25rem;
+
+    a {
+      transition: opacity 0.3s ease;
+
+      &.fade {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
   }
 
   .toggle {
     text-align: center;
+  }
+
+  .form-group {
+    /* Keep whatever standard form-group styles you already have here (margins, etc) */
+
+    &.collapsible {
+      max-height: 100px; /* Adjust this to be slightly taller than your actual input + label */
+      overflow: hidden;
+
+      /* The Animation Engine */
+      transition:
+        max-height 0.5s ease-in-out,
+        opacity 0.5s ease-in-out,
+        margin-bottom 0.5s ease-in-out;
+
+      /* The "Close" State */
+      &.close {
+        max-height: 0;
+        opacity: 0;
+        margin-bottom: 0rem;
+        pointer-events: none;
+      }
+    }
   }
 }
 

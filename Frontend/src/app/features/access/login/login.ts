@@ -43,11 +43,6 @@ export class LoginComponent implements AfterViewInit {
   private router = inject(Router);
   private translate = inject(TranslateService);
 
-  @ViewChild('cardRef') cardRef!: ElementRef<HTMLDivElement>;
-
-  //Inject the tool needed to measure and update DOM state
-  private cdr = inject(ChangeDetectorRef);
-
   toggleMode() {
     this.isLoginMode = !this.isLoginMode;
     this.resetMessages();
