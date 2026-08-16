@@ -9,7 +9,7 @@
 
     <form (ngSubmit)="onSubmit()">
       <!-- Name Field -->
-      <div class="form-group collapsible" [class.close]="isLoginMode">
+      <div class="form-group collapsible" [class.collapse]="isLoginMode">
         <label>{{ 'ACCESS.LOGIN.NAME_LABEL' | translate }}</label>
         <input type="text" [placeholder]="'ACCESS.LOGIN.NAME_PLACEHOLDER' | translate" [(ngModel)]="name" name="name"
           [required]="!isLoginMode" (ngModelChange)="resetMessages()" />
@@ -17,34 +17,35 @@
 
       <!-- Email Field (Always visible) -->
       <div class="form-group">
-        <label>{{ 'ACCESS.LOGIN.EMAIL_LABEL' | translate }}</label>
+        <label>{{ 'ACCESS.COMMON.EMAIL_LABEL' | translate }}</label>
         <input type="email" [(ngModel)]="email" name="email" required
-          [placeholder]="'ACCESS.LOGIN.EMAIL_PLACEHOLDER' | translate" (ngModelChange)="resetMessages()" />
+          [placeholder]="'ACCESS.COMMON.EMAIL_PLACEHOLDER' | translate" (ngModelChange)="resetMessages()" />
       </div>
 
       <!-- Password Field (Always visible) -->
       <div class="form-group">
         <div class="field-label-row">
-          <label>{{ 'ACCESS.LOGIN.PASSWORD_LABEL' | translate }}</label>
+          <label>{{ 'ACCESS.COMMON.PASSWORD_LABEL' | translate }}</label>
           <a routerLink="/forgot-password" class="link" [class.fade]="!isLoginMode">
             {{ 'ACCESS.LOGIN.FORGOT_PASSWORD' | translate }}
           </a>
         </div>
         <input type="password" [(ngModel)]="password" name="password"
-          [placeholder]="!isLoginMode ? ('ACCESS.LOGIN.PASSWORD_PLACEHOLDER' | translate) : ('ACCESS.LOGIN.PASSWORD_INSERT_PLACEHOLDER' | translate)"
+          [placeholder]="!isLoginMode ? ('ACCESS.COMMON.PASSWORD_PLACEHOLDER' | translate) : ('ACCESS.LOGIN.PASSWORD_INSERT_PLACEHOLDER' | translate)"
           required (ngModelChange)="resetMessages()" />
       </div>
 
       <!-- Repeat Password Field -->
-      <div class="form-group collapsible" [class.close]="isLoginMode">
-        <label>{{ 'ACCESS.LOGIN.REPEAT_PASSWORD_LABEL' | translate }}</label>
-        <input type="password" [placeholder]="'ACCESS.LOGIN.REPEAT_PASSWORD_PLACEHOLDER' | translate"
+      <div class="form-group collapsible" [class.collapse]="isLoginMode">
+        <label>{{ 'ACCESS.COMMON.REPEAT_PASSWORD_LABEL' | translate }}</label>
+        <input type="password" [placeholder]="'ACCESS.COMMON.REPEAT_PASSWORD_PLACEHOLDER' | translate"
           [(ngModel)]="repeatPassword" name="repeatPassword" [required]="!isLoginMode"
           (ngModelChange)="resetMessages()" />
       </div>
 
-      <button type="submit" [disabled]="!email || !password || isLoading" [class.loading]="isLoading"
-        class="btn-primary btn-wide">
+      <button type="submit"
+        [disabled]="!email || !password || isLoading || (!isLoginMode && !repeatPassword) || (!isLoginMode && !name)"
+        [class.loading]="isLoading" class="btn-primary btn-wide">
         {{ isLoginMode ? ('ACCESS.LOGIN.BUTTON_LOGIN' | translate) : ('ACCESS.LOGIN.BUTTON_REGISTER' | translate) }}
       </button>
     </form>
@@ -60,15 +61,8 @@
       </p>
     </div>
 
-    @if (message()) {
-    <p class="message success">{{ message() }}</p>
-    }
-    @else if (error()) {
-    <p class="message error">{{ error() }}</p>
-    }
-    @else if (!error() && !message()) {
-    <p class="message"> </p>
-    }
+    <p class="message success collapsible" [class.collapse]="!message()">{{ message() }}</p>
+    <p class="message error collapsible" [class.collapse]="!error()">{{ error() }}</p>
   </div>
 
   <div id="footer-wrapper">

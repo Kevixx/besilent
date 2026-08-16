@@ -54,7 +54,7 @@ export class UpdatePasswordComponent implements OnInit, AfterViewInit {
 
     try {
       if (this.newPassword !== this.repeatPassword) {
-        this.error.set(this.translate.instant('ACCESS.UPDATE_PASSWORD.MESSAGES.PASSWORD_MISMATCH'));
+        this.error.set(this.translate.instant('ACCESS.COMMON.PASSWORD_MISMATCH'));
         return;
       }
 

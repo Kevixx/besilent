@@ -59,7 +59,7 @@ export class LoginComponent implements AfterViewInit {
         this.router.navigate(['/dashboard']);
       } else {
         if (this.password !== this.repeatPassword) {
-          this.error.set(this.translate.instant('ACCESS.LOGIN.MESSAGES.PASSWORD_MISMATCH'));
+          this.error.set(this.translate.instant('ACCESS.COMMON.PASSWORD_MISMATCH'));
           return;
         }
 

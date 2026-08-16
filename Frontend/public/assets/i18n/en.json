@@ -4,18 +4,9 @@
       "TITLE_SIGN_IN": "Sign In",
       "TITLE_CREATE_ACCOUNT": "Create Account",
       "SUBTITLE": "Political Platform",
-      "EMAIL_LABEL": "Email",
-      "EMAIL_PLACEHOLDER": "your.email@example.com",
-      "PASSWORD_LABEL": "Password",
-      "PASSWORD_PLACEHOLDER": "Password (min 6 characters)",
       "PASSWORD_INSERT_PLACEHOLDER": "Enter your password",
-      "REPEAT_PASSWORD_LABEL": "Repeat Password",
-      "REPEAT_PASSWORD_PLACEHOLDER": "Repeat your password",
       "FORGOT_PASSWORD": "Forgot password?",
       "ACCOUNT_TYPE_LABEL": "Account Type",
-      "ACCOUNT_TYPE_ADMIN": "Admin",
-      "ACCOUNT_TYPE_CONSULTANT": "Consultant",
-      "ACCOUNT_TYPE_CLIENT": "Client",
       "BUTTON_LOGIN": "Log In",
       "BUTTON_REGISTER": "Register",
       "TOGGLE_SIGN_UP": "Sign Up",
@@ -23,9 +14,7 @@
       "TOGGLE_NO_ACCOUNT": "Don't have an account?",
       "TOGGLE_HAVE_ACCOUNT": "Already have an account?",
       "NAME_LABEL": "Full Name",
-      "PHONE_LABEL": "Phone Number",
       "NAME_PLACEHOLDER": "Your full name",
-      "PHONE_PLACEHOLDER": "e.g. +1 555 123 4567",
       "FOOTER_TEXT": "It's time for action. Join us and make a difference.",
       "MESSAGES": {
         "EMAIL_VERIFICATION": "Success! Please check your email inbox to verify your account before logging in.",
@@ -37,11 +26,8 @@
       }
     },
     "FORGOT_PASSWORD": {
-      "BACK_TO_LOGIN": "Back to login",
       "TITLE": "Reset Password",
       "SUBTITLE": "Enter your email and we'll send you a secure reset link.",
-      "EMAIL_LABEL": "Email",
-      "EMAIL_PLACEHOLDER": "your.email@example.com",
       "BUTTON": "Send Reset Link",
       "MESSAGES": {
         "SUCCESS": "Check your email for the password reset link!",
@@ -51,21 +37,24 @@
     "UPDATE_PASSWORD": {
       "TITLE": "Set New Password",
       "SUBTITLE": "Enter your new secure password below.",
-      "PASSWORD_LABEL": "Password",
-      "REPEAT_PASSWORD_LABEL": "Repeat Password",
-      "PASSWORD_PLACEHOLDER": "New password (min 6 characters)",
-      "PASSWORD_MISMATCH": "Passwords do not match.",
-      "REPEAT_PASSWORD_PLACEHOLDER": "Repeat new password",
       "BUTTON": "Save Password",
       "LINK_EXPIRED": "Link Expired",
       "REQUEST_NEW_LINK": "Request New Link",
       "MESSAGES": {
         "SUCCESS": "Password updated successfully! Redirecting...",
         "GENERIC_ERROR": "Failed to update password.",
-        "INVALID_LINK": "The password reset link is invalid or has expired.",
-        "PASSWORD_MISMATCH": "Passwords do not match. Please ensure both fields are identical."
+        "INVALID_LINK": "The password reset link is invalid or has expired."
       }
-    }
+    },
+        "COMMON": {
+          "EMAIL_LABEL": "Email",
+          "EMAIL_PLACEHOLDER": "your.email@example.com",
+          "PASSWORD_LABEL": "Password",
+          "PASSWORD_PLACEHOLDER": "Password (min 6 characters)",
+          "REPEAT_PASSWORD_LABEL": "Repeat Password",
+          "REPEAT_PASSWORD_PLACEHOLDER": "Repeat your password",
+          "PASSWORD_MISMATCH": "Passwords do not match. Please ensure both fields are identical."
+      }
   },
   "DIRECTORY": {
     "TITLE": "Workspace Directory",
@@ -79,13 +68,6 @@
   },
   "COMMON": {
     "BRAND": "Besilent",
-    "LOGOUT": "Logout",
-    "LOADING": "Loading...",
-    "ERROR": "An error occurred. Please try again.",
-    "SUCCESS": "Operation completed successfully.",
-    "CANCEL": "Cancel",
-    "CONFIRM": "Confirm",
-    "YES": "Yes",
-    "NO": "No"
+    "LOGOUT": "Logout"
   }
 }
