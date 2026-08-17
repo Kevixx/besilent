@@ -1,13 +1,15 @@
 import { ApplicationConfig, provideAppInitializer, inject } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { firstValueFrom } from 'rxjs'; // <-- Import this
 import { routes } from './app.routes';
+import { authInterceptor } from './auth-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(withInterceptors([authInterceptor])),
     provideRouter(routes),
     provideHttpClient(),
 

@@ -64,7 +64,21 @@
   "NAVBAR": {
     "DASHBOARD": "Dashboard",
     "DIRECTORY": "Directory",
-    "TOGGLE_NAV": "Toggle navigation"
+    "TOGGLE_NAV": "Toggle navigation",
+    "CREATE_PROFILE": "Create Profile"
+  },
+  "CANDIDATE": {
+    "CREATE_PROFILE": {
+      "TITLE": "Create Your Candidate Profile",
+      "SUBTITLE": "Tell voters what you stand for and establish your platform.",
+      "BIO_LABEL": "Biography & Core Vision",
+      "BIO_PLACEHOLDER": "Share your political background, core beliefs, and what you aim to achieve...",
+      "BUTTON_SUBMIT": "Launch Profile",
+      "MESSAGES": {
+        "GENERIC_ERROR": "An error occurred while creating your profile. Please try again.",
+        "LENGTH_ERROR": "Your bio must be at least 20 characters long."
+      }
+    }
   },
   "COMMON": {
     "BRAND": "Besilent",

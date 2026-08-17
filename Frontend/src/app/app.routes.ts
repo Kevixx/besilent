@@ -29,8 +29,17 @@ export const routes: Routes = [
     loadComponent: () => import('./features/directory/directory').then((m) => m.DirectoryComponent),
     canActivate: [authGuard],
   },
+  {
+    path: 'create-profile',
+    loadComponent: () =>
+      import('./features/candidate/create-profile/create-profile').then(
+        (m) => m.CreateProfileComponent,
+      ),
+    canActivate: [authGuard],
+  },
 
   // If a user types localhost:4200/nonsense, it sends them here.
   // ALWAYS keep this at the absolute bottom of the array!
-  { path: '**', redirectTo: '/login' },
+  //
+  { path: '**', redirectTo: '/dashboard' },
 ];

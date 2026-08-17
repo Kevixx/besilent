@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using Backend.Core.Interfaces.Database;
+using Backend.Infrastructure.Database;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Backend.Infrastructure.Database.Repositories;
+using Backend.Core.Interfaces;
+using Backend.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +52,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 builder.Services.AddAuthorization();
+
+// Register Repositories
+builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
+
+// Register Services
+builder.Services.AddScoped<ICandidateService, CandidateService>();
 
 var app = builder.Build();
 

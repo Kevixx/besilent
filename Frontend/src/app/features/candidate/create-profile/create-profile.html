@@ -1,0 +1,48 @@
+@if(pageReady()) {
+<div class="container">`
+    <div class="card">
+        <div class="header">
+            <h2>{{ 'CANDIDATE.CREATE_PROFILE.TITLE' | translate }}</h2>
+            <app-icon class="icon-button" src="assets/icons/close.svg" routerLink="/dashboard"></app-icon>
+        </div>
+        <p class="subtitle">{{ 'CANDIDATE.CREATE_PROFILE.SUBTITLE' | translate }}</p>
+
+        <!-- Bind the formGroup here -->
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+                <label>{{ 'CANDIDATE.CREATE_PROFILE.BIO_LABEL' | translate }}</label>
+                <textarea formControlName="bio" rows="6"
+                    placeholder="{{ 'CANDIDATE.CREATE_PROFILE.BIO_PLACEHOLDER' | translate }}" required>
+                </textarea>
+
+                <!-- Quick validation message -->
+
+                <small class="message error collapsible"
+                    [class.collapse]="!profileForm.controls.bio.hasError('minlength')">
+                    {{ 'CANDIDATE.CREATE_PROFILE.MESSAGES.LENGTH_ERROR' | translate }}
+                </small>
+
+            </div>
+
+
+            <!-- We will add the Political Party dropdown here later -->
+
+            <button type="submit" [disabled]="profileForm.invalid || isLoading()" [class.loading]="isLoading()"
+                class="btn-primary btn-wide" [class.loading]="isLoading()">
+                {{ 'CANDIDATE.CREATE_PROFILE.BUTTON_SUBMIT' | translate }}
+            </button>
+        </form>
+
+        <p class="message error collapsible" [class.collapse]="errorMessage()">{{ errorMessage() }}</p>
+    </div>
+</div>}
+@else{
+<div class="container">
+    <div class="card">
+        <div class="global-loader-overlay">
+            <div class="global-spinner" aria-hidden="true"></div>
+        </div>
+    </div>
+</div>
+}
