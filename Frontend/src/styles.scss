@@ -85,6 +85,21 @@ h5 {
   margin-bottom: 1rem;
 }
 
+.card {
+  text-align: center;
+
+  .header {
+    width: 100%;
+    display: flex;
+    margin-bottom: 1rem;
+
+    h2 {
+      width: 100%;
+      margin-bottom: 0;
+    }
+  }
+}
+
 .subtitle {
   margin: 0 0 1rem 0;
   font-size: 0.95rem;
@@ -229,6 +244,10 @@ button {
 
   &:active:not(:disabled) {
     transform: scale(0.98);
+  }
+
+  &:focus {
+    background-color: var(--icon-hover);
   }
 
   &:disabled {

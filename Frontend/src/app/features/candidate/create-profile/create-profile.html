@@ -3,7 +3,7 @@
     <div class="card">
         <div class="header">
             <h2>{{ 'CANDIDATE.CREATE_PROFILE.TITLE' | translate }}</h2>
-            <app-icon class="icon-button" src="assets/icons/close.svg" routerLink="/dashboard"></app-icon>
+            <app-icon class="icon-button" src="assets/icons/close.svg" (click)="onClose()" tabindex="0"></app-icon>
         </div>
         <p class="subtitle">{{ 'CANDIDATE.CREATE_PROFILE.SUBTITLE' | translate }}</p>
 
@@ -15,8 +15,6 @@
                 <textarea formControlName="bio" rows="6"
                     placeholder="{{ 'CANDIDATE.CREATE_PROFILE.BIO_PLACEHOLDER' | translate }}" required>
                 </textarea>
-
-                <!-- Quick validation message -->
 
                 <small class="message error collapsible"
                     [class.collapse]="!profileForm.controls.bio.hasError('minlength')">
@@ -34,9 +32,10 @@
             </button>
         </form>
 
-        <p class="message error collapsible" [class.collapse]="errorMessage()">{{ errorMessage() }}</p>
+        <p class="message error collapsible" [class.collapse]="!errorMessage()">{{ errorMessage() }}</p>
     </div>
-</div>}
+</div>
+}
 @else{
 <div class="container">
     <div class="card">

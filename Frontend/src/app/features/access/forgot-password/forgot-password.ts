@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../../core/auth/auth';
-import { RouterLink } from '@angular/router';
 import { IconComponent } from '../../../shared/components/icon/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, TranslatePipe, IconComponent],
+  imports: [CommonModule, FormsModule, TranslatePipe, IconComponent],
   templateUrl: './forgot-password.html',
   styleUrls: ['./forgot-password.scss'],
 })
@@ -26,6 +26,7 @@ export class ForgotPasswordComponent implements AfterViewInit {
 
   private authService = inject(AuthService);
   private translate = inject(TranslateService);
+  private router = inject(Router);
 
   async onSubmit() {
     this.resetMessages();
@@ -47,5 +48,9 @@ export class ForgotPasswordComponent implements AfterViewInit {
   resetMessages() {
     this.message.set('');
     this.error.set('');
+  }
+
+  onBack() {
+    this.router.navigate(['/login']);
   }
 }

@@ -61,4 +61,32 @@ describe('IconComponent', () => {
     const iconUrlVar = hostElement.style.getPropertyValue('--icon-url');
     expect(iconUrlVar).toBe("url('/assets/icons/settings.svg')");
   });
+
+  it('should trigger a click event when Enter or Space is pressed', () => {
+    // Arrange
+    let clicked = false;
+    hostElement.setAttribute('tabindex', '0');
+    hostElement.addEventListener('click', () => (clicked = true));
+
+    // Act - Simulate 'Enter' keypress
+    const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
+    hostElement.dispatchEvent(enterEvent);
+
+    // Assert
+    expect(clicked).toBeTruthy();
+  });
+
+  it('should NOT trigger a click event on Enter if tabindex is missing', () => {
+    // Arrange
+    let clicked = false;
+    hostElement.removeAttribute('tabindex'); // Ensure no tabindex
+    hostElement.addEventListener('click', () => (clicked = true));
+
+    // Act
+    const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
+    hostElement.dispatchEvent(enterEvent);
+
+    // Assert
+    expect(clicked).toBeFalsy();
+  });
 });

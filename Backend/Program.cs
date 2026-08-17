@@ -55,9 +55,11 @@ builder.Services.AddAuthorization();
 
 // Register Repositories
 builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
+builder.Services.AddScoped<IPartyRepository, PartyRepository>();
 
 // Register Services
 builder.Services.AddScoped<ICandidateService, CandidateService>();
+builder.Services.AddScoped<IPartyService, PartyService>();
 
 var app = builder.Build();
 

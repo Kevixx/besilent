@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { CandidateService } from '../../../core/services/candidate';
 import { IconComponent } from '../../../shared/components/icon/icon';
@@ -8,7 +8,7 @@ import { IconComponent } from '../../../shared/components/icon/icon';
 @Component({
   selector: 'app-create-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslatePipe, IconComponent, RouterLink],
+  imports: [ReactiveFormsModule, TranslatePipe, IconComponent],
   templateUrl: './create-profile.html',
   styleUrls: ['./create-profile.scss'],
 })
@@ -60,5 +60,9 @@ export class CreateProfileComponent implements AfterViewInit {
         this.profileForm.enable();
       },
     });
+  }
+
+  onClose() {
+    this.router.navigate(['/dashboard']);
   }
 }

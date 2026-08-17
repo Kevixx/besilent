@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { CandidateService, CreateProfileDto } from './candidate';
+import { CandidateService } from './candidate';
 import { environment } from '../../../environments/environment.development';
+import { CreateProfileDto } from '../../shared/dtos/create-profile-dto';
 
 describe('CandidateService', () => {
   let service: CandidateService;

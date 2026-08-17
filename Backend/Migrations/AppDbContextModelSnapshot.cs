@@ -22,6 +22,31 @@ namespace Backend.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Backend.Core.Models.PoliticalParty", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("FounderCandidateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PoliticalParties");
+                });
+
             modelBuilder.Entity("CandidateProfile", b =>
                 {
                     b.Property<Guid>("Id")
@@ -43,10 +68,25 @@ namespace Backend.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PartyId");
+
                     b.HasIndex("UserId")
                         .IsUnique();
 
                     b.ToTable("CandidateProfiles");
+                });
+
+            modelBuilder.Entity("CandidateProfile", b =>
+                {
+                    b.HasOne("Backend.Core.Models.PoliticalParty", null)
+                        .WithMany("Members")
+                        .HasForeignKey("PartyId")
+                        .OnDelete(DeleteBehavior.SetNull);
+                });
+
+            modelBuilder.Entity("Backend.Core.Models.PoliticalParty", b =>
+                {
+                    b.Navigation("Members");
                 });
 #pragma warning restore 612, 618
         }

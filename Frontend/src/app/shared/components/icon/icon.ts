@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, HostListener, ElementRef, inject } from '@angular/core';
 
 @Component({
   selector: 'app-icon',
@@ -7,27 +7,34 @@ import { Component, Input, HostBinding } from '@angular/core';
   styleUrls: ['./icon.scss'],
 })
 export class IconComponent {
-  // Pass the path to the SVG file (e.g., 'assets/icons/logout.svg')
-  @Input({ required: true }) src!: string;
+  private el = inject(ElementRef);
 
-  // Optional size (defaults to 24px)
+  @Input({ required: true }) src!: string;
   @Input() size = '24px';
 
-  // Dynamically creates a CSS variable based on the name input
   @HostBinding('style.--icon-url')
   get iconUrl() {
     return `url('${this.src}')`;
   }
 
-  // Binds the size input to the component's CSS width
   @HostBinding('style.width')
   get iconWidth() {
     return this.size;
   }
 
-  // Binds the size input to the component's CSS height
   @HostBinding('style.height')
   get iconHeight() {
     return this.size;
+  }
+
+  // Change 'KeyboardEvent' to 'Event'
+  @HostListener('keydown.enter', ['$event'])
+  @HostListener('keydown.space', ['$event'])
+  handleKeyboardEvent(event: Event) {
+    // Only intercept if the icon is meant to be interactive (has a tabindex)
+    if (this.el.nativeElement.hasAttribute('tabindex')) {
+      event.preventDefault(); // Prevents the spacebar from scrolling the page down
+      this.el.nativeElement.click(); // Triggers the standard (click) event on the element
+    }
   }
 }

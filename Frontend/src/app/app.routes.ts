@@ -5,7 +5,7 @@ import { ForgotPasswordComponent } from './features/access/forgot-password/forgo
 
 export const routes: Routes = [
   // The single, clean root redirect (using an absolute path with the leading slash)
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 
   {
     path: 'login',
@@ -25,16 +25,17 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'directory',
-    loadComponent: () => import('./features/directory/directory').then((m) => m.DirectoryComponent),
-    canActivate: [authGuard],
-  },
-  {
     path: 'create-profile',
     loadComponent: () =>
       import('./features/candidate/create-profile/create-profile').then(
         (m) => m.CreateProfileComponent,
       ),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'create-party',
+    loadComponent: () =>
+      import('./features/candidate/create-party/create-party').then((m) => m.CreatePartyComponent),
     canActivate: [authGuard],
   },
 

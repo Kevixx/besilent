@@ -56,16 +56,12 @@
           "PASSWORD_MISMATCH": "Passwords do not match. Please ensure both fields are identical."
       }
   },
-  "DIRECTORY": {
-    "TITLE": "Workspace Directory",
-    "DESCRIPTION": "Authentication Successful! You are securely logged in.",
-    "BUTTON_DASHBOARD": "Dashboard"
-  },
   "NAVBAR": {
     "DASHBOARD": "Dashboard",
-    "DIRECTORY": "Directory",
     "TOGGLE_NAV": "Toggle navigation",
-    "CREATE_PROFILE": "Create Profile"
+    "CREATE_PROFILE": "Create Profile",
+    "CREATE_PARTY": "Create Party",
+    "ERROR_MESSAGE": "Failed to create the political party."
   },
   "CANDIDATE": {
     "CREATE_PROFILE": {
@@ -77,8 +73,19 @@
       "MESSAGES": {
         "GENERIC_ERROR": "An error occurred while creating your profile. Please try again.",
         "LENGTH_ERROR": "Your bio must be at least 20 characters long."
+      }},
+      "CREATE_PARTY": {
+        "TITLE": "Found a Political Party",
+        "SUBTITLE": "Establish a new political movement. (Requires an active Candidate Profile)",
+        "NAME_LABEL": "Party Name",
+        "NAME_PLACEHOLDER": "e.g., The Forward Coalition",
+        "DESCRIPTION_LABEL": "Party Description & Core Values",
+        "DESCRIPTION_PLACEHOLDER": "What does your party stand for?",
+        "SUBMIT_BUTTON": "Found Party",
+        "ERROR_MESSAGE": "Failed to create party. Please try again.",
+        "NAME_LENGTH_ERROR": "Party name must be at least 3 characters long.",
+        "DESCRIPTION_LENGTH_ERROR": "Party description must be at least 20 characters long."
       }
-    }
   },
   "COMMON": {
     "BRAND": "Besilent",

@@ -38,8 +38,4 @@ export class DashboardComponent {
       console.error('Error logging out:', error);
     }
   }
-
-  directory() {
-    this.router.navigate(['/directory']);
-  }
 }

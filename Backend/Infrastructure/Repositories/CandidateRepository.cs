@@ -24,4 +24,11 @@ public class CandidateRepository : ICandidateRepository
         await _context.SaveChangesAsync();
         return profile;
     }
+
+    public async Task<CandidateProfile> UpdateAsync(CandidateProfile profile)
+    {
+        _context.CandidateProfiles.Update(profile);
+        await _context.SaveChangesAsync();
+        return profile;
+    }
 }
