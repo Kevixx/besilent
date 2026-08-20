@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { map, Observable } from 'rxjs';
 import { CreateProfileDto } from '../../shared/dtos/create-profile-dto';
 
@@ -15,7 +15,7 @@ export class CandidateService {
     return this.http.post(this.backendUrl, dto);
   }
 
-  getCandidateId(): Observable<boolean> {
+  checkCandidacy(): Observable<boolean> {
     return this.http
       .get<{ isCandidate: boolean }>(`${this.backendUrl}/isCandidate`)
       .pipe(map((response) => response.isCandidate));

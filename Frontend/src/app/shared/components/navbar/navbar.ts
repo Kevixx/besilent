@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.pageReady.set(true);
   }
   ngOnInit(): void {
-    this.hasCandidacy();
+    this.checkCandidacy();
   }
 
   isMenuOpen = signal(false);
@@ -46,13 +46,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/login']);
   }
 
-  async hasCandidacy(): Promise<boolean> {
+  async checkCandidacy() {
     try {
-      this.isCandidate.set(await firstValueFrom(this.candidateService.getCandidateId()));
-      return this.isCandidate();
+      // Set the candidate status
+      this.isCandidate.set(await firstValueFrom(this.candidateService.checkCandidacy()));
     } catch (error) {
-      console.error('Failed to check candidate ID:', error);
-      return false;
+      console.error('Failed to check candidacy:', error);
+      this.isCandidate.set(false);
     }
   }
 }

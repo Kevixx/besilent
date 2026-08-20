@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { ElectionService } from './election';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 
 describe('ElectionService', () => {
   let service: ElectionService;
