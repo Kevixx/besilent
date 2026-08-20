@@ -18,7 +18,11 @@
 
                 <small class="message error collapsible"
                     [class.collapse]="!profileForm.controls.bio.hasError('minlength')">
-                    {{ 'CANDIDATE.CREATE_PROFILE.MESSAGES.LENGTH_ERROR' | translate }}
+                    {{ 'CANDIDATE.CREATE_PROFILE.MESSAGES.BIO_SHORT_ERROR' | translate }}
+                </small>
+                <small class="message error collapsible"
+                    [class.collapse]="!profileForm.controls.bio.hasError('maxlength')">
+                    {{ 'CANDIDATE.CREATE_PROFILE.MESSAGES.BIO_LONG_ERROR' | translate }}
                 </small>
 
             </div>

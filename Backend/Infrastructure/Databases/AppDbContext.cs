@@ -7,9 +7,9 @@ public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-    // This tells EF Core to create a table called "CandidateProfiles"
     public DbSet<CandidateProfile> CandidateProfiles { get; set; }
     public DbSet<PoliticalParty> PoliticalParties { get; set; }
+    public DbSet<Election> Elections { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

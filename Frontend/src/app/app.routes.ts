@@ -38,6 +38,14 @@ export const routes: Routes = [
       import('./features/candidate/create-party/create-party').then((m) => m.CreatePartyComponent),
     canActivate: [authGuard],
   },
+  {
+    path: 'create-election',
+    loadComponent: () =>
+      import('./features/election/create-election/create-election').then(
+        (m) => m.CreateElectionComponent,
+      ),
+    canActivate: [authGuard],
+  },
 
   // If a user types localhost:4200/nonsense, it sends them here.
   // ALWAYS keep this at the absolute bottom of the array!

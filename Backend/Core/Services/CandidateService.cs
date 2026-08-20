@@ -33,4 +33,15 @@ public class CandidateService : ICandidateService
         // 3. Save via repository
         return await _repository.AddAsync(newProfile);
     }
+
+    public async Task<CandidateProfile?> GetProfileByIdAsync(Guid id)
+    {
+        return await _repository.GetByUserIdAsync(id);
+    }
+
+    public async Task<bool> IsCandidateAsync(Guid userId)
+    {
+        var candidateId = await _repository.GetCandidateIdByUserIdAsync(userId);
+        return candidateId != null;
+    }
 }

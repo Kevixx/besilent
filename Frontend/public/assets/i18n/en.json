@@ -59,9 +59,11 @@
   "NAVBAR": {
     "DASHBOARD": "Dashboard",
     "TOGGLE_NAV": "Toggle navigation",
-    "CREATE_PROFILE": "Create Profile",
-    "CREATE_PARTY": "Create Party",
-    "ERROR_MESSAGE": "Failed to create the political party."
+    "CREATE_PROFILE": "Profile",
+    "CREATE_PARTY": "Party",
+    "CREATE_ELECTION": "Election",
+    "ERROR_MESSAGE": "Failed to create the political party.",
+    "CREATE_PARTY_DISABLED_REASON": "You must have an active candidate profile to create a political party."
   },
   "CANDIDATE": {
     "CREATE_PROFILE": {
@@ -72,7 +74,8 @@
       "BUTTON_SUBMIT": "Launch Profile",
       "MESSAGES": {
         "GENERIC_ERROR": "An error occurred while creating your profile. Please try again.",
-        "LENGTH_ERROR": "Your bio must be at least 20 characters long."
+        "BIO_SHORT_ERROR": "Your bio must be at least 20 characters long.",
+        "BIO_LONG_ERROR": "Your bio must be no more than 500 characters long."
       }},
       "CREATE_PARTY": {
         "TITLE": "Found a Political Party",
@@ -83,10 +86,35 @@
         "DESCRIPTION_PLACEHOLDER": "What does your party stand for?",
         "SUBMIT_BUTTON": "Found Party",
         "ERROR_MESSAGE": "Failed to create party. Please try again.",
-        "NAME_LENGTH_ERROR": "Party name must be at least 3 characters long.",
-        "DESCRIPTION_LENGTH_ERROR": "Party description must be at least 20 characters long."
+        "NAME_SHORT_ERROR": "Party name must be at least 3 characters long.",
+        "NAME_LONG_ERROR": "Party name must be no more than 100 characters long.",
+        "DESCRIPTION_SHORT_ERROR": "Party description must be at least 20 characters long.",
+        "DESCRIPTION_LONG_ERROR": "Party description must be no more than 500 characters long."
       }
   },
+  "ELECTION": {
+    "CREATE_ELECTION": {
+    "TITLE": "Schedule Election",
+    "SUBTITLE": "Set up an upcoming election or voting period.",
+    "FORM": {
+    "TITLE_LABEL": "Event Title",
+    "TITLE_PLACEHOLDER": "e.g., 2026 Presidential Election",
+    "DESCRIPTION_LABEL": "Description & Rules",
+    "DESCRIPTION_PLACEHOLDER": "Outline what this election is about...",
+    "START_DATE_LABEL": "Start Time",
+    "END_DATE_LABEL": "End Time",
+    "SUBMIT_BUTTON": "Schedule Event"
+    },
+    "MESSAGES": {
+      "DATE_RANGE_INVALID": "The election end date must be after the start date.",
+      "ERROR_GENERIC": "An error occurred while creating the election.",
+      "TITLE_SHORT": "Title must be at least 5 characters long.",
+      "TITLE_LONG": "Title must be no more than 100 characters long.",
+      "DESCRIPTION_SHORT": "Description must be at least 20 characters long.",
+      "DESCRIPTION_LONG": "Description must be no more than 500 characters long."
+    }
+  }
+},
   "COMMON": {
     "BRAND": "Besilent",
     "LOGOUT": "Logout"

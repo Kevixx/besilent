@@ -13,6 +13,7 @@
   --text-primary: #ffffff99;
   --text-secondary: #ffffffd9;
   --text-tertiary: #ffffff4d;
+  --text-disabled: var(--text-tertiary);
 
   --icon-primary: var(--text-primary);
   --icon-hover: var(--primary-color);
@@ -151,6 +152,80 @@ h5 {
   }
 }
 
+a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+  position: relative;
+
+  &:hover {
+    color: var(--accent-color);
+  }
+
+  /* Active indicator line */
+  &.active-link {
+    color: var(--accent-color);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--accent-color);
+      border-radius: 2px;
+    }
+  }
+}
+
+.disabled-link {
+  pointer-events: none;
+  color: var(--text-disabled);
+}
+
+/* Make the parent the anchor point for the tooltip */
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block; /* Or block, depending on your navbar layout */
+}
+
+/* Style the hidden tooltip box */
+.tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+
+  /* Styling */
+  background-color: var(--input-border, #444);
+  color: var(--white-color, #fff);
+  text-align: center;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+
+  /* Positioning (Centered right below the link) */
+  position: absolute;
+  z-index: 50;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+
+  /* Smooth fade in */
+  transition:
+    opacity 0.2s ease-in-out,
+    visibility 0.2s ease-in-out;
+}
+
+/* When hovering over the wrapper (which works!), show the tooltip */
+.tooltip-wrapper:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -184,6 +259,10 @@ h5 {
   }
 }
 
+.datetime-input {
+  color-scheme: dark;
+}
+
 textarea {
   resize: vertical;
 }
@@ -196,11 +275,13 @@ button {
   font-weight: 600;
   text-align: center;
   text-decoration: none;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
 
-  > app-icon {
-    margin-right: 0.5rem;
+  span {
+    margin-left: 0.5rem;
   }
 
   &.btn-primary {

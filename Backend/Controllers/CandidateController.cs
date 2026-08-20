@@ -41,4 +41,28 @@ public class CandidateController : ControllerBase
             return Conflict(new { message = ex.Message });
         }
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetProfile(Guid id)
+    {
+        var profile = await _candidateService.GetProfileByIdAsync(id);
+
+        if (profile == null) return NotFound(new { message = "Profile not found." });
+
+        return Ok(profile);
+    }
+
+    [HttpGet("isCandidate")]
+    public async Task<IActionResult> IsCandidate()
+    {
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
+        {
+            return Unauthorized(new { message = "Invalid user token." });
+        }
+        var isCandidate = await _candidateService.IsCandidateAsync(userId);
+
+        return Ok(new { isCandidate });
+    }
 }

@@ -27,8 +27,16 @@ export class CreatePartyComponent implements AfterViewInit {
   errorMessage = signal('');
 
   partyForm = this.fb.group({
-    name: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(3)]),
-    description: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(20)]),
+    name: this.fb.nonNullable.control('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(100),
+    ]),
+    description: this.fb.nonNullable.control('', [
+      Validators.required,
+      Validators.minLength(20),
+      Validators.maxLength(500),
+    ]),
   });
 
   onSubmit() {

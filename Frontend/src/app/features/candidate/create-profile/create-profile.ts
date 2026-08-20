@@ -26,7 +26,11 @@ export class CreateProfileComponent implements AfterViewInit {
 
   profileForm = this.fb.group({
     // Use fb.nonNullable.control so Angular knows it's always a string
-    bio: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(20)]),
+    bio: this.fb.nonNullable.control('', [
+      Validators.required,
+      Validators.minLength(20),
+      Validators.maxLength(500),
+    ]),
 
     // partyId is allowed to be null in the DTO, so this one is fine!
     partyId: [null as string | null],

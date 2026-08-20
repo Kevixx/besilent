@@ -53,13 +53,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-// Register Repositories
-builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
-builder.Services.AddScoped<IPartyRepository, PartyRepository>();
-
 // Register Services
 builder.Services.AddScoped<ICandidateService, CandidateService>();
 builder.Services.AddScoped<IPartyService, PartyService>();
+builder.Services.AddScoped<IElectionService, ElectionService>();
+
+// Register Repositories
+builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
+builder.Services.AddScoped<IPartyRepository, PartyRepository>();
+builder.Services.AddScoped<IElectionRepository, ElectionRepository>();
 
 var app = builder.Build();
 

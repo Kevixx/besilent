@@ -15,7 +15,11 @@
                     [placeholder]="'CANDIDATE.CREATE_PARTY.NAME_PLACEHOLDER' | translate" required />
                 <small class="message error collapsible"
                     [class.collapse]="!partyForm.controls.name.hasError('minlength')">
-                    {{ 'CANDIDATE.CREATE_PARTY.NAME_LENGTH_ERROR' | translate }}
+                    {{ 'CANDIDATE.CREATE_PARTY.NAME_SHORT_ERROR' | translate }}
+                </small>
+                <small class="message error collapsible"
+                    [class.collapse]="!partyForm.controls.name.hasError('maxlength')">
+                    {{ 'CANDIDATE.CREATE_PARTY.NAME_LONG_ERROR' | translate }}
                 </small>
             </div>
 
@@ -27,7 +31,11 @@
 
                 <small class="message error collapsible"
                     [class.collapse]="!partyForm.controls.description.hasError('minlength')">
-                    {{ 'CANDIDATE.CREATE_PARTY.DESCRIPTION_LENGTH_ERROR' | translate }}
+                    {{ 'CANDIDATE.CREATE_PARTY.DESCRIPTION_SHORT_ERROR' | translate }}
+                </small>
+                <small class="message error collapsible"
+                    [class.collapse]="!partyForm.controls.description.hasError('maxlength')">
+                    {{ 'CANDIDATE.CREATE_PARTY.DESCRIPTION_LONG_ERROR' | translate }}
                 </small>
             </div>
 

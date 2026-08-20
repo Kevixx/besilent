@@ -1,3 +1,4 @@
+@if (pageReady()) {
 <header class="navbar">
     <div class="nav-container">
 
@@ -30,10 +31,22 @@
                         {{ 'NAVBAR.CREATE_PROFILE' | translate }}
                     </a>
                 </li>
-
-                <li>
-                    <a routerLink="/create-party" routerLinkActive="active-link" (click)="closeMenu()">
+                <li class="tooltip-wrapper">
+                    <a [class.disabled-link]="!isCandidate()" routerLink="/create-party" routerLinkActive="active-link"
+                        (click)="closeMenu()">
                         {{ 'NAVBAR.CREATE_PARTY' | translate }}
+                    </a>
+
+                    <!-- Only render the tooltip if the link is actually disabled -->
+                    @if (!isCandidate()) {
+                    <span class="tooltip-text">
+                        {{ 'NAVBAR.CREATE_PARTY_DISABLED_REASON' | translate }}
+                    </span>
+                    }
+                </li>
+                <li>
+                    <a routerLink="/create-election" routerLinkActive="active-link" (click)="closeMenu()">
+                        {{ 'NAVBAR.CREATE_ELECTION' | translate }}
                     </a>
                 </li>
             </ul>
@@ -41,10 +54,15 @@
             <div class="nav-actions">
                 <button class="btn-primary" (click)="logout()" title="{{ 'COMMON.LOGOUT' | translate }}">
                     <app-icon src="assets/icons/logout.svg"></app-icon>
-                    {{ 'COMMON.LOGOUT' | translate}}
                 </button>
             </div>
         </nav>
 
     </div>
 </header>
+}
+@else{
+<div class="global-loader-overlay">
+    <div class="global-spinner" aria-hidden="true"></div>
+</div>
+}
