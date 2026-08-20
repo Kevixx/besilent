@@ -36,6 +36,7 @@
   --spinner-color: #00e5ff26;
 
   --nav-height: 70px;
+  --border-width: 1px;
 }
 
 html,
@@ -44,10 +45,10 @@ body {
   margin: 0;
 }
 
-* *::before,
-*::after {
-  box-sizing: border-box;
-}
+// * *::before,
+// *::after {
+//   box-sizing: border-box;
+// }
 
 .container {
   display: flex;
@@ -59,12 +60,12 @@ body {
 }
 
 .main-content .container {
-  min-height: calc(100vh - var(--nav-height));
+  min-height: calc(100vh - var(--nav-height) - var(--border-width));
 }
 
 .card {
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: var(--border-width) solid var(--border-color);
   padding: 2.5rem;
   border-radius: 12px;
   box-shadow: 0 8px 32px var(--box-shadow-color);
@@ -251,7 +252,7 @@ a {
   select,
   textarea {
     background: var(--input-bg);
-    border: 1px solid var(--input-border);
+    border: var(--border-width) solid var(--input-border);
     color: var(--white-color);
     padding: 0.7rem;
     border-radius: 6px;
@@ -267,12 +268,12 @@ a {
   }
 }
 
-.datetime-input {
-  color-scheme: dark;
-}
-
 textarea {
   resize: vertical;
+}
+
+.datetime-input {
+  color-scheme: dark;
 }
 
 button {
