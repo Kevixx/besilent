@@ -1,5 +1,6 @@
 using Backend.Core.Interfaces;
 using Backend.Core.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Infrastructure.Database.Repositories;
 
@@ -21,6 +22,8 @@ public class ElectionRepository : IElectionRepository
 
     public async Task<Election?> GetByIdAsync(Guid id)
     {
-        return await _context.Elections.FindAsync(id);
+        return await _context.Elections
+            .AsNoTracking() // Use AsNoTracking for read-only queries to improve performance
+            .FirstOrDefaultAsync(e => e.Id == id);
     }
 }

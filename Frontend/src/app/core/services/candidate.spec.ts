@@ -4,6 +4,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { CandidateService } from './candidate';
 import { environment } from '../../../environments/environment';
 import { CreateProfileDto } from '../../shared/dtos/create-profile-dto';
+import { ProfileDto } from '../../shared/dtos/profile-dto';
 
 describe('CandidateService', () => {
   let service: CandidateService;
@@ -45,6 +46,44 @@ describe('CandidateService', () => {
     const req = httpMock.expectOne(expectedUrl);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(mockDto);
+
+    // Resolve the request with the mock response
+    req.flush(mockResponse);
+  });
+
+  it('should send a GET request to get profile', () => {
+    // Arrange
+    const mockResponse: ProfileDto = { bio: 'This is a test bio.', partyId: null };
+    const expectedUrl = `${environment.apiUrl}/candidate`;
+
+    // Act
+    service.getProfile().subscribe((profile) => {
+      // Assert the response matches what the mock backend returns
+      expect(profile).toEqual(mockResponse);
+    });
+
+    // Assert the HTTP call
+    const req = httpMock.expectOne(expectedUrl);
+    expect(req.request.method).toBe('GET');
+
+    // Resolve the request with the mock response
+    req.flush(mockResponse);
+  });
+
+  it('should send a GET request to check candidacy', () => {
+    // Arrange
+    const mockResponse = { isCandidate: true };
+    const expectedUrl = `${environment.apiUrl}/candidate/isCandidate`;
+
+    // Act
+    service.checkCandidacy().subscribe((isCandidate) => {
+      // Assert the response matches what the mock backend returns
+      expect(isCandidate).toBe(true);
+    });
+
+    // Assert the HTTP call
+    const req = httpMock.expectOne(expectedUrl);
+    expect(req.request.method).toBe('GET');
 
     // Resolve the request with the mock response
     req.flush(mockResponse);

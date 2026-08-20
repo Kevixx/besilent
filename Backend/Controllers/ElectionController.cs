@@ -31,7 +31,7 @@ public class ElectionController : ControllerBase
         try
         {
             var election = await _service.CreateElectionAsync(userId, dto);
-            return CreatedAtAction(nameof(CreateElection), new { id = election.Id }, election);
+            return CreatedAtAction(nameof(GetElection), new { id = election.Id }, election);
         }
         catch (ArgumentException ex)
         {

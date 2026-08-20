@@ -36,7 +36,12 @@ public class CandidateService : ICandidateService
 
     public async Task<CandidateProfile?> GetProfileByIdAsync(Guid id)
     {
-        return await _repository.GetByUserIdAsync(id);
+        return await _repository.GetProfileByIdAsync(id);
+    }
+
+    public async Task<CandidateProfile?> GetProfileByUserIdAsync(Guid userId)
+    {
+        return await _repository.GetByUserIdAsync(userId);
     }
 
     public async Task<bool> IsCandidateAsync(Guid userId)

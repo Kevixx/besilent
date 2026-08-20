@@ -44,4 +44,9 @@ public class PartyService : IPartyService
 
         return savedParty;
     }
+
+    public async Task<PoliticalParty?> GetPartyByIdAsync(Guid id)
+    {
+        return await _partyRepo.GetByIdAsync(id);
+    }
 }

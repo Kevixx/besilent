@@ -39,4 +39,15 @@ public class PartyController : ControllerBase
             return StatusCode(403, new { message = ex.Message });
         }
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetParty(Guid id)
+    {
+        // Assuming you have this method in your service!
+        var party = await _partyService.GetPartyByIdAsync(id);
+
+        if (party == null) return NotFound(new { message = "Party not found." });
+
+        return Ok(party);
+    }
 }

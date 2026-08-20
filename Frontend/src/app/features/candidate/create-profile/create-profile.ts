@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -12,7 +12,11 @@ import { IconComponent } from '../../../shared/components/icon/icon';
   templateUrl: './create-profile.html',
   styleUrls: ['./create-profile.scss'],
 })
-export class CreateProfileComponent implements AfterViewInit {
+export class CreateProfileComponent implements OnInit, AfterViewInit {
+  ngOnInit(): void {
+    this.fetchProfile();
+  }
+
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private translate = inject(TranslateService);
@@ -38,6 +42,25 @@ export class CreateProfileComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.pageReady.set(true);
+  }
+
+  fetchProfile() {
+    this.isLoading.set(true);
+    this.errorMessage.set('');
+
+    this.candidateService.getProfile().subscribe({
+      next: (profile) => {
+        this.profileForm.patchValue(profile);
+        this.isLoading.set(false);
+      },
+      error: (err) => {
+        this.errorMessage.set(
+          err.error?.message ||
+            this.translate.instant('CANDIDATE.CREATE_PROFILE.MESSAGES.GENERIC_ERROR'),
+        );
+        this.isLoading.set(false);
+      },
+    });
   }
 
   onSubmit() {

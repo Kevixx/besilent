@@ -6,4 +6,5 @@ namespace Backend.Core.Services;
 public interface IPartyService
 {
     Task<PoliticalParty> CreatePartyAsync(Guid userId, CreatePartyDto dto);
+    Task<PoliticalParty?> GetPartyByIdAsync(Guid id);
 }

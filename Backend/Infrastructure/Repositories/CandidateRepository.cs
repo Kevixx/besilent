@@ -12,18 +12,18 @@ public class CandidateRepository : ICandidateRepository
         _context = context;
     }
 
-    public async Task<CandidateProfile?> GetByUserIdAsync(Guid userId)
-    {
-        return await _context.CandidateProfiles
-            .AsNoTracking() // Use AsNoTracking for read-only queries to improve performance
-            .FirstOrDefaultAsync(c => c.UserId == userId);
-    }
-
     public async Task<CandidateProfile?> GetProfileByIdAsync(Guid id)
     {
         return await _context.CandidateProfiles
             .AsNoTracking() // Use AsNoTracking for read-only queries to improve performance
             .FirstOrDefaultAsync(c => c.Id == id);
+    }
+
+    public async Task<CandidateProfile?> GetByUserIdAsync(Guid userId)
+    {
+        return await _context.CandidateProfiles
+            .AsNoTracking() // Use AsNoTracking for read-only queries to improve performance
+            .FirstOrDefaultAsync(c => c.UserId == userId);
     }
 
     public async Task<CandidateProfile> AddAsync(CandidateProfile profile)

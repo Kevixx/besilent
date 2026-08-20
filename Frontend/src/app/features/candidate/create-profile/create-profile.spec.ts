@@ -16,6 +16,7 @@ describe('CreateProfileComponent', () => {
   beforeEach(async () => {
     mockCandidateService = {
       createProfile: vi.fn(),
+      getProfile: vi.fn().mockReturnValue(of({})),
     };
     mockRouter = {
       navigate: vi.fn(),

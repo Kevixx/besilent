@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { map, Observable } from 'rxjs';
 import { CreateProfileDto } from '../../shared/dtos/create-profile-dto';
+import { ProfileDto } from '../../shared/dtos/profile-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,10 @@ export class CandidateService {
 
   createProfile(dto: CreateProfileDto): Observable<any> {
     return this.http.post(this.backendUrl, dto);
+  }
+
+  getProfile(): Observable<ProfileDto> {
+    return this.http.get<ProfileDto>(this.backendUrl);
   }
 
   checkCandidacy(): Observable<boolean> {

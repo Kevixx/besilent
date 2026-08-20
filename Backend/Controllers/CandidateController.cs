@@ -33,7 +33,7 @@ public class CandidateController : ControllerBase
             // The controller doesn't know HOW the profile is created, just that it happens.
             var profile = await _candidateService.CreateProfileAsync(userId, dto);
 
-            return CreatedAtAction(nameof(CreateProfile), new { id = profile.Id }, profile);
+            return CreatedAtAction(nameof(GetProfile), new { id = profile.Id }, profile);
         }
         catch (InvalidOperationException ex)
         {
@@ -48,6 +48,27 @@ public class CandidateController : ControllerBase
         var profile = await _candidateService.GetProfileByIdAsync(id);
 
         if (profile == null) return NotFound(new { message = "Profile not found." });
+
+        return Ok(profile);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetMyProfile()
+    {
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
+        {
+            return Unauthorized(new { message = "Invalid user token." });
+        }
+
+        // Fetch the profile using the user's token ID
+        var profile = await _candidateService.GetProfileByUserIdAsync(userId);
+
+        if (profile == null)
+        {
+            return NotFound(new { message = "Profile not found." });
+        }
 
         return Ok(profile);
     }

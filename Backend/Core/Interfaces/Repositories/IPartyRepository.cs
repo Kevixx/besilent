@@ -5,4 +5,5 @@ namespace Backend.Core.Interfaces;
 public interface IPartyRepository
 {
     Task<PoliticalParty> AddAsync(PoliticalParty party);
+    Task<PoliticalParty?> GetByIdAsync(Guid id);
 }
