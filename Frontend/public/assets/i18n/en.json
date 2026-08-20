@@ -79,7 +79,7 @@
       }},
       "CREATE_PARTY": {
         "TITLE": "Found a Political Party",
-        "SUBTITLE": "Establish a new political movement. (Requires an active Candidate Profile)",
+        "SUBTITLE": "Establish a new political movement.",
         "NAME_LABEL": "Party Name",
         "NAME_PLACEHOLDER": "e.g., The Forward Coalition",
         "DESCRIPTION_LABEL": "Party Description & Core Values",

@@ -18,7 +18,9 @@
   --icon-primary: var(--text-primary);
   --icon-hover: var(--primary-color);
   --icon-active: var(--primary-color);
-  --icon-disabled: #ffffff4d;
+  --icon-disabled: var(--text-disabled);
+
+  --icon-size-m: 24px;
 
   --card-bg: #0f0f1480;
   --border-color: #ffffff14;
@@ -32,23 +34,32 @@
   --overlay-bg: #06060899;
   --border-light: #ffffff4d;
   --spinner-color: #00e5ff26;
+
+  --nav-height: 70px;
 }
 
 html,
 body {
   min-height: 100%;
+  margin: 0;
 }
 
-body {
-  margin: 0;
+* *::before,
+*::after {
+  box-sizing: border-box;
 }
 
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
+
   min-height: 100vh;
   padding: 0 1rem;
+}
+
+.main-content .container {
+  min-height: calc(100vh - var(--nav-height));
 }
 
 .card {
@@ -59,7 +70,19 @@ body {
   box-shadow: 0 8px 32px var(--box-shadow-color);
   width: 100%;
   max-width: 400px;
-  box-sizing: border-box;
+  text-align: center;
+
+  .header {
+    width: 100%;
+    display: flex;
+    margin-bottom: 1rem;
+
+    h2 {
+      width: calc(100% - 2 * var(--icon-size-m));
+      margin-left: var(--icon-size-m);
+      margin-bottom: 0;
+    }
+  }
 
   animation: fadeIn 1s ease-out forwards;
 
@@ -84,21 +107,6 @@ h4,
 h5 {
   color: var(--text-primary);
   margin-bottom: 1rem;
-}
-
-.card {
-  text-align: center;
-
-  .header {
-    width: 100%;
-    display: flex;
-    margin-bottom: 1rem;
-
-    h2 {
-      width: 100%;
-      margin-bottom: 0;
-    }
-  }
 }
 
 .subtitle {
