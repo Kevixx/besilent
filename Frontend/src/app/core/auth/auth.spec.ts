@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 
-import { AuthService } from './auth';
+import { AuthService } from './auth.service';
 import { environment } from '../../../environments/environment';
 
 describe('AuthService', () => {

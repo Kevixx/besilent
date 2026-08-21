@@ -1,10 +1,17 @@
-<img src="assets/images/logo.svg" alt="{{ 'COMMON.BRAND' | translate }}" id="logo" />
+<div class="header-wrapper">
+  <app-logo height="var(--logo-height)" id="logo"></app-logo>
+
+  <app-icon src="{{themeService.isDarkTheme() ? 'assets/icons/sun.svg' : 'assets/icons/moon.svg'}}"
+    size="var(--icon-size-m)" class="icon-button toggle-theme" (click)="themeService.toggleTheme()">
+  </app-icon>
+</div>
+
 @if(pageReady()) {
 <div class="container">
   <div class="card">
     <h2>{{ isLoginMode ? ('ACCESS.LOGIN.TITLE_SIGN_IN' | translate) : ('ACCESS.LOGIN.TITLE_CREATE_ACCOUNT' |
-      translate)
-      }}</h2>
+      translate)}}
+    </h2>
     <p class="subtitle">{{ 'ACCESS.LOGIN.SUBTITLE' | translate }}</p>
 
     <form (ngSubmit)="onSubmit()">

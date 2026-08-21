@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CreateProfileComponent } from './create-profile';
-import { CandidateService } from '../../../core/services/candidate';
+import { CandidateService } from '../../../core/services/candidate.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { of, throwError } from 'rxjs';

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthService } from '../../../core/auth/auth';
+import { AuthService } from '../../../core/auth/auth.service';
 
 @Component({
   selector: 'app-update-password',

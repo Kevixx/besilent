@@ -6,6 +6,7 @@ import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import '../../../../test-setup';
 
 describe('MainLayoutComponent', () => {
   let component: MainLayoutComponent;

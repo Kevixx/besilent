@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, provideRouter, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
-import { AuthService } from '../../../core/auth/auth';
+import { AuthService } from '../../../core/auth/auth.service';
 import { UpdatePasswordComponent } from './update-password';
 
 describe('UpdatePasswordComponent', () => {

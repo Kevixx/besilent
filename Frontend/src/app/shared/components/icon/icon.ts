@@ -12,6 +12,10 @@ export class IconComponent {
   @Input({ required: true }) src!: string;
   @Input() size = '24px';
 
+  // Make these optional, so we know if the user explicitly set them
+  @Input() height?: string;
+  @Input() width?: string;
+
   @HostBinding('style.--icon-url')
   get iconUrl() {
     return `url('${this.src}')`;
@@ -19,22 +23,22 @@ export class IconComponent {
 
   @HostBinding('style.width')
   get iconWidth() {
-    return this.size;
+    // If width was provided, use it. Otherwise, fall back to size.
+    return this.width || this.size;
   }
 
   @HostBinding('style.height')
   get iconHeight() {
-    return this.size;
+    // If height was provided, use it. Otherwise, fall back to size.
+    return this.height || this.size;
   }
 
-  // Change 'KeyboardEvent' to 'Event'
   @HostListener('keydown.enter', ['$event'])
   @HostListener('keydown.space', ['$event'])
   handleKeyboardEvent(event: Event) {
-    // Only intercept if the icon is meant to be interactive (has a tabindex)
     if (this.el.nativeElement.hasAttribute('tabindex')) {
-      event.preventDefault(); // Prevents the spacebar from scrolling the page down
-      this.el.nativeElement.click(); // Triggers the standard (click) event on the element
+      event.preventDefault();
+      this.el.nativeElement.click();
     }
   }
 }

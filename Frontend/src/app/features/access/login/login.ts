@@ -2,14 +2,17 @@ import { AfterViewInit, Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { AuthService } from '../../../core/auth/auth';
+import { AuthService } from '../../../core/auth/auth.service';
+import { IconComponent } from '../../../shared/components/icon/icon';
+import { ThemeService } from '../../../core/services/theme.service';
+import { LogoComponent } from '../../../shared/components/logo/logo';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
-  imports: [FormsModule, RouterLink, TranslatePipe],
+  imports: [FormsModule, RouterLink, TranslatePipe, IconComponent, LogoComponent],
 })
 export class LoginComponent implements AfterViewInit {
   ngAfterViewInit(): void {
@@ -34,6 +37,7 @@ export class LoginComponent implements AfterViewInit {
   private authService = inject(AuthService);
   private router = inject(Router);
   private translate = inject(TranslateService);
+  themeService = inject(ThemeService);
 
   toggleMode() {
     this.isLoginMode = !this.isLoginMode;

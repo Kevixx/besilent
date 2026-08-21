@@ -1,16 +1,18 @@
 import { AfterViewInit, Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { AuthService } from '../../../core/auth/auth';
+import { AuthService } from '../../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { IconComponent } from '../icon/icon';
-import { CandidateService } from '../../../core/services/candidate';
+import { CandidateService } from '../../../core/services/candidate.service';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
+import { ThemeService } from '../../../core/services/theme.service';
+import { LogoComponent } from '../logo/logo';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, TranslatePipe, IconComponent],
+  imports: [RouterLink, RouterLinkActive, TranslatePipe, IconComponent, LogoComponent],
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.scss'],
 })
@@ -31,6 +33,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   private router = inject(Router);
   private authService = inject(AuthService);
   private candidateService = inject(CandidateService);
+  public themeService = inject(ThemeService);
 
   toggleMenu() {
     this.isMenuOpen.update((state) => !state);

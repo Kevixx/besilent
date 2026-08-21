@@ -1,12 +1,20 @@
-#logo {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding-right: 1rem;
-  max-height: 6rem;
-  max-width: 15rem;
-  pointer-events: none;
-  z-index: -1;
+.header-wrapper {
+  height: 0;
+  position: relative;
+
+  #logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 1rem;
+  }
+
+  .toggle-theme {
+    position: absolute;
+    top: calc(var(--nav-height) / 2 - var(--icon-size-m) / 2);
+    right: 0;
+    margin-right: 1rem;
+  }
 }
 
 .card {

@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80" width="100%" height="100%">
-  <!-- TYPOGRAPHY: Fading Text Concept -->
-  <!-- Uses system fonts (Apple, Windows) for a perfectly clean, modern sans-serif look -->
-  <text x="0" y="62" font-family="times new roman, serif" font-weight="1000" font-size="64">
-    <!-- Solid, loud prefix -->
-    <tspan fill="rgba(255, 255, 255, 0.7)">Besilent</tspan>
-  </text>
-</svg>

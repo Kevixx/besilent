@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { Pipe, PipeTransform } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { vi } from 'vitest';
+import '../../../../test-setup';
 
 import { NavbarComponent } from './navbar';
 

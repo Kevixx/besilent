@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CreatePartyComponent } from './create-party';
-import { PartyService } from '../../../core/services/party'; // Adjust path if needed
+import { PartyService } from '../../../core/services/party.service'; // Adjust path if needed
 import { ActivatedRoute, Router } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { of, throwError } from 'rxjs';

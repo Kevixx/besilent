@@ -1,111 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600&family=Space+Mono:wght@400;700&display=swap');
+
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --error-color: #d9534f;
-  --success-color: #5cb85c;
-
+  /* Paper & Ink Palette */
+  --bg-optional: #f0efed; // more greyish
+  --bg-color: #f8f7f5; /* The warm cream background from the image */
   --white-color: #ffffff;
-  --black-color: #000000;
-  --box-shadow-color: #0000004d;
+  --black-color: #111111;
 
-  --primary-color: #ff4500;
-  --primary-hover: #e63900;
+  /* Typography Colors */
+  --text-primary: var(--black-color);
+  --text-secondary: #555555;
+  --text-tertiary: #888888;
+  --text-disabled: #bbbbbb;
 
-  --text-primary: #ffffff99;
-  --text-secondary: #ffffffd9;
-  --text-tertiary: #ffffff4d;
-  --text-disabled: var(--text-tertiary);
+  /* Structural Lines */
+  --border-color: #dcdcdc; /* Thin, subtle divider lines */
+  --border-dark: var(--black-color); /* For active tabs and borders */
 
-  --icon-primary: var(--text-primary);
-  --icon-hover: var(--primary-color);
-  --icon-active: var(--primary-color);
-  --icon-disabled: var(--text-disabled);
+  /* Form Elements */
+  --input-bg: transparent;
+  --icon-color: var(--text-tertiary);
+  --focus-color: var(--black-color);
+  --disabled-bg: #eaeaea;
+
+  --border-color: #444444;
+  --border-light: #cccccc;
+
+  /* Theme Defaults */
+  --primary-color: var(--black-color);
+  --primary-hover: #333333;
+  --error-color: #b31942;
+  --success-color: #2e7d32;
+
+  --logo-height: 5rem;
+  --logo-width: 20rem;
+
+  --nav-height: 70px;
+  --nav-logo-height: 36px;
+  --border-width: 1px;
 
   --icon-size-m: 24px;
 
-  --card-bg: #0f0f1480;
-  --border-color: #ffffff14;
+  --breakpoint-md: 768px;
+}
 
-  --input-bg: #00000040;
-  --input-border: #ffffff26;
+/* Manual Dark Mode Override */
+html[data-theme='dark'] {
+  --white-color: #111111;
+  --black-color: #ffffff;
 
-  --focus-color: #00e5ff;
-  --disabled-bg: #ffffff1a;
-  --button-disabled-color: #ffffff4d;
-  --overlay-bg: #06060899;
-  --border-light: #ffffff4d;
-  --spinner-color: #00e5ff26;
+  --bg-optional: #242422;
+  --bg-color: #181816;
 
-  --nav-height: 70px;
-  --border-width: 1px;
+  /* Typography Colors */
+  --text-primary: #f8f7f5;
+  --text-secondary: #a0a0a0;
+  --text-tertiary: #666666;
+  --text-disabled: #444444;
+
+  /* Structural Lines */
+  --border-color: #333333;
+  --border-dark: var(--text-primary);
+
+  /* Form Elements */
+  --input-bg: transparent;
+  --icon-color: var(--text-tertiary);
+  --focus-color: var(--text-primary);
+  --disabled-bg: #222222;
+
+  /* Theme Defaults */
+  --primary-color: var(--text-primary);
+  --primary-hover: #cccccc;
+  --error-color: #e56b6b;
+  --success-color: #4caf50;
 }
 
 html,
 body {
+  background-color: var(--bg-color);
   min-height: 100%;
   margin: 0;
+  font-family: 'Lora', serif; /* The elegant, readable main font */
+  color: var(--text-primary);
 }
 
-// * *::before,
-// *::after {
-//   box-sizing: border-box;
-// }
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  min-height: 100vh;
-  padding: 0 1rem;
+/* Use this on Navbar links, Buttons, Labels, and small text */
+button,
+label,
+.nav-link {
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
-.main-content .container {
-  min-height: calc(100vh - var(--nav-height) - var(--border-width));
-}
-
-.card {
-  background: var(--card-bg);
-  border: var(--border-width) solid var(--border-color);
-  padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px var(--box-shadow-color);
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-
-  .header {
-    width: 100%;
-    display: flex;
-    margin-bottom: 1rem;
-
-    h2 {
-      width: calc(100% - 2 * var(--icon-size-m));
-      margin-left: var(--icon-size-m);
-      margin-bottom: 0;
-    }
-  }
-
-  animation: fadeIn 1s ease-out forwards;
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-}
-
-h2 {
-  margin: 0;
-}
-
-p,
+h1,
 h2,
 h3,
 h4,
 h5 {
+  font-family: 'Lora', serif;
+  font-weight: 500;
   color: var(--text-primary);
   margin-bottom: 1rem;
 }
@@ -130,6 +127,55 @@ h5 {
   color: var(--error-color);
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+  padding: 0 1rem;
+}
+
+.main-content .container {
+  min-height: calc(100vh - var(--nav-height) - var(--border-width));
+}
+
+.card {
+  background: var(--bg-color); /* Blends directly into the page */
+  border: var(--border-width) solid var(--border-color);
+  padding: 2.5rem;
+  border-radius: 0; /* Sharp, flat corners */
+  box-shadow: none; /* No 3D effects */
+  width: 100%;
+  max-width: 450px;
+  text-align: left; /* Editorial layouts are usually left-aligned */
+
+  border-top: 4px solid var(--border-dark);
+
+  .header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    h2 {
+      width: calc(100% - 2 * var(--icon-size-m));
+      margin: 0;
+    }
+  }
+
+  animation: fadeIn 1s ease-out forwards;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
 .collapsible {
   max-height: 100px; /* Adjust this to be slightly taller than your actual input + label */
   overflow: hidden;
@@ -150,7 +196,6 @@ h5 {
 }
 
 .link {
-  font-size: 1.5rem;
   text-decoration: none;
   color: var(--text-primary);
   transition: color 0.2s;
@@ -163,29 +208,20 @@ h5 {
 
 a {
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--text-primary);
   font-weight: 500;
   font-size: 0.95rem;
   transition: color 0.2s;
   position: relative;
 
   &:hover {
-    color: var(--accent-color);
+    color: var(--primary-hover);
   }
 
-  /* Active indicator line */
   &.active-link {
-    color: var(--accent-color);
-
+    color: var(--text-primary);
     &::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: var(--accent-color);
-      border-radius: 2px;
+      background-color: var(--text-primary);
     }
   }
 }
@@ -207,7 +243,7 @@ a {
   opacity: 0;
 
   /* Styling */
-  background-color: var(--input-border, #444);
+  background-color: var(--border-color);
   color: var(--white-color, #fff);
   text-align: center;
   padding: 0.4rem 0.8rem;
@@ -251,24 +287,27 @@ a {
   input,
   select,
   textarea {
-    background: var(--input-bg);
-    border: var(--border-width) solid var(--input-border);
-    color: var(--white-color);
-    padding: 0.7rem;
-    border-radius: 6px;
+    background: transparent;
+    border: none;
+    /* Only a bottom border, like a dotted line on a paper form */
+    border-bottom: var(--border-width) solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.7rem 0;
+    border-radius: 0;
     width: 100%;
-    box-sizing: border-box;
+    font-family: 'Lora', serif;
+    font-size: 1rem;
     transition: border-color 0.2s;
-    font-family: inherit;
 
     &:focus {
       outline: none;
-      border-color: var(--primary-color);
+      border-bottom: var(--border-width) solid var(--focus-color);
     }
   }
 }
 
 textarea {
+  border: var(--border-width) solid var(--focus-color);
   resize: vertical;
 }
 
@@ -277,43 +316,45 @@ textarea {
 }
 
 button {
-  padding: 0.8rem 1rem;
-  border: none;
-  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  border: var(--border-width) solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 0; /* Sharp corners */
   cursor: pointer;
-  font-weight: 600;
-  text-align: center;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
 
-  span {
-    margin-left: 0.5rem;
-  }
-
+  /* Primary Button (Inverted ink) */
   &.btn-primary {
     background-color: var(--primary-color);
     color: var(--white-color);
+    border-color: var(--primary-color);
 
     &:hover:not(:disabled) {
-      background-color: var(--primary-hover);
-    }
-
-    &:active:not(:disabled) {
-      background-color: var(--primary-hover);
-    }
-
-    &.btn-wide {
-      width: 100%;
+      background-color: var(--bg-color);
+      color: var(--primary-color);
     }
   }
 
-  // after the .btn-* styles to override them
+  /* Ghost/Secondary Button (Like the Yes/No toggles) */
+  &.btn-secondary {
+    &:hover:not(:disabled) {
+      background-color: #ebeae5; /* Slight paper darkening */
+      border-color: var(--text-secondary);
+    }
+  }
+
+  &:active:not(:disabled) {
+    background-color: var(--primary-hover);
+  }
+
+  &.btn-wide {
+    width: 100%;
+  }
+
   &:disabled {
     background-color: var(--disabled-bg);
-    color: var(--button-disabled-color);
+    color: var(--text-disabled);
     cursor: not-allowed;
   }
 }
@@ -321,7 +362,8 @@ button {
 .icon-button {
   display: flex;
   align-items: center;
-  color: var(--icon-primary);
+  color: var(--icon-color);
+  cursor: pointer;
 
   img {
     width: 24px;
@@ -329,21 +371,20 @@ button {
   }
 
   &:hover:not(:disabled) {
-    background-color: var(--icon-hover);
+    background-color: var(--focus-color);
   }
 
   &:active:not(:disabled) {
-    transform: scale(0.98);
+    background-color: var(--primary-hover);
   }
 
   &:focus {
-    background-color: var(--icon-hover);
+    background-color: var(--focus-color);
   }
 
   &:disabled {
     cursor: not-allowed;
-    background-color: var(--icon-disabled);
-    opacity: 0.8;
+    background-color: var(--disabled-bg);
   }
 }
 
@@ -404,12 +445,20 @@ button.loading {
 }
 
 .global-spinner {
+  border: 3px solid var(--border-color);
+  border-top-color: var(--focus-color);
   width: 3.5rem;
   height: 3.5rem;
-
-  /* Uses your brand cyan for high-tech contrast */
-  border: 3px solid var(--spinner-color);
-  border-top-color: var(--focus-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
+}
+
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
 }

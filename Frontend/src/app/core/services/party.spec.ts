@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
-import { PartyService } from './party';
+import { PartyService } from './party.service';
 import { environment } from '../../../environments/environment';
 
 describe('PartyService', () => {

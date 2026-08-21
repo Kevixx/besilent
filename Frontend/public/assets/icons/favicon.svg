@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+    <style>
+        /* Light Mode (Paper & Ink) */
+        .box {
+            stroke: #111111;
+        }
+
+        .check {
+            stroke: #111111;
+        }
+
+        .dot {
+            fill: #111111;
+        }
+
+        /* Dark Mode (Slate & Chalk) Natively embedded! */
+        @media (prefers-color-scheme: dark) {
+
+            .box,
+            .check {
+                stroke: #f8f7f5;
+            }
+
+            .dot {
+                fill: #f8f7f5;
+            }
+        }
+    </style>
+
+    <!-- The Strict Ballot Box -->
+    <rect class="box" x="10" y="24" width="30" height="30" stroke-linecap="square" stroke-linejoin="miter" fill="none"
+        stroke-width="2" />
+
+    <!-- The Sharp 'V' / Checkmark -->
+    <polyline class="check" points="16,40 28,50 50,22" stroke-linecap="cap" stroke-linejoin="miter" fill="none"
+        stroke-width="8" />
+
+    <!-- The Authoritative Period -->
+    <circle class="dot" cx="54" cy="50" r="4" stroke-linecap="round" stroke-linejoin="miter" />
+</svg>

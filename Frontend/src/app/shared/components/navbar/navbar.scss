@@ -1,26 +1,16 @@
 /* --- Map Navbar Variables to Global Variables --- */
 :host {
-  /* Use your global card background and text colors */
-  --bg-color: var(--card-bg);
-  --text-color: var(--text-primary);
-  --brand-color: var(--white-color);
-  --accent-color: var(--primary-color);
-
   --transition-speed: 0.3s;
 }
 
-/* --- Layout & Glassmorphism --- */
+/* --- Layout & Solid Design --- */
 .navbar {
   position: sticky;
   top: 0;
   width: 100%;
   height: var(--nav-height);
   background: var(--bg-color);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-
-  border-bottom: var(--border-width) solid var(--border-color);
-
+  border-bottom: var(--border-width) solid var(--border-light);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -30,19 +20,17 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem; /* <--- CRITICAL FIX: Adds space on mobile edges */
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* --- Branding --- */
-.logo {
-  text-decoration: none;
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--brand-color);
-  letter-spacing: -0.5px;
+/* --- Controls Group (Right Side) --- */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 /* --- Desktop Navigation --- */
@@ -50,6 +38,10 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+
+  button {
+    margin-right: 1rem;
+  }
 }
 
 .nav-links {
@@ -81,13 +73,12 @@
       display: block;
       width: 100%;
       height: 2px;
-      background-color: var(--text-color);
+      background-color: var(--text-primary);
       border-radius: 2px;
       transition: all var(--transition-speed) ease-in-out;
       transform-origin: left center;
     }
 
-    /* Hamburger to X Animation */
     &.is-active span:nth-child(1) {
       transform: rotate(45deg) translate(0, -2px);
     }
@@ -118,7 +109,6 @@
     gap: 1.5rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 
-    /* Sliding dropdown animation */
     clip-path: inset(0 0 100% 0);
     transition: clip-path 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 

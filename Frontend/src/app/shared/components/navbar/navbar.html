@@ -2,23 +2,10 @@
 <header class="navbar">
     <div class="nav-container">
 
-        <!-- Logo -->
-        <a routerLink="/dashboard" class="logo" (click)="closeMenu()">
-            <!-- Brand names usually aren't translated, but you can add a pipe here if needed -->
-            <span class="brand-text">{{ 'COMMON.BRAND' | translate }}</span>
-        </a>
+        <!-- 1. LEFT: Logo -->
+        <app-logo routerLink="/dashboard" (click)="closeMenu()" height="var(--nav-logo-height)"></app-logo>
 
-        <!-- Mobile Hamburger Button -->
-        <button class="mobile-toggle" [attr.aria-expanded]="isMenuOpen()"
-            [attr.aria-label]="'NAVBAR.TOGGLE_NAV' | translate" (click)="toggleMenu()">
-            <div class="hamburger" [class.is-active]="isMenuOpen()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </button>
-
-        <!-- Main Navigation & Actions -->
+        <!-- 2. CENTER: Main Navigation (Desktop) / Dropdown (Mobile) -->
         <nav class="nav-menu" [class.is-open]="isMenuOpen()">
             <ul class="nav-links">
                 <li>
@@ -36,8 +23,6 @@
                         (click)="closeMenu()">
                         {{ 'NAVBAR.CREATE_PARTY' | translate }}
                     </a>
-
-                    <!-- Only render the tooltip if the link is actually disabled -->
                     @if (!isCandidate()) {
                     <span class="tooltip-text">
                         {{ 'NAVBAR.CREATE_PARTY_DISABLED_REASON' | translate }}
@@ -53,10 +38,27 @@
 
             <div class="nav-actions">
                 <button class="btn-primary" (click)="logout()" title="{{ 'COMMON.LOGOUT' | translate }}">
-                    <app-icon size="var(--icon-size-m)" src="assets/icons/logout.svg"></app-icon>
+                    <app-icon size="var(--icon-size-m)" src="assets/icons/logout.svg" class="logout-icon"></app-icon>
                 </button>
             </div>
         </nav>
+
+        <!-- 3. RIGHT: Controls (Theme + Hamburger) -->
+        <div class="nav-controls">
+            <app-icon src="{{themeService.isDarkTheme() ? 'assets/icons/sun.svg' : 'assets/icons/moon.svg'}}"
+                class="icon-button" (click)="themeService.toggleTheme()">
+            </app-icon>
+
+            <!-- Mobile Hamburger Button -->
+            <button class="mobile-toggle" [attr.aria-expanded]="isMenuOpen()"
+                [attr.aria-label]="'NAVBAR.TOGGLE_NAV' | translate" (click)="toggleMenu()">
+                <div class="hamburger" [class.is-active]="isMenuOpen()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
 
     </div>
 </header>

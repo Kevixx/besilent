@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { CandidateService } from './candidate';
+import { CandidateService } from './candidate.service';
 import { environment } from '../../../environments/environment';
 import { CreateProfileDto } from '../../shared/dtos/create-profile-dto';
 import { ProfileDto } from '../../shared/dtos/profile-dto';

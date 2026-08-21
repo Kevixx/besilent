@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PartyService } from '../../../core/services/party';
+import { PartyService } from '../../../core/services/party.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { IconComponent } from '../../../shared/components/icon/icon';
 
