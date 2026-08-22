@@ -1,19 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
     <style>
-        /* Light Mode (Paper & Ink) */
-        .box {
-            stroke: #111111;
-        }
-
-        .check {
-            stroke: #111111;
-        }
-
-        .dot {
-            fill: #111111;
-        }
-
-        /* Dark Mode (Slate & Chalk) Natively embedded! */
+        /* Dark Mode Override */
         @media (prefers-color-scheme: dark) {
 
             .box,
@@ -27,14 +14,15 @@
         }
     </style>
 
-    <!-- The Strict Ballot Box -->
-    <rect class="box" x="10" y="24" width="30" height="30" stroke-linecap="square" stroke-linejoin="miter" fill="none"
-        stroke-width="2" />
+    <!-- The Box (Width back to 6 so it doesn't vanish at 16px) -->
+    <rect class="box" x="14" y="13" width="38" height="38" stroke="#111111" stroke-linecap="square"
+        stroke-linejoin="miter" fill="none" stroke-width="4" />
 
-    <!-- The Sharp 'V' / Checkmark -->
-    <polyline class="check" points="16,40 28,50 50,22" stroke-linecap="cap" stroke-linejoin="miter" fill="none"
-        stroke-width="8" />
+    <!-- The Checkmark (Fixed stroke-linecap) -->
+    <!--<polyline class="check" points="20,30 30,40 55,15" stroke="#111111" stroke-linecap="square" stroke-linejoin="miter"
+        fill="none" stroke-width="8" /> -->
 
-    <!-- The Authoritative Period -->
-    <circle class="dot" cx="54" cy="50" r="4" stroke-linecap="round" stroke-linejoin="miter" />
+
+    <path class="check" fill="none" stroke-width="9" stroke-linecap="square" stroke-linejoin="square" stroke="#111111"
+        d="M12 7 L53 45 M12 57 L53 19"></path>
 </svg>
