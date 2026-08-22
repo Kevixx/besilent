@@ -29,6 +29,7 @@
       "TITLE": "Reset Password",
       "SUBTITLE": "Enter your email and we'll send you a secure reset link.",
       "BUTTON": "Send Reset Link",
+      "BACK": "Back to Login",
       "MESSAGES": {
         "SUCCESS": "Check your email for the password reset link!",
         "GENERIC_ERROR": "Unable to send the password reset email."
@@ -63,7 +64,8 @@
     "CREATE_PARTY": "Party",
     "CREATE_ELECTION": "Election",
     "ERROR_MESSAGE": "Failed to create the political party.",
-    "CREATE_PARTY_DISABLED_REASON": "You must have an active candidate profile to create a political party."
+    "CREATE_PARTY_DISABLED_REASON": "You must have an active candidate profile to create a political party.",
+    "TOGGLE_THEME": "Toggle theme"
   },
   "CANDIDATE": {
     "CREATE_PROFILE": {
@@ -117,6 +119,7 @@
 },
   "COMMON": {
     "BRAND": "Besilent",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "CLOSE": "Close"
   }
 }

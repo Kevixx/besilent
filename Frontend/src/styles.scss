@@ -33,11 +33,10 @@
   --error-color: #b31942;
   --success-color: #2e7d32;
 
-  --logo-height: 5rem;
-  --logo-width: 20rem;
+  --logo-height: 4rem;
 
   --nav-height: 70px;
-  --nav-logo-height: 36px;
+  --nav-logo-height: 42px;
   --border-width: 1px;
 
   --icon-size-m: 24px;
@@ -155,6 +154,7 @@ h5 {
   .header {
     width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
 
@@ -299,7 +299,7 @@ a {
     font-size: 1rem;
     transition: border-color 0.2s;
 
-    &:focus {
+    &:focus-visible {
       outline: none;
       border-bottom: var(--border-width) solid var(--focus-color);
     }
@@ -362,29 +362,25 @@ button {
 .icon-button {
   display: flex;
   align-items: center;
+  justify-content: center;
   color: var(--icon-color);
   cursor: pointer;
 
-  img {
-    width: 24px;
-    height: 24px;
-  }
-
-  &:hover:not(:disabled) {
-    background-color: var(--focus-color);
-  }
+  background: transparent;
+  border: none;
+  padding: 0.25rem;
 
   &:active:not(:disabled) {
-    background-color: var(--primary-hover);
+    color: var(--white-color);
   }
 
-  &:focus {
-    background-color: var(--focus-color);
+  &:hover:not(:disabled, :active) {
+    color: var(--focus-color);
   }
 
   &:disabled {
     cursor: not-allowed;
-    background-color: var(--disabled-bg);
+    opacity: 0.5;
   }
 }
 

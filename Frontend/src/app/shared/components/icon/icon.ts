@@ -32,13 +32,4 @@ export class IconComponent {
     // If height was provided, use it. Otherwise, fall back to size.
     return this.height || this.size;
   }
-
-  @HostListener('keydown.enter', ['$event'])
-  @HostListener('keydown.space', ['$event'])
-  handleKeyboardEvent(event: Event) {
-    if (this.el.nativeElement.hasAttribute('tabindex')) {
-      event.preventDefault();
-      this.el.nativeElement.click();
-    }
-  }
 }

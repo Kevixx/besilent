@@ -1,33 +1,15 @@
 /* Base Styles */
 .logo-text-full,
-.logo-text-short,
 .logo-symbol {
   background-color: var(--text-primary);
 }
 
-/* 1. Set the precise ratios for auto-width calculation */
 .logo-text-full {
-  aspect-ratio: 4 / 1; /* Based on your original 320x80 math */
-}
-
-.logo-text-short {
-  aspect-ratio: 1.5 / 1; /* UPDATE THIS: Estimate based on your short text SVG */
-  display: none;
+  aspect-ratio: 4 / 1; /* Based on original 320x80 math */
 }
 
 .logo-symbol {
   aspect-ratio: 1 / 1; /* Perfect square */
-}
-
-/* 2. Responsive overrides */
-@media (max-width: 768px) {
-  .logo-text-full {
-    display: none;
-  }
-
-  .logo-text-short {
-    display: inline-block;
-  }
 }
 
 :host {

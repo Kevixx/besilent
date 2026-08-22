@@ -2,64 +2,68 @@
 <header class="navbar">
     <div class="nav-container">
 
-        <!-- 1. LEFT: Logo -->
-        <app-logo routerLink="/dashboard" (click)="closeMenu()" height="var(--nav-logo-height)"></app-logo>
+        <!-- Logo -->
+        <app-logo class="logo" (click)="closeMenuOrNavDashboard()" height="var(--nav-logo-height)"></app-logo>
+        <div class="nav-content">
+            <!-- Controls (Theme + Hamburger) -->
+            <div class="nav-controls">
+                <!-- Mobile Hamburger Button -->
+                <button class="mobile-toggle" [attr.aria-expanded]="isMenuOpen()"
+                    [attr.aria-label]="'NAVBAR.TOGGLE_NAV' | translate" (click)="toggleMenu()">
+                    <div class="hamburger" [class.is-active]="isMenuOpen()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
 
-        <!-- 2. CENTER: Main Navigation (Desktop) / Dropdown (Mobile) -->
-        <nav class="nav-menu" [class.is-open]="isMenuOpen()">
-            <ul class="nav-links">
-                <li>
-                    <a routerLink="/dashboard" routerLinkActive="active-link" (click)="closeMenu()">
-                        {{ 'NAVBAR.DASHBOARD' | translate }}
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/create-profile" routerLinkActive="active-link" (click)="closeMenu()">
-                        {{ 'NAVBAR.CREATE_PROFILE' | translate }}
-                    </a>
-                </li>
-                <li class="tooltip-wrapper">
-                    <a [class.disabled-link]="!isCandidate()" routerLink="/create-party" routerLinkActive="active-link"
-                        (click)="closeMenu()">
-                        {{ 'NAVBAR.CREATE_PARTY' | translate }}
-                    </a>
-                    @if (!isCandidate()) {
-                    <span class="tooltip-text">
-                        {{ 'NAVBAR.CREATE_PARTY_DISABLED_REASON' | translate }}
-                    </span>
-                    }
-                </li>
-                <li>
-                    <a routerLink="/create-election" routerLinkActive="active-link" (click)="closeMenu()">
-                        {{ 'NAVBAR.CREATE_ELECTION' | translate }}
-                    </a>
-                </li>
-            </ul>
-
-            <div class="nav-actions">
-                <button class="btn-primary" (click)="logout()" title="{{ 'COMMON.LOGOUT' | translate }}">
-                    <app-icon size="var(--icon-size-m)" src="assets/icons/logout.svg" class="logout-icon"></app-icon>
+                <button class="icon-button toggle-theme" (click)="themeService.toggleTheme()"
+                    aria-label="{{ 'NAVBAR.TOGGLE_THEME' | translate }}">
+                    <app-icon src="{{themeService.isDarkTheme() ? 'assets/icons/sun.svg' : 'assets/icons/moon.svg'}}"
+                        size="var(--icon-size-m)">
+                    </app-icon>
                 </button>
             </div>
-        </nav>
 
-        <!-- 3. RIGHT: Controls (Theme + Hamburger) -->
-        <div class="nav-controls">
-            <app-icon src="{{themeService.isDarkTheme() ? 'assets/icons/sun.svg' : 'assets/icons/moon.svg'}}"
-                class="icon-button" (click)="themeService.toggleTheme()">
-            </app-icon>
+            <!-- Main Navigation (Desktop) / Dropdown (Mobile) -->
+            <nav class="nav-menu" [class.is-open]="isMenuOpen()">
+                <ul class="nav-links">
+                    <li>
+                        <a routerLink="/dashboard" routerLinkActive="active-link" (click)="closeMenu()">
+                            {{ 'NAVBAR.DASHBOARD' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/create-profile" routerLinkActive="active-link" (click)="closeMenu()">
+                            {{ 'NAVBAR.CREATE_PROFILE' | translate }}
+                        </a>
+                    </li>
+                    <li class="tooltip-wrapper">
+                        <a [class.disabled-link]="!isCandidate()" routerLink="/create-party"
+                            routerLinkActive="active-link" (click)="closeMenu()">
+                            {{ 'NAVBAR.CREATE_PARTY' | translate }}
+                        </a>
+                        @if (!isCandidate()) {
+                        <span class="tooltip-text">
+                            {{ 'NAVBAR.CREATE_PARTY_DISABLED_REASON' | translate }}
+                        </span>
+                        }
+                    </li>
+                    <li>
+                        <a routerLink="/create-election" routerLinkActive="active-link" (click)="closeMenu()">
+                            {{ 'NAVBAR.CREATE_ELECTION' | translate }}
+                        </a>
+                    </li>
+                </ul>
 
-            <!-- Mobile Hamburger Button -->
-            <button class="mobile-toggle" [attr.aria-expanded]="isMenuOpen()"
-                [attr.aria-label]="'NAVBAR.TOGGLE_NAV' | translate" (click)="toggleMenu()">
-                <div class="hamburger" [class.is-active]="isMenuOpen()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <div class="nav-actions">
+                    <button class="btn-primary" (click)="logout()" title="{{ 'COMMON.LOGOUT' | translate }}">
+                        <app-icon size="var(--icon-size-m)" src="assets/icons/logout.svg"
+                            class="logout-icon"></app-icon>
+                    </button>
                 </div>
-            </button>
+            </nav>
         </div>
-
     </div>
 </header>
 }

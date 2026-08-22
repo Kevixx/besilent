@@ -3,8 +3,10 @@
     <div class="card">
         <div class="header">
             <h2>{{ 'CANDIDATE.CREATE_PROFILE.TITLE' | translate }}</h2>
-            <app-icon size="var(--icon-size-m)" class="icon-button" src="assets/icons/close.svg" (click)="onClose()"
-                tabindex="0"></app-icon>
+            <button class="icon-button" (click)="onClose()" aria-label="{{ 'COMMON.CLOSE' | translate }}">
+                <app-icon size="var(--icon-size-m)" src="assets/icons/close.svg">
+                </app-icon>
+            </button>
         </div>
         <p class="subtitle">{{ 'CANDIDATE.CREATE_PROFILE.SUBTITLE' | translate }}</p>
 

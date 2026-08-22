@@ -1,9 +1,12 @@
 <div class="header-wrapper">
   <app-logo height="var(--logo-height)" id="logo"></app-logo>
 
-  <app-icon src="{{themeService.isDarkTheme() ? 'assets/icons/sun.svg' : 'assets/icons/moon.svg'}}"
-    size="var(--icon-size-m)" class="icon-button toggle-theme" (click)="themeService.toggleTheme()">
-  </app-icon>
+  <button class="icon-button toggle-theme" (click)="themeService.toggleTheme()"
+    aria-label="{{ 'NAVBAR.TOGGLE_THEME' | translate }}">
+    <app-icon src="{{themeService.isDarkTheme() ? 'assets/icons/sun.svg' : 'assets/icons/moon.svg'}}"
+      size="var(--icon-size-m)">
+    </app-icon>
+  </button>
 </div>
 
 @if(pageReady()) {

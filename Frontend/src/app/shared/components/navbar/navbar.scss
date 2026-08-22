@@ -24,23 +24,28 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  .logo {
+    cursor: pointer;
+  }
 }
 
-/* --- Controls Group (Right Side) --- */
-.nav-controls {
+.nav-content {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-/* --- Desktop Navigation --- */
-.nav-menu {
-  display: flex;
-  align-items: center;
   gap: 2rem;
 
-  button {
-    margin-right: 1rem;
+  /* --- Controls Group (Right Side) --- */
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* --- Desktop Navigation --- */
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
   }
 }
 
@@ -73,7 +78,7 @@
       display: block;
       width: 100%;
       height: 2px;
-      background-color: var(--text-primary);
+      background-color: var(--icon-color);
       border-radius: 2px;
       transition: all var(--transition-speed) ease-in-out;
       transform-origin: left center;
@@ -87,6 +92,12 @@
     }
     &.is-active span:nth-child(3) {
       transform: rotate(-45deg) translate(0, 2px);
+    }
+
+    &:hover:not(:disabled) span:nth-child(1),
+    &:hover:not(:disabled) span:nth-child(2),
+    &:hover:not(:disabled) span:nth-child(3) {
+      background-color: var(--focus-color);
     }
   }
 }

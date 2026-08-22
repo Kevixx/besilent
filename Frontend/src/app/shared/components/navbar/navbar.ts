@@ -39,6 +39,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.isMenuOpen.update((state) => !state);
   }
 
+  closeMenuOrNavDashboard() {
+    if (this.isMenuOpen()) {
+      this.isMenuOpen.set(false);
+    } else {
+      this.router.navigate(['/dashboard']);
+    }
+  }
+
   closeMenu() {
     this.isMenuOpen.set(false);
   }

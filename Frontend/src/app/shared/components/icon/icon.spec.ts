@@ -62,31 +62,27 @@ describe('IconComponent', () => {
     expect(iconUrlVar).toBe("url('/assets/icons/settings.svg')");
   });
 
-  it('should trigger a click event when Enter or Space is pressed', () => {
-    // Arrange
-    let clicked = false;
-    hostElement.setAttribute('tabindex', '0');
-    hostElement.addEventListener('click', () => (clicked = true));
-
-    // Act - Simulate 'Enter' keypress
-    const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-    hostElement.dispatchEvent(enterEvent);
+  it('should override size with explicit height if provided', () => {
+    // Act
+    fixture.componentRef.setInput('size', '24px');
+    fixture.componentRef.setInput('height', '36px');
+    fixture.detectChanges();
 
     // Assert
-    expect(clicked).toBeTruthy();
+    expect(hostElement.style.height).toBe('36px');
+    // Width should still fall back to size since it wasn't explicitly provided
+    expect(hostElement.style.width).toBe('24px');
   });
 
-  it('should NOT trigger a click event on Enter if tabindex is missing', () => {
-    // Arrange
-    let clicked = false;
-    hostElement.removeAttribute('tabindex'); // Ensure no tabindex
-    hostElement.addEventListener('click', () => (clicked = true));
-
+  it('should override size with explicit width if provided', () => {
     // Act
-    const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-    hostElement.dispatchEvent(enterEvent);
+    fixture.componentRef.setInput('size', '24px');
+    fixture.componentRef.setInput('width', 'auto');
+    fixture.detectChanges();
 
     // Assert
-    expect(clicked).toBeFalsy();
+    expect(hostElement.style.width).toBe('auto');
+    // Height should still fall back to size
+    expect(hostElement.style.height).toBe('24px');
   });
 });
