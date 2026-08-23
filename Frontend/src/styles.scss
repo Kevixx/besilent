@@ -304,11 +304,15 @@ a {
       border-bottom: var(--border-width) solid var(--focus-color);
     }
   }
-}
 
-textarea {
-  border: var(--border-width) solid var(--focus-color);
-  resize: vertical;
+  textarea {
+    &:focus-visible {
+      border-right: var(--border-width) solid var(--focus-color);
+    }
+
+    border-right: var(--border-width) solid var(--border-color);
+    resize: vertical;
+  }
 }
 
 .datetime-input {

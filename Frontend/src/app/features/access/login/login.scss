@@ -18,6 +18,8 @@
 }
 
 .card {
+  z-index: 1; /* Ensures the card is above the footer */
+
   .field-label-row {
     display: flex;
     justify-content: space-between;
@@ -46,8 +48,8 @@
   overflow: hidden; /* Traps the animation so no scrollbar triggers */
 
   #footer {
-    width: 100%;
     z-index: -1;
+    width: 100%;
     opacity: 0;
     overflow-y: hidden;
     text-align: center;
