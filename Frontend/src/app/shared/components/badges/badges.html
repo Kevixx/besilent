@@ -1,0 +1,31 @@
+@if (keywords && keywords.length > 0) {
+
+<!-- THE INVISIBLE MEASURING TAPE -->
+<div class="measuring-tape" #measuringTape aria-hidden="true">
+    @for (keyword of keywords; track keyword) {
+    <span class="badge measure-badge">{{ keyword }}</span>
+    }
+    <!-- Sizes itself to the max possible string length -->
+    <span class="badge measure-extra">+{{ keywords.length }}</span>
+</div>
+
+<!-- THE VISIBLE UI -->
+<app-tooltip [text]="keywords" position="top">
+    <div class="keywords">
+
+        @for (keyword of keywords | slice:0:dynamicCount(); track keyword) {
+        <span class="badge">{{ keyword }}</span>
+        }
+
+        @if (keywords.length > dynamicCount()) {
+        <span class="badge">
+            +{{ keywords.length - dynamicCount() }}
+        </span>
+        }
+
+    </div>
+</app-tooltip>
+
+} @else {
+—
+}

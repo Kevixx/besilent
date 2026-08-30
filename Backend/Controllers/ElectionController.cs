@@ -11,11 +11,11 @@ namespace Backend.Controllers;
 [Route("api/[controller]")]
 public class ElectionController : ControllerBase
 {
-    private readonly IElectionService _service;
+    private readonly IElectionService _electionService;
 
     public ElectionController(IElectionService service)
     {
-        _service = service;
+        _electionService = service;
     }
 
     [HttpPost]
@@ -30,7 +30,7 @@ public class ElectionController : ControllerBase
 
         try
         {
-            var election = await _service.CreateElectionAsync(userId, dto);
+            var election = await _electionService.CreateElectionAsync(userId, dto);
             return CreatedAtAction(nameof(GetElection), new { id = election.Id }, election);
         }
         catch (ArgumentException ex)
@@ -43,7 +43,7 @@ public class ElectionController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetElection(Guid id)
     {
-        var election = await _service.GetElectionByIdAsync(id);
+        var election = await _electionService.GetElectionByIdAsync(id);
 
         if (election == null)
         {

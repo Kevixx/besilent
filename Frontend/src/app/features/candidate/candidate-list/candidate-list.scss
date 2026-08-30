@@ -1,0 +1,44 @@
+.container {
+  flex-direction: column;
+
+  & .keywords-cell {
+    overflow: visible;
+
+    ::ng-deep .keywords {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.agenda-cell {
+  overflow: visible;
+}
+
+.truncate-text {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table {
+  /* Ensure this is still set! */
+  table-layout: fixed;
+
+  th:nth-child(1), /* First Name */
+  th:nth-child(2) {
+    /* Last Name */
+    width: 15%; /* Keeps names compact */
+  }
+
+  th:nth-child(3) {
+    /* Political Agenda */
+    width: 45%; /* Gives the lion's share of the space to the text */
+  }
+
+  th:nth-child(4) {
+    /* Keywords */
+    width: 25%; /* Leaves enough room for 2-3 badges */
+  }
+}

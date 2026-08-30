@@ -38,17 +38,20 @@
                             {{ 'NAVBAR.CREATE_PROFILE' | translate }}
                         </a>
                     </li>
-                    <li class="tooltip-wrapper">
-                        <a [class.disabled-link]="!isCandidate()" routerLink="/create-party"
-                            routerLinkActive="active-link" (click)="closeMenu()">
-                            {{ 'NAVBAR.CREATE_PARTY' | translate }}
-                        </a>
-                        @if (!isCandidate()) {
-                        <span class="tooltip-text">
-                            {{ 'NAVBAR.CREATE_PARTY_DISABLED_REASON' | translate }}
-                        </span>
-                        }
+
+                    <li>
+                        <!-- Tooltip goes INSIDE the list item -->
+                        <app-tooltip [text]="'NAVBAR.CREATE_PARTY_DISABLED_REASON' | translate"
+                            [disabled]="isCandidate()">
+
+                            <a [class.disabled-link]="!isCandidate()" routerLink="/create-party"
+                                routerLinkActive="active-link" (click)="closeMenu()">
+                                {{ 'NAVBAR.CREATE_PARTY' | translate }}
+                            </a>
+
+                        </app-tooltip>
                     </li>
+
                     <li>
                         <a routerLink="/create-election" routerLinkActive="active-link" (click)="closeMenu()">
                             {{ 'NAVBAR.CREATE_ELECTION' | translate }}

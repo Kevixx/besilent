@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
-import { CreatePartyDto } from '../../shared/dtos/create-party-dto';
+import { CreatePartyDto } from '../../../shared/dtos/create-party-dto';
 
 @Injectable({
   providedIn: 'root',

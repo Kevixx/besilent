@@ -4,15 +4,23 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { AuthService } from '../../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { IconComponent } from '../icon/icon';
-import { CandidateService } from '../../../core/services/candidate.service';
+import { CandidateService } from '../../../core/services/candidate/candidate.service';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 import { ThemeService } from '../../../core/services/theme.service';
 import { LogoComponent } from '../logo/logo';
+import { TooltipComponent } from '../tooltip/tooltip';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, TranslatePipe, IconComponent, LogoComponent],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    TranslatePipe,
+    IconComponent,
+    LogoComponent,
+    TooltipComponent,
+  ],
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.scss'],
 })

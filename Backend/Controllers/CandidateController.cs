@@ -73,6 +73,14 @@ public class CandidateController : ControllerBase
         return Ok(profile);
     }
 
+    [HttpGet("all")]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetAllCandidates()
+    {
+        var candidates = await _candidateService.GetAllCandidatesAsync();
+        return Ok(candidates);
+    }
+
     [HttpGet("isCandidate")]
     public async Task<IActionResult> IsCandidate()
     {

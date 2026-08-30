@@ -1,30 +1,39 @@
-import { Component, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { AuthService } from '../../core/auth/auth.service';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../core/auth/auth.service';
+import { CandidateService } from '../../core/services/candidate/candidate.service';
+import { CandidateListComponent } from '../candidate/candidate-list/candidate-list';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.scss'],
-  imports: [],
+  imports: [CandidateListComponent],
 })
-export class DashboardComponent {
-  private http = inject(HttpClient);
+export class DashboardComponent implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  testSecureEndpoint() {
-    const backendUrl = environment.apiUrl;
+  // Inject the service you built!
+  private candidateService = inject(CandidateService);
 
-    this.http.get(backendUrl + '/user/me').subscribe({
-      next: (response) => {
-        console.log('🎉 Success! The C# API accepted our token:', response);
+  isCandidate = signal(false);
+  isLoading = signal(true);
+
+  ngOnInit() {
+    this.checkCandidateStatus();
+  }
+
+  checkCandidateStatus() {
+    this.candidateService.checkCandidacy().subscribe({
+      next: (status: boolean) => {
+        this.isCandidate.set(status);
+        this.isLoading.set(false);
       },
-      error: (error) => {
-        console.error('🚫 Access Denied! C# rejected the request:', error);
+      error: (err) => {
+        console.error('Failed to check candidacy status:', err);
+        this.isLoading.set(false);
       },
     });
   }

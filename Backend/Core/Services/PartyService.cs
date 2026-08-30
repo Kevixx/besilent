@@ -17,7 +17,7 @@ public class PartyService : IPartyService
 
     public async Task<PoliticalParty> CreatePartyAsync(Guid userId, CreatePartyDto dto)
     {
-        // 1. ENFORCE THE RULE: Get the user's Candidate Profile (their "Political ID")
+        // ENFORCE THE RULE: Get the user's Candidate Profile (their "Political ID")
         var candidateProfile = await _candidateRepo.GetByUserIdAsync(userId);
 
         if (candidateProfile == null)
@@ -25,7 +25,6 @@ public class PartyService : IPartyService
             throw new UnauthorizedAccessException("You must have a registered Candidate Profile to create a party.");
         }
 
-        // 2. Map the DTO
         var newParty = new PoliticalParty
         {
             Id = Guid.NewGuid(),
@@ -35,11 +34,10 @@ public class PartyService : IPartyService
             CreatedAt = DateTime.UtcNow
         };
 
-        // 3. Save the new party
         var savedParty = await _partyRepo.AddAsync(newParty);
 
-        // 4. (Optional but recommended) Automatically join the founder to their new party
-        candidateProfile.PartyId = savedParty.Id;
+        // Automatically join the founder to their new party
+        candidateProfile.Parties.Add(savedParty);
         await _candidateRepo.UpdateAsync(candidateProfile);
 
         return savedParty;

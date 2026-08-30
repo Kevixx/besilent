@@ -11,5 +11,6 @@ import { ThemeService } from './core/services/theme.service';
 export class App {
   protected readonly title = signal('besilent-frontend');
 
-  private themeService = inject(ThemeService);
+  // This always checks the theme preset where theme button is not present
+  private _themeService = inject(ThemeService);
 }

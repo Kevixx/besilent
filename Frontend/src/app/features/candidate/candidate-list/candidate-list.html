@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="header">
+        <h1>{{ 'CANDIDATE.DIRECTORY_TITLE' | translate }}</h1>
+    </div>
+
+    @if (isLoading()) {
+    <div class="global-spinner"></div>
+    } @else {
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{{ 'CANDIDATE.FIRST_NAME' | translate }}</th>
+                    <th>{{ 'CANDIDATE.LAST_NAME' | translate }}</th>
+                    <th>{{ 'CANDIDATE.AGENDA_LABEL' | translate }}</th>
+                    <th class="text-right">{{ 'COMMON.KEYWORDS' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (candidate of candidates(); track candidate.id) {
+                <tr (click)="openCandidate(candidate.id)">
+                    <td>{{ candidate.firstName }}</td>
+                    <td>{{ candidate.lastName }}</td>
+                    <td class="agenda-cell">
+                        <!-- Tooltip is now safely inside the table cell -->
+                        <app-tooltip [text]="candidate.agenda" position="top" class="agenda-tooltip">
+                            <!-- We apply the truncation to this inner div -->
+                            <div class="truncate-text">
+                                {{ candidate.agenda }}
+                            </div>
+                        </app-tooltip>
+                    </td>
+                    <td class="keywords-cell">
+                        <app-badges [keywords]="candidate.keyWords"></app-badges>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (candidates().length === 0) {
+    <p class="message">{{ 'CANDIDATE.NO_CANDIDATES' | translate }}</p>
+    }
+    }
+</div>

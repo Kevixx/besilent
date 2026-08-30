@@ -56,17 +56,4 @@ describe('DashboardComponent', () => {
   it('creates the component', () => {
     expect(component).toBeTruthy();
   });
-
-  it('calls the protected API with the expected endpoint', () => {
-    const subscribe = vi.fn();
-    httpClient.get.mockReturnValue({ subscribe });
-
-    component.testSecureEndpoint();
-
-    expect(httpClient.get).toHaveBeenCalledWith(`${environment.apiUrl}/user/me`);
-    expect(subscribe).toHaveBeenCalledWith({
-      next: expect.any(Function),
-      error: expect.any(Function),
-    });
-  });
 });

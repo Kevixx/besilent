@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CreateElectionComponent } from './create-election';
-import { ElectionService } from '../../../core/services/election.service';
+import { ElectionService } from '../../../core/services/election/election.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { of, throwError } from 'rxjs';

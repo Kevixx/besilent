@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PartyService } from '../../../core/services/party.service';
+import { PartyService } from '../../../core/services/party/party.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { IconComponent } from '../../../shared/components/icon/icon';
 
@@ -57,7 +57,7 @@ export class CreatePartyComponent implements AfterViewInit {
       error: (err) => {
         // If they get a 403 Forbidden, this will display the error message from C#
         this.errorMessage.set(
-          err.error?.message || this.translate.instant('CANDIDATE.CREATE_PARTY.ERROR_MESSAGE'),
+          err.error?.message || this.translate.instant('PARTY.CREATE_PARTY.ERROR_MESSAGE'),
         );
         this.isLoading.set(false);
         this.partyForm.enable();

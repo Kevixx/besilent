@@ -1,0 +1,30 @@
+.keywords {
+  display: flex;
+  gap: 0.2rem;
+  white-space: nowrap;
+}
+
+.badge {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.measuring-tape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -100;
+  display: flex;
+  gap: 0.2rem;
+
+  /* Critical: Forces the tape to stay on one line so we can read unconstrained widths */
+  white-space: nowrap;
+}

@@ -71,29 +71,49 @@
     "CREATE_PROFILE": {
       "TITLE": "Create Your Candidate Profile",
       "SUBTITLE": "Tell voters what you stand for and establish your platform.",
-      "BIO_LABEL": "Biography & Core Vision",
-      "BIO_PLACEHOLDER": "Share your political background, core beliefs, and what you aim to achieve...",
-      "BUTTON_SUBMIT": "Launch Profile",
+      "BUTTON_SUBMIT": "Launch Profile"
+    },
+      "FIRST_NAME": "First Name",
+      "LAST_NAME": "Last Name",
+      "BIO_LABEL": "Biography",
+      "BIO_PLACEHOLDER": "Share your background, experience, motivation...",
+      "LINKEDIN_LABEL": "LinkedIn Profile URL",
+      "LINKEDIN_PLACEHOLDER": "e.g., https://www.linkedin.com/in/yourprofile",
+      "AGENDA_LABEL": "Political Agenda",
+      "AGENDA_PLACEHOLDER": "Outline your key policies and objectives...",
+      "KEYWORDS_LABEL": "Key Words",
+      "KEYWORDS_PLACEHOLDER": "e.g., healthcare, education, climate change",
+      "PARTY_LABEL": "Affiliated Parties",
+      "PARTY_PLACEHOLDER": "Select one or more parties you are affiliated with...",
+      "DIRECTORY_TITLE": "Candidates",
+    "NO_CANDIDATES": "No candidates have established profiles yet.",
       "MESSAGES": {
         "GENERIC_ERROR": "An error occurred while creating your profile. Please try again.",
-        "BIO_SHORT_ERROR": "Your bio must be at least 20 characters long.",
-        "BIO_LONG_ERROR": "Your bio must be no more than 500 characters long."
-      }},
-      "CREATE_PARTY": {
-        "TITLE": "Found a Political Party",
-        "SUBTITLE": "Establish a new political movement.",
-        "NAME_LABEL": "Party Name",
-        "NAME_PLACEHOLDER": "e.g., The Forward Coalition",
-        "DESCRIPTION_LABEL": "Party Description & Core Values",
-        "DESCRIPTION_PLACEHOLDER": "What does your party stand for?",
-        "SUBMIT_BUTTON": "Found Party",
-        "ERROR_MESSAGE": "Failed to create party. Please try again.",
-        "NAME_SHORT_ERROR": "Party name must be at least 3 characters long.",
-        "NAME_LONG_ERROR": "Party name must be no more than 100 characters long.",
-        "DESCRIPTION_SHORT_ERROR": "Party description must be at least 20 characters long.",
-        "DESCRIPTION_LONG_ERROR": "Party description must be no more than 500 characters long."
-      }
+        "REQUIRED_ERROR": "This field is required.",
+        "SHORT_ERROR_20": "Must be at least 20 characters long.",
+        "LONG_ERROR_20": "Must be no more than 20 characters long.",
+        "LONG_ERROR_50": "Must be no more than 50 characters long.",
+        "LONG_ERROR_200": "Must be no more than 200 characters long.",
+        "LONG_ERROR_500": "Must be no more than 500 characters long."
+    }
   },
+  "PARTY":
+  {
+    "CREATE_PARTY": {
+      "TITLE": "Found a Political Party",
+      "SUBTITLE": "Establish a new political movement.",
+      "NAME_LABEL": "Party Name",
+      "NAME_PLACEHOLDER": "e.g., The Forward Coalition",
+      "DESCRIPTION_LABEL": "Party Description & Core Values",
+      "DESCRIPTION_PLACEHOLDER": "What does your party stand for?",
+      "SUBMIT_BUTTON": "Found Party",
+      "ERROR_MESSAGE": "Failed to create party. Please try again.",
+      "NAME_SHORT_ERROR": "Party name must be at least 3 characters long.",
+      "NAME_LONG_ERROR": "Party name must be no more than 100 characters long.",
+      "DESCRIPTION_SHORT_ERROR": "Party description must be at least 20 characters long.",
+      "DESCRIPTION_LONG_ERROR": "Party description must be no more than 500 characters long."
+    }
+  },  
   "ELECTION": {
     "CREATE_ELECTION": {
     "TITLE": "Schedule Election",

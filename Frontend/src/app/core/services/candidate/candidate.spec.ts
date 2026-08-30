@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { CandidateService } from './candidate.service';
-import { environment } from '../../../environments/environment';
-import { CreateProfileDto } from '../../shared/dtos/create-profile-dto';
-import { ProfileDto } from '../../shared/dtos/profile-dto';
+import { environment } from '../../../../environments/environment';
+import { CreateProfileDto } from '../../../shared/dtos/create-profile-dto';
+import { ProfileDto } from '../../../shared/dtos/profile-dto';
 
 describe('CandidateService', () => {
   let service: CandidateService;
@@ -32,12 +32,20 @@ describe('CandidateService', () => {
 
   it('should send a POST request to create a profile', () => {
     // Arrange
-    const mockDto: CreateProfileDto = { bio: 'This is a test bio.', partyId: null };
+    const mockDto: CreateProfileDto = {
+      firstName: 'John',
+      lastName: 'Doe',
+      bio: 'This is a test bio.',
+      linkedInUrl: '',
+      agenda: 'This is a test agenda.',
+      keyWords: [],
+      partyIds: [],
+    };
     const mockResponse = { id: '123', message: 'Profile created' };
     const expectedUrl = `${environment.apiUrl}/candidate`;
 
     // Act
-    service.createProfile(mockDto).subscribe((res) => {
+    service.createCandidateProfile(mockDto).subscribe((res) => {
       // Assert the response matches what the mock backend returns
       expect(res).toEqual(mockResponse);
     });
@@ -53,11 +61,17 @@ describe('CandidateService', () => {
 
   it('should send a GET request to get profile', () => {
     // Arrange
-    const mockResponse: ProfileDto = { bio: 'This is a test bio.', partyId: null };
+    const mockResponse: ProfileDto = {
+      firstName: 'John',
+      lastName: 'Doe',
+      agenda: 'Test agenda',
+      partyIds: [],
+      id: '123',
+    };
     const expectedUrl = `${environment.apiUrl}/candidate`;
 
     // Act
-    service.getProfile().subscribe((profile) => {
+    service.getMyCandidateProfile().subscribe((profile) => {
       // Assert the response matches what the mock backend returns
       expect(profile).toEqual(mockResponse);
     });

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './auth-guard';
+import { authGuard } from './core/guards/auth-guard';
+import { candidateGuard } from './core/guards/candidate-guard';
 import { UpdatePasswordComponent } from './features/access/update-password/update-password';
 import { ForgotPasswordComponent } from './features/access/forgot-password/forgot-password';
 import { MainLayoutComponent } from './shared/components/main-layout-component/main-layout-component';
@@ -43,10 +44,8 @@ export const routes: Routes = [
       {
         path: 'create-party',
         loadComponent: () =>
-          import('./features/candidate/create-party/create-party').then(
-            (m) => m.CreatePartyComponent,
-          ),
-        // canActivate: [candidateGuard],
+          import('./features/party/create-party/create-party').then((m) => m.CreatePartyComponent),
+        canActivate: [candidateGuard],
       },
       {
         path: 'create-election',

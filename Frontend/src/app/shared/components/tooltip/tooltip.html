@@ -1,0 +1,9 @@
+<div class="tooltip-wrapper">
+    <ng-content></ng-content>
+
+    @if (!disabled && displayText) {
+    <div class="tooltip-text" [class.tooltip-top]="position === 'top'">
+        {{ displayText }}
+    </div>
+    }
+</div>

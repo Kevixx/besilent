@@ -20,10 +20,9 @@ public class AppDbContext : DbContext
             .HasIndex(c => c.UserId)
             .IsUnique();
 
+        // Enforce a many-to-many relationship between CandidateProfile and PoliticalParty
         modelBuilder.Entity<PoliticalParty>()
             .HasMany(p => p.Members)
-            .WithOne() // A candidate has one party (defined by PartyId)
-            .HasForeignKey(c => c.PartyId)
-            .OnDelete(DeleteBehavior.SetNull); // If a party is deleted, candidates just become independent
+            .WithMany(c => c.Parties);
     }
 }

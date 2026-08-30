@@ -1,4 +1,9 @@
 export interface CreateProfileDto {
-  bio: string;
-  partyId: string | null;
+  firstName: string;
+  lastName: string;
+  bio?: string;
+  linkedInUrl?: string;
+  agenda: string;
+  keyWords?: string[];
+  partyIds: string[];
 }

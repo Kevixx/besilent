@@ -7,7 +7,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ElectionService } from '../../../core/services/election.service';
+import { ElectionService } from '../../../core/services/election/election.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { IconComponent } from '../../../shared/components/icon/icon';
 

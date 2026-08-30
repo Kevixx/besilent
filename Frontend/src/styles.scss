@@ -6,6 +6,7 @@
   --bg-optional: #f0efed; // more greyish
   --bg-color: #f8f7f5; /* The warm cream background from the image */
   --white-color: #ffffff;
+  --always-white: #ffffff;
   --black-color: #111111;
 
   /* Typography Colors */
@@ -39,9 +40,12 @@
   --nav-logo-height: 42px;
   --border-width: 1px;
 
+  --icon-size-s: 16px;
   --icon-size-m: 24px;
 
   --breakpoint-md: 768px;
+
+  --main-content-height: calc(100vh - var(--nav-height) - var(--border-width));
 }
 
 /* Manual Dark Mode Override */
@@ -131,12 +135,8 @@ h5 {
   justify-content: center;
   align-items: center;
 
-  min-height: 100vh;
+  min-height: var(--main-content-height);
   padding: 0 1rem;
-}
-
-.main-content .container {
-  min-height: calc(100vh - var(--nav-height) - var(--border-width));
 }
 
 .card {
@@ -195,6 +195,76 @@ h5 {
   }
 }
 
+/* =========================================
+   TABLE STYLING
+   ========================================= */
+
+.table-responsive {
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed; /* This is the magic bullet */
+  border-collapse: collapse;
+  text-align: left;
+  border-top: 4px solid var(--border-dark);
+
+  th,
+  td {
+    max-width: 0;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    padding: 1.25rem 1rem;
+    border-bottom: var(--border-width) solid var(--border-color);
+  }
+
+  th {
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    font-weight: 700;
+  }
+
+  /* Standard Cells */
+  td {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+  }
+
+  /* Subtle highlight on row hover */
+  tbody tr {
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--bg-optional);
+    }
+  }
+
+  /* Truncate long agendas so they don't break the table width */
+  .card {
+    color: var(--text-secondary);
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Alignment Helpers */
+  .text-right {
+    text-align: right;
+  }
+}
+
+/* =========================================
+   LINK & BUTTON STYLING
+   ========================================= */
+
 .link {
   text-decoration: none;
   color: var(--text-primary);
@@ -229,46 +299,6 @@ a {
 .disabled-link {
   pointer-events: none;
   color: var(--text-disabled);
-}
-
-/* Make the parent the anchor point for the tooltip */
-.tooltip-wrapper {
-  position: relative;
-  display: inline-block; /* Or block, depending on your navbar layout */
-}
-
-/* Style the hidden tooltip box */
-.tooltip-text {
-  visibility: hidden;
-  opacity: 0;
-
-  /* Styling */
-  background-color: var(--border-color);
-  color: var(--white-color, #fff);
-  text-align: center;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  white-space: nowrap;
-
-  /* Positioning (Centered right below the link) */
-  position: absolute;
-  z-index: 50;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 8px;
-
-  /* Smooth fade in */
-  transition:
-    opacity 0.2s ease-in-out,
-    visibility 0.2s ease-in-out;
-}
-
-/* When hovering over the wrapper (which works!), show the tooltip */
-.tooltip-wrapper:hover .tooltip-text {
-  visibility: visible;
-  opacity: 1;
 }
 
 .form-group {

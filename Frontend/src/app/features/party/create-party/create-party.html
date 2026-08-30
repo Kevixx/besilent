@@ -2,49 +2,49 @@
 <div class="container">
     <div class="card">
         <div class="header">
-            <h2>{{ 'CANDIDATE.CREATE_PARTY.TITLE' | translate }}</h2>
+            <h2>{{ 'PARTY.CREATE_PARTY.TITLE' | translate }}</h2>
             <button class="icon-button" (click)="onClose()" aria-label="{{ 'COMMON.CLOSE' | translate }}">
                 <app-icon size="var(--icon-size-m)" src="assets/icons/close.svg">
                 </app-icon>
             </button>
         </div>
-        <p class="subtitle">{{ 'CANDIDATE.CREATE_PARTY.SUBTITLE' | translate }}</p>
+        <p class="subtitle">{{ 'PARTY.CREATE_PARTY.SUBTITLE' | translate }}</p>
 
         <form [formGroup]="partyForm" (ngSubmit)="onSubmit()">
 
             <div class="form-group">
-                <label>{{ 'CANDIDATE.CREATE_PARTY.NAME_LABEL' | translate }}</label>
+                <label>{{ 'PARTY.CREATE_PARTY.NAME_LABEL' | translate }}</label>
                 <input type="text" formControlName="name"
-                    [placeholder]="'CANDIDATE.CREATE_PARTY.NAME_PLACEHOLDER' | translate" required />
+                    [placeholder]="'PARTY.CREATE_PARTY.NAME_PLACEHOLDER' | translate" required />
                 <small class="message error collapsible"
                     [class.collapse]="!partyForm.controls.name.hasError('minlength')">
-                    {{ 'CANDIDATE.CREATE_PARTY.NAME_SHORT_ERROR' | translate }}
+                    {{ 'PARTY.CREATE_PARTY.NAME_SHORT_ERROR' | translate }}
                 </small>
                 <small class="message error collapsible"
                     [class.collapse]="!partyForm.controls.name.hasError('maxlength')">
-                    {{ 'CANDIDATE.CREATE_PARTY.NAME_LONG_ERROR' | translate }}
+                    {{ 'PARTY.CREATE_PARTY.NAME_LONG_ERROR' | translate }}
                 </small>
             </div>
 
             <div class="form-group">
-                <label>{{ 'CANDIDATE.CREATE_PARTY.DESCRIPTION_LABEL' | translate }}</label>
+                <label>{{ 'PARTY.CREATE_PARTY.DESCRIPTION_LABEL' | translate }}</label>
                 <textarea formControlName="description" rows="5"
-                    [placeholder]="'CANDIDATE.CREATE_PARTY.DESCRIPTION_PLACEHOLDER' | translate" required>
+                    [placeholder]="'PARTY.CREATE_PARTY.DESCRIPTION_PLACEHOLDER' | translate" required>
                 </textarea>
 
                 <small class="message error collapsible"
                     [class.collapse]="!partyForm.controls.description.hasError('minlength')">
-                    {{ 'CANDIDATE.CREATE_PARTY.DESCRIPTION_SHORT_ERROR' | translate }}
+                    {{ 'PARTY.CREATE_PARTY.DESCRIPTION_SHORT_ERROR' | translate }}
                 </small>
                 <small class="message error collapsible"
                     [class.collapse]="!partyForm.controls.description.hasError('maxlength')">
-                    {{ 'CANDIDATE.CREATE_PARTY.DESCRIPTION_LONG_ERROR' | translate }}
+                    {{ 'PARTY.CREATE_PARTY.DESCRIPTION_LONG_ERROR' | translate }}
                 </small>
             </div>
 
             <button type="submit" [disabled]="partyForm.invalid || isLoading()" [class.loading]="isLoading()"
                 class="btn-primary btn-wide" [class.loading]="isLoading()">
-                {{ 'CANDIDATE.CREATE_PARTY.SUBMIT_BUTTON' | translate }}
+                {{ 'PARTY.CREATE_PARTY.SUBMIT_BUTTON' | translate }}
             </button>
         </form>
 

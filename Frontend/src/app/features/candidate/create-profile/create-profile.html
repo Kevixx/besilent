@@ -14,27 +14,81 @@
         <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
             <div class="form-group">
-                <label>{{ 'CANDIDATE.CREATE_PROFILE.BIO_LABEL' | translate }}</label>
-                <textarea formControlName="bio" rows="6"
-                    placeholder="{{ 'CANDIDATE.CREATE_PROFILE.BIO_PLACEHOLDER' | translate }}" required>
+                <label>{{ 'CANDIDATE.FIRST_NAME' | translate }}</label>
+                <input type="text" formControlName="firstName" required>
+                <small class="message error collapsible"
+                    [class.collapse]="!profileForm.controls.firstName.hasError('maxlength')">
+                    {{ 'CANDIDATE.MESSAGES.LONG_ERROR_50' | translate }}
+                </small>
+                <small class="message error collapsible"
+                    [class.collapse]="!profileForm.controls.firstName.hasError('required')">
+                    {{ 'CANDIDATE.MESSAGES.REQUIRED_ERROR' | translate }}
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label>{{ 'CANDIDATE.LAST_NAME' | translate }}</label>
+                <input type="text" formControlName="lastName" required>
+                <small class="message error collapsible"
+                    [class.collapse]="!profileForm.controls.lastName.hasError('maxlength')">
+                    {{ 'CANDIDATE.MESSAGES.LONG_ERROR_50' | translate }}
+                </small>
+                <small class="message error collapsible"
+                    [class.collapse]="!profileForm.controls.lastName.hasError('required')">
+                    {{ 'CANDIDATE.MESSAGES.REQUIRED_ERROR' | translate }}
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label>{{ 'CANDIDATE.BIO_LABEL' | translate }}</label>
+                <textarea formControlName="bio" rows="6" placeholder="{{ 'CANDIDATE.BIO_PLACEHOLDER' | translate }}">
                 </textarea>
 
                 <small class="message error collapsible"
                     [class.collapse]="!profileForm.controls.bio.hasError('minlength')">
-                    {{ 'CANDIDATE.CREATE_PROFILE.MESSAGES.BIO_SHORT_ERROR' | translate }}
+                    {{ 'CANDIDATE.MESSAGES.SHORT_ERROR_20' | translate }}
                 </small>
                 <small class="message error collapsible"
                     [class.collapse]="!profileForm.controls.bio.hasError('maxlength')">
-                    {{ 'CANDIDATE.CREATE_PROFILE.MESSAGES.BIO_LONG_ERROR' | translate }}
+                    {{ 'CANDIDATE.MESSAGES.LONG_ERROR_500' | translate }}
                 </small>
+            </div>
 
+            <div class="form-group">
+                <label>{{ 'CANDIDATE.LINKEDIN_LABEL' | translate }}</label>
+                <input type="url" formControlName="linkedInUrl"
+                    placeholder="{{ 'CANDIDATE.LINKEDIN_PLACEHOLDER' | translate }}">
+                <small class="message error collapsible"
+                    [class.collapse]="!profileForm.controls.linkedInUrl.hasError('maxlength')">
+                    {{ 'CANDIDATE.MESSAGES.LONG_ERROR_200' | translate }}
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label>{{ 'CANDIDATE.AGENDA_LABEL' | translate }}</label>
+                <textarea formControlName="agenda" rows="6"
+                    placeholder="{{ 'CANDIDATE.AGENDA_PLACEHOLDER' | translate }}" required>
+                </textarea>
+
+                <small class="message error collapsible"
+                    [class.collapse]="!profileForm.controls.agenda.hasError('minlength')">
+                    {{ 'CANDIDATE.MESSAGES.SHORT_ERROR_20' | translate }}
+                </small>
+                <small class="message error collapsible"
+                    [class.collapse]="!profileForm.controls.agenda.hasError('maxlength')">
+                    {{ 'CANDIDATE.MESSAGES.LONG_ERROR_500' | translate }}
+                </small>
+                <small class="message error collapsible"
+                    [class.collapse]="!profileForm.controls.agenda.hasError('required')">
+                    {{ 'CANDIDATE.MESSAGES.REQUIRED_ERROR' | translate }}
+                </small>
             </div>
 
 
-            <!-- We will add the Political Party dropdown here later -->
+            <!-- We will add the Political Party dropdown and Keywords input here later -->
 
-            <button type="submit" [disabled]="profileForm.invalid || isLoading()" [class.loading]="isLoading()"
-                class="btn-primary btn-wide" [class.loading]="isLoading()">
+            <button type="submit" [disabled]="profileForm.invalid || isLoading()" class="btn-primary btn-wide"
+                [class.loading]="isLoading()">
                 {{ 'CANDIDATE.CREATE_PROFILE.BUTTON_SUBMIT' | translate }}
             </button>
         </form>
