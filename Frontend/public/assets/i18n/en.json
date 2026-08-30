@@ -74,7 +74,8 @@
       "BUTTON_SUBMIT": "Launch Profile",
       "BUTTON_UPDATE": "Update Profile",
       "MESSAGES": {
-        "CONFIRM_DELETE": "Are you sure you want to delete your candidate profile?"
+        "CONFIRM_DELETE": "Are you sure you want to delete your candidate profile?",
+        "GENERIC_ERROR": "An error occurred while processing your request. Please try again."  
       }
     },
       "FIRST_NAME": "First Name",
