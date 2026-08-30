@@ -3,8 +3,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { CandidateService } from './candidate.service';
 import { environment } from '../../../../environments/environment';
-import { CreateProfileDto } from '../../../shared/dtos/create-profile-dto';
-import { ProfileDto } from '../../../shared/dtos/profile-dto';
+import { CreateCandidateDto } from '../../../shared/dtos/create-candidacy-dto';
+import { CandidateDto } from '../../../shared/dtos/candidacy-dto';
 
 describe('CandidateService', () => {
   let service: CandidateService;
@@ -32,7 +32,7 @@ describe('CandidateService', () => {
 
   it('should send a POST request to create a profile', () => {
     // Arrange
-    const mockDto: CreateProfileDto = {
+    const mockDto: CreateCandidateDto = {
       firstName: 'John',
       lastName: 'Doe',
       bio: 'This is a test bio.',
@@ -61,7 +61,7 @@ describe('CandidateService', () => {
 
   it('should send a GET request to get profile', () => {
     // Arrange
-    const mockResponse: ProfileDto = {
+    const mockResponse: CandidateDto = {
       firstName: 'John',
       lastName: 'Doe',
       agenda: 'Test agenda',

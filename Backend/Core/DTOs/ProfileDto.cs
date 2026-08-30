@@ -1,5 +1,3 @@
-using Backend.Core.Models;
-
 public class ProfileDto
 {
     public Guid Id { get; set; }

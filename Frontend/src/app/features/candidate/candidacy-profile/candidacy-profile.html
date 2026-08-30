@@ -2,13 +2,13 @@
 <div class="container">
     <div class="card">
         <div class="header">
-            <h2>{{ 'CANDIDATE.CREATE_PROFILE.TITLE' | translate }}</h2>
+            <h2>{{ 'CANDIDATE.CANDIDACY.TITLE' | translate }}</h2>
             <button class="icon-button" (click)="onClose()" aria-label="{{ 'COMMON.CLOSE' | translate }}">
                 <app-icon size="var(--icon-size-m)" src="assets/icons/close.svg">
                 </app-icon>
             </button>
         </div>
-        <p class="subtitle">{{ 'CANDIDATE.CREATE_PROFILE.SUBTITLE' | translate }}</p>
+        <p class="subtitle">{{ 'CANDIDATE.CANDIDACY.SUBTITLE' | translate }}</p>
 
         <!-- Bind the formGroup here -->
         <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
@@ -16,12 +16,11 @@
             <div class="form-group">
                 <label>{{ 'CANDIDATE.FIRST_NAME' | translate }}</label>
                 <input type="text" formControlName="firstName" required>
-                <small class="message error collapsible"
-                    [class.collapse]="!profileForm.controls.firstName.hasError('maxlength')">
+                <!-- Use the new helper method here -->
+                <small class="message error collapsible" [class.collapse]="!isFieldInvalid('firstName', 'maxlength')">
                     {{ 'CANDIDATE.MESSAGES.LONG_ERROR_50' | translate }}
                 </small>
-                <small class="message error collapsible"
-                    [class.collapse]="!profileForm.controls.firstName.hasError('required')">
+                <small class="message error collapsible" [class.collapse]="!isFieldInvalid('firstName', 'required')">
                     {{ 'CANDIDATE.MESSAGES.REQUIRED_ERROR' | translate }}
                 </small>
             </div>
@@ -29,12 +28,10 @@
             <div class="form-group">
                 <label>{{ 'CANDIDATE.LAST_NAME' | translate }}</label>
                 <input type="text" formControlName="lastName" required>
-                <small class="message error collapsible"
-                    [class.collapse]="!profileForm.controls.lastName.hasError('maxlength')">
+                <small class="message error collapsible" [class.collapse]="!isFieldInvalid('lastName', 'maxlength')">
                     {{ 'CANDIDATE.MESSAGES.LONG_ERROR_50' | translate }}
                 </small>
-                <small class="message error collapsible"
-                    [class.collapse]="!profileForm.controls.lastName.hasError('required')">
+                <small class="message error collapsible" [class.collapse]="!isFieldInvalid('lastName', 'required')">
                     {{ 'CANDIDATE.MESSAGES.REQUIRED_ERROR' | translate }}
                 </small>
             </div>
@@ -44,12 +41,10 @@
                 <textarea formControlName="bio" rows="6" placeholder="{{ 'CANDIDATE.BIO_PLACEHOLDER' | translate }}">
                 </textarea>
 
-                <small class="message error collapsible"
-                    [class.collapse]="!profileForm.controls.bio.hasError('minlength')">
+                <small class="message error collapsible" [class.collapse]="!isFieldInvalid('bio', 'minlength')">
                     {{ 'CANDIDATE.MESSAGES.SHORT_ERROR_20' | translate }}
                 </small>
-                <small class="message error collapsible"
-                    [class.collapse]="!profileForm.controls.bio.hasError('maxlength')">
+                <small class="message error collapsible" [class.collapse]="!isFieldInvalid('bio', 'maxlength')">
                     {{ 'CANDIDATE.MESSAGES.LONG_ERROR_500' | translate }}
                 </small>
             </div>
@@ -58,8 +53,7 @@
                 <label>{{ 'CANDIDATE.LINKEDIN_LABEL' | translate }}</label>
                 <input type="url" formControlName="linkedInUrl"
                     placeholder="{{ 'CANDIDATE.LINKEDIN_PLACEHOLDER' | translate }}">
-                <small class="message error collapsible"
-                    [class.collapse]="!profileForm.controls.linkedInUrl.hasError('maxlength')">
+                <small class="message error collapsible" [class.collapse]="!isFieldInvalid('linkedInUrl', 'maxlength')">
                     {{ 'CANDIDATE.MESSAGES.LONG_ERROR_200' | translate }}
                 </small>
             </div>
@@ -70,16 +64,13 @@
                     placeholder="{{ 'CANDIDATE.AGENDA_PLACEHOLDER' | translate }}" required>
                 </textarea>
 
-                <small class="message error collapsible"
-                    [class.collapse]="!profileForm.controls.agenda.hasError('minlength')">
+                <small class="message error collapsible" [class.collapse]="!isFieldInvalid('agenda', 'minlength')">
                     {{ 'CANDIDATE.MESSAGES.SHORT_ERROR_20' | translate }}
                 </small>
-                <small class="message error collapsible"
-                    [class.collapse]="!profileForm.controls.agenda.hasError('maxlength')">
+                <small class="message error collapsible" [class.collapse]="!isFieldInvalid('agenda', 'maxlength')">
                     {{ 'CANDIDATE.MESSAGES.LONG_ERROR_500' | translate }}
                 </small>
-                <small class="message error collapsible"
-                    [class.collapse]="!profileForm.controls.agenda.hasError('required')">
+                <small class="message error collapsible" [class.collapse]="!isFieldInvalid('agenda', 'required')">
                     {{ 'CANDIDATE.MESSAGES.REQUIRED_ERROR' | translate }}
                 </small>
             </div>
@@ -87,10 +78,24 @@
 
             <!-- We will add the Political Party dropdown and Keywords input here later -->
 
-            <button type="submit" [disabled]="profileForm.invalid || isLoading()" class="btn-primary btn-wide"
-                [class.loading]="isLoading()">
-                {{ 'CANDIDATE.CREATE_PROFILE.BUTTON_SUBMIT' | translate }}
-            </button>
+            <!-- Action Buttons Container -->
+            <div class="actions-container">
+                <button type="submit" [disabled]="profileForm.invalid || isLoading() || noChangesMade()"
+                    class="btn-primary btn-wide" [class.loading]="isLoading()">
+                    {{ (candidacyExists() ? 'CANDIDATE.CANDIDACY.BUTTON_UPDATE' : 'CANDIDATE.CANDIDACY.BUTTON_SUBMIT') |
+                    translate }}
+                </button>
+
+                <!-- Show Delete button only if the candidacy already exists -->
+                @if (candidacyExists()) {
+                <button type="button" class="icon-button" (click)="onDelete()" [disabled]="isLoading()"
+                    aria-label="{{ 'COMMON.DELETE' | translate }}">
+                    <app-icon size="var(--icon-size-m)" src="assets/icons/trash.svg">
+                    </app-icon>
+                </button>
+                }
+
+            </div>
         </form>
 
         <p class="message error collapsible" [class.collapse]="!errorMessage()">{{ errorMessage() }}</p>

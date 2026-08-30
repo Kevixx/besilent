@@ -1,4 +1,4 @@
-export interface ProfileDto {
+export interface CandidateDto {
   id: string;
   firstName: string;
   lastName: string;

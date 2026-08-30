@@ -22,6 +22,7 @@ public class CandidateRepository : ICandidateRepository
     public async Task<CandidateProfile?> GetByUserIdAsync(Guid userId)
     {
         return await _context.CandidateProfiles
+            .Include(c => c.Parties)
             .AsNoTracking()
             .FirstOrDefaultAsync(c => c.UserId == userId);
     }

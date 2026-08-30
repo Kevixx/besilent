@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CandidateService } from '../../../core/services/candidate/candidate.service';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ProfileDto } from '../../../shared/dtos/profile-dto';
+import { CandidateDto } from '../../../shared/dtos/candidacy-dto';
 
 import { BadgesComponent } from '../../../shared/components/badges/badges';
 import { TooltipComponent } from '../../../shared/components/tooltip/tooltip';
@@ -16,9 +16,9 @@ import { TooltipComponent } from '../../../shared/components/tooltip/tooltip';
 export class CandidateListComponent implements OnInit {
   private candidateService = inject(CandidateService);
 
-  candidates = signal<ProfileDto[]>([]);
+  candidates = signal<CandidateDto[]>([]);
   isLoading = signal(true);
-  selectedCandidate = signal<ProfileDto | null>(null);
+  selectedCandidate = signal<CandidateDto | null>(null);
 
   mockKeywords = ['Education', 'Healthcare', 'Environment', 'Economy', 'Technology'];
 
@@ -30,7 +30,7 @@ export class CandidateListComponent implements OnInit {
     this.isLoading.set(true);
 
     this.candidateService.getAllCandidates().subscribe({
-      next: (data: ProfileDto[]) => {
+      next: (data: CandidateDto[]) => {
         this.candidates.set(data);
         this.candidates().forEach((candidate) => {
           if (!candidate.keyWords || candidate.keyWords.length === 0) {

@@ -1,14 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CreateProfileComponent } from './create-profile';
+import { CandidacyProfileComponent } from './candidacy-profile';
 import { CandidateService } from '../../../core/services/candidate/candidate.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { of, throwError } from 'rxjs';
 import { vi } from 'vitest';
 
-describe('CreateProfileComponent', () => {
-  let component: CreateProfileComponent;
-  let fixture: ComponentFixture<CreateProfileComponent>;
+describe('CandidacyProfileComponent', () => {
+  let component: CandidacyProfileComponent;
+  let fixture: ComponentFixture<CandidacyProfileComponent>;
 
   let mockCandidateService: any;
   let mockRouter: any;
@@ -16,26 +16,26 @@ describe('CreateProfileComponent', () => {
   beforeEach(async () => {
     mockCandidateService = {
       createCandidateProfile: vi.fn(),
-      getProfile: vi.fn().mockReturnValue(of({})),
+      updateCandidateProfile: vi.fn(),
+      deleteCandidateProfile: vi.fn(),
+      // FIX: Match the exact method name called in ngOnInit()
+      getMyCandidateProfile: vi.fn().mockReturnValue(throwError(() => ({ status: 404 }))),
     };
     mockRouter = {
       navigate: vi.fn(),
     };
 
     await TestBed.configureTestingModule({
-      // We just import the component (which already brings in TranslatePipe!)
-      imports: [CreateProfileComponent],
+      imports: [CandidacyProfileComponent],
       providers: [
         { provide: CandidateService, useValue: mockCandidateService },
         { provide: Router, useValue: mockRouter },
         { provide: ActivatedRoute, useValue: {} },
-
-        // THE FIX: Provide the REAL translation service so the Pipe works natively!
         provideTranslateService(),
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CreateProfileComponent);
+    fixture = TestBed.createComponent(CandidacyProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -45,7 +45,7 @@ describe('CreateProfileComponent', () => {
   });
 
   it('should set pageReady to true after view init', () => {
-    component.ngAfterViewInit();
+    component.ngOnInit();
     expect(component.pageReady()).toBeTruthy();
   });
 

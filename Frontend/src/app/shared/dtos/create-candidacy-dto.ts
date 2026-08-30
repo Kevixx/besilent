@@ -1,4 +1,4 @@
-export interface CreateProfileDto {
+export interface CreateCandidateDto {
   firstName: string;
   lastName: string;
   bio?: string;

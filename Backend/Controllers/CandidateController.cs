@@ -65,12 +65,25 @@ public class CandidateController : ControllerBase
         // Fetch the profile using the user's token ID
         var profile = await _candidateService.GetProfileByUserIdAsync(userId);
 
+
         if (profile == null)
         {
-            return NotFound(new { message = "Profile not found." });
+            return NoContent(); // Return 204 if the user has no profile
         }
 
-        return Ok(profile);
+        var dto = new ProfileDto
+        {
+            Id = profile.Id,
+            FirstName = profile.FirstName,
+            LastName = profile.LastName,
+            Bio = profile.Bio,
+            LinkedInUrl = profile.LinkedInUrl,
+            Agenda = profile.Agenda,
+            KeyWords = profile.KeyWords,
+            PartyIds = [.. profile.Parties.Select(p => p.Id)]
+        };
+
+        return Ok(dto);
     }
 
     [HttpGet("all")]

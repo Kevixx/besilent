@@ -37,8 +37,8 @@ export const routes: Routes = [
       {
         path: 'create-profile',
         loadComponent: () =>
-          import('./features/candidate/create-profile/create-profile').then(
-            (m) => m.CreateProfileComponent,
+          import('./features/candidate/candidacy-profile/candidacy-profile').then(
+            (m) => m.CandidacyProfileComponent,
           ),
       },
       {

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { CandidateCardComponent } from './candidate-card';
-import { ProfileDto } from '../../dtos/profile-dto';
+import { CandidateDto } from '../../dtos/candidacy-dto';
 
 describe('CandidateCard', () => {
   let component: CandidateCardComponent;
@@ -19,7 +19,7 @@ describe('CandidateCard', () => {
     component = fixture.componentInstance;
 
     // Provide a dummy candidate so the HTML doesn't crash looking for firstName
-    const mockCandidate: ProfileDto = {
+    const mockCandidate: CandidateDto = {
       id: '123',
       firstName: 'Test',
       lastName: 'Candidate',

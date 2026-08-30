@@ -60,7 +60,7 @@
   "NAVBAR": {
     "DASHBOARD": "Dashboard",
     "TOGGLE_NAV": "Toggle navigation",
-    "CREATE_PROFILE": "Profile",
+    "CANDIDACY": "Candidacy",
     "CREATE_PARTY": "Party",
     "CREATE_ELECTION": "Election",
     "ERROR_MESSAGE": "Failed to create the political party.",
@@ -68,10 +68,14 @@
     "TOGGLE_THEME": "Toggle theme"
   },
   "CANDIDATE": {
-    "CREATE_PROFILE": {
+    "CANDIDACY": {
       "TITLE": "Create Your Candidate Profile",
       "SUBTITLE": "Tell voters what you stand for and establish your platform.",
-      "BUTTON_SUBMIT": "Launch Profile"
+      "BUTTON_SUBMIT": "Launch Profile",
+      "BUTTON_UPDATE": "Update Profile",
+      "MESSAGES": {
+        "CONFIRM_DELETE": "Are you sure you want to delete your candidate profile?"
+      }
     },
       "FIRST_NAME": "First Name",
       "LAST_NAME": "Last Name",
