@@ -4,7 +4,9 @@
     </div>
 
     @if (isLoading()) {
-    <div class="global-spinner"></div>
+    <div class="global-loader-overlay">
+        <div class="global-spinner" aria-hidden="true"></div>
+    </div>
     } @else {
 
     <div class="table-responsive">

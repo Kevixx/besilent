@@ -35,6 +35,13 @@ public class CandidateRepository : ICandidateRepository
             .ToListAsync();
     }
 
+    public async Task<CandidateProfile?> GetTrackedByUserIdAsync(Guid userId)
+    {
+        return await _context.CandidateProfiles
+            .Include(c => c.Parties)
+            .FirstOrDefaultAsync(c => c.UserId == userId);
+    }
+
     public async Task<CandidateProfile> AddAsync(CandidateProfile profile)
     {
         // Tell EF Core that these parties already exist in the database!
@@ -53,9 +60,17 @@ public class CandidateRepository : ICandidateRepository
 
     public async Task<CandidateProfile> UpdateAsync(CandidateProfile profile)
     {
-        _context.CandidateProfiles.Update(profile);
+        // Because the profile is tracked, using GetTrackedByUserIdAsync, 
+        // EF Core ALREADY knows exactly which fields you changed in the 
+        // Service layer. Just save!
         await _context.SaveChangesAsync();
         return profile;
+    }
+
+    public async Task DeleteAsync(CandidateProfile profile)
+    {
+        _context.CandidateProfiles.Remove(profile);
+        await _context.SaveChangesAsync();
     }
 
     public async Task<Guid?> GetCandidateIdByUserIdAsync(Guid userId)
